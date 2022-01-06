@@ -13,8 +13,6 @@
 #include "image.h"
 #include "player.h"
 #include "ground.h"
-#include "killbox.h"
-#include "finishbox.h"
 
 //=============================================================================
 // This class is the core of the game
@@ -22,17 +20,12 @@
 class Spacewar : public Game
 {
 private:
-    // game items
-    TextureManager playerTexture;
-    TextureManager killboxTexture;
-    TextureManager finishboxTexture;
+    // game itemsWS
     TextureManager groundTexture;
-    Player player;                           // the player
-    Finishbox finishbox;                     // the finishbox
-    std::vector<Ground> groundList;        // the ground
-    std::vector<Killbox> kBoxList;        // the killbox
-    std::vector<Player> playerList;        // the killbox
-    std::vector<Finishbox> fBoxList;        // the killbox
+    std::vector<Ground> activeList;        // the ground
+    Ground groundList[MAP_WIDTH + 1];
+    Ground possible[50];
+    int distance = 0;
 
 public:
     // Constructor

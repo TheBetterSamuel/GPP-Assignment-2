@@ -29,8 +29,8 @@
 //-----------------------------------------------
 
 // window
-const char CLASS_NAME[] = "Spacewar";
-const char GAME_TITLE[] = "Spacewar";
+const char CLASS_NAME[] = "Synth";
+const char GAME_TITLE[] = "Synth";
 const bool FULLSCREEN = false;              // windowed or fullscreen
 const UINT GAME_WIDTH =  1280;               // width of game in pixels
 const UINT GAME_HEIGHT = 720;               // height of game in pixels
@@ -57,11 +57,11 @@ const char MAP[18][32] = {
     {'G','G','G','G','G','G','G','G','G','G','G','G','G','G','G','G','G','G','G','G','G','G','G','G','G','G','G','G','G','G','G','G'}
 };
 
-const float MOVESPEED = 500;  //movement speed of the player
+const float MOVESPEED = 100;  //movement speed of the player
 const float JUMP_DY = 500;   //starting dy of player when he jumps(decreases y g per second_)
 
-const int MAP_HEIGHT = _countof(MAP);
-const int MAP_WIDTH = _countof(MAP[0]);
+const int MAP_HEIGHT = 18;
+const int MAP_WIDTH = 32;
 const int BOX_SIZE = GAME_HEIGHT / MAP_HEIGHT;
 const float SPRITE_SCALE = (float)BOX_SIZE / 16;
 
@@ -76,10 +76,6 @@ const float MASS_PLANET = 1.0e14f;
 const float MASS_SHIP = 5.0f;
 
 // graphic images
-const char TEXTURES_IMAGE[] = "pictures\\textures.png";  // game textures
-const char PLAYER_IMAGE[] = "pictures\\Player.png";
-const char KILLBOX_IMAGE[] = "pictures\\Killbox.png";
-const char FINISHBOX_IMAGE[] = "pictures\\Finishbox.png";
 const char GROUND_IMAGE[] = "pictures\\Ground.png";
 
 // key mappings

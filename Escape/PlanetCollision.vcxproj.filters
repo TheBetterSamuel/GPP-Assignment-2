@@ -45,12 +45,6 @@
     <ClCompile Include="ground.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="killbox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="finishbox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="constants.h">
@@ -84,12 +78,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ground.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="killbox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="finishbox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
