@@ -1,0 +1,57 @@
+﻿cl : command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  winmain.cpp
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\constants.h(74,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+  textureManager.cpp
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\constants.h(74,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+  spacewar.cpp
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\constants.h(74,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\spacewar.cpp(56,19): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\spacewar.cpp(57,19): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\spacewar.cpp(65,20): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\spacewar.cpp(66,20): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\spacewar.cpp(74,22): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\spacewar.cpp(75,22): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\spacewar.cpp(82,19): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\spacewar.cpp(83,19): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\spacewar.cpp(110,20): warning C4018: '<': signed/unsigned mismatch
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\spacewar.cpp(113,20): warning C4018: '<': signed/unsigned mismatch
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\spacewar.cpp(116,20): warning C4018: '<': signed/unsigned mismatch
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\spacewar.cpp(119,20): warning C4018: '<': signed/unsigned mismatch
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\spacewar.cpp(177,20): warning C4018: '<': signed/unsigned mismatch
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\spacewar.cpp(180,20): warning C4018: '<': signed/unsigned mismatch
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\spacewar.cpp(183,20): warning C4018: '<': signed/unsigned mismatch
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\spacewar.cpp(186,20): warning C4018: '<': signed/unsigned mismatch
+  ground.cpp
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\constants.h(74,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\ground.cpp(18,40): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\ground.cpp(19,42): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  player.cpp
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\constants.h(74,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\player.cpp(18,40): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\player.cpp(19,42): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  killbox.cpp
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\constants.h(74,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\killbox.cpp(18,41): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\killbox.cpp(19,43): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  input.cpp
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\constants.h(74,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+  image.cpp
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\constants.h(74,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+  graphics.cpp
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\constants.h(74,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+  game.cpp
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\constants.h(74,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+  finishbox.cpp
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\constants.h(74,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\finishbox.cpp(18,43): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\finishbox.cpp(19,45): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  entity.cpp
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\constants.h(74,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\entity.cpp(331,48): warning C4244: 'argument': conversion from 'double' to 'FLOAT', possible loss of data
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\entity.cpp(331,25): warning C4244: 'argument': conversion from 'double' to 'FLOAT', possible loss of data
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\entity.cpp(332,49): warning C4244: 'argument': conversion from 'double' to 'FLOAT', possible loss of data
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\entity.cpp(332,22): warning C4244: 'argument': conversion from 'double' to 'FLOAT', possible loss of data
+D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\entity.cpp(434,52): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+entity.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+  PlanetCollision.vcxproj -> D:\School\GPP Programs\GPP Assignment 1\Escape\Escape\Debug\PlanetCollision.exe
