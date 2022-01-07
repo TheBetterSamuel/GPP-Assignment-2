@@ -36,7 +36,7 @@ const UINT GAME_WIDTH =  1280;               // width of game in pixels
 const UINT GAME_HEIGHT = 720;               // height of game in pixels
 
 
-const float MOVESPEED = 100;  //movement speed of the player
+const float MOVESPEED = 300;  //movement speed of the player
 const float JUMP_DY = 500;   //starting dy of player when he jumps(decreases y g per second_)
 
 // height and width o the grid map
@@ -57,6 +57,7 @@ const float MASS_SHIP = 5.0f;
 
 // graphic images
 const char GROUND_IMAGE[] = "pictures\\Ground.png";
+const char PLAYER_IMAGE[] = "pictures\\Player.png";
 
 // key mappings
 // In this game simple constants are used for key mappings. If variables were used

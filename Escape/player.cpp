@@ -49,6 +49,7 @@ void Player::draw()
 void Player::update(float frameTime)
 {
     //check if player is inside the map
+    /*
     if (!input || !graphics) return;
     if (spriteData.x >= 0)
     {
@@ -73,8 +74,29 @@ void Player::update(float frameTime)
     else {
         spriteData.x = 2;
     }
+    */
 
-    //jumping 
+    //jumping
+
+    //correct angle
+    if (spriteData.angle >= 360) {
+        spriteData.angle -= 360;
+    }
+
+    if (onGround) {
+        if ((spriteData.angle >= 0) && (spriteData.angle < 90)) {
+            spriteData.angle = 0;
+        }
+        if ((spriteData.angle >= 90) && (spriteData.angle < 180)) {
+            spriteData.angle = 90;
+        }
+        if ((spriteData.angle >= 180) && (spriteData.angle < 270)) {
+            spriteData.angle = 180;
+        }
+        if ((spriteData.angle >= 270) && (spriteData.angle < 360)) {
+            spriteData.angle = 270;
+        }
+    }
     
     Entity::update(frameTime);
     spriteData.x += frameTime * velocity.x;         // move ship along X 

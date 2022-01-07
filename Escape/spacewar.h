@@ -22,10 +22,12 @@ class Spacewar : public Game
 private:
     // game itemsWS
     TextureManager groundTexture;
+    TextureManager playerTexture;
     std::vector<Ground> activeList;        // the ground
     Ground groundList[MAP_WIDTH + 1];
     Ground possible[50];
-    int distance = 0;
+    Player player;
+    UINT distance = 0;                      // distance in number of blocks
 
 public:
     // Constructor
@@ -42,6 +44,7 @@ public:
     void render();      // "
     void releaseAll();
     void resetAll();
+    void renderObject(char type, UINT position); //rendering object
 };
 
 #endif

@@ -32,6 +32,9 @@ void Spacewar::initialize(HWND hwnd)
 	// main game textures
 	if (!groundTexture.initialize(graphics, GROUND_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing ground textures"));
+
+	if (!playerTexture.initialize(graphics, PLAYER_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing player textures"));
 	
 	for (int i = 0; i < _countof(groundList); i++) {
 		Ground ground = Ground();
@@ -41,6 +44,11 @@ void Spacewar::initialize(HWND hwnd)
 		ground.setY(GAME_HEIGHT - BOX_SIZE);
 		groundList[i] = ground;
 	}
+
+	if (!player.initialize(this, playerNS::WIDTH, playerNS::HEIGHT, 0, &playerTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing player"));
+	player.setX(3 * BOX_SIZE);
+	player.setY(GAME_HEIGHT - (2 * BOX_SIZE));
 	return;
 }
 
@@ -57,6 +65,8 @@ void Spacewar::update()
 		}
 		groundList[i].update(frameTime);
 	}
+
+	player.update(frameTime);
 }
 
 //=============================================================================
@@ -115,6 +125,9 @@ void Spacewar::render()
 	for (int g = 0; g < _countof(groundList); g++) {
 		groundList[g].draw();
 	}
+
+	player.draw();
+
 	graphics->spriteEnd();                  // end drawing sprites
 }
 
@@ -125,6 +138,7 @@ void Spacewar::render()
 void Spacewar::releaseAll()
 {
 	groundTexture.onLostDevice();
+	playerTexture.onLostDevice();
 	Game::releaseAll();
 	return;
 }
@@ -136,6 +150,7 @@ void Spacewar::releaseAll()
 void Spacewar::resetAll()
 {
 	groundTexture.onResetDevice();
+	playerTexture.onResetDevice();
 	Game::resetAll();
 	return;
 }
