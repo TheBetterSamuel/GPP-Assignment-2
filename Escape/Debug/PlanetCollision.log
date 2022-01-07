@@ -1,10 +1,42 @@
 ﻿cl : command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-  spacewar.cpp
-D:\School\GPP Programs\GPP-Assignment-2\Escape\constants.h(74,27): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\School\GPP Programs\GPP-Assignment-2\Escape\spacewar.cpp(40,17): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  entity.cpp
+D:\School\GPP Programs\GPP-Assignment-2\Escape\constants.h(54,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\School\GPP Programs\GPP-Assignment-2\Escape\entity.cpp(331,48): warning C4244: 'argument': conversion from 'double' to 'FLOAT', possible loss of data
+D:\School\GPP Programs\GPP-Assignment-2\Escape\entity.cpp(331,25): warning C4244: 'argument': conversion from 'double' to 'FLOAT', possible loss of data
+D:\School\GPP Programs\GPP-Assignment-2\Escape\entity.cpp(332,49): warning C4244: 'argument': conversion from 'double' to 'FLOAT', possible loss of data
+D:\School\GPP Programs\GPP-Assignment-2\Escape\entity.cpp(332,22): warning C4244: 'argument': conversion from 'double' to 'FLOAT', possible loss of data
+D:\School\GPP Programs\GPP-Assignment-2\Escape\entity.cpp(434,52): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   Generating Code...
   Compiling...
   winmain.cpp
-D:\School\GPP Programs\GPP-Assignment-2\Escape\constants.h(74,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\School\GPP Programs\GPP-Assignment-2\Escape\constants.h(54,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\School\GPP Programs\GPP-Assignment-2\Escape\player.h(18,47): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\School\GPP Programs\GPP-Assignment-2\Escape\ground.h(18,47): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  textureManager.cpp
+D:\School\GPP Programs\GPP-Assignment-2\Escape\constants.h(54,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+  spacewar.cpp
+D:\School\GPP Programs\GPP-Assignment-2\Escape\constants.h(54,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\School\GPP Programs\GPP-Assignment-2\Escape\player.h(18,47): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\School\GPP Programs\GPP-Assignment-2\Escape\ground.h(18,47): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  player.cpp
+D:\School\GPP Programs\GPP-Assignment-2\Escape\constants.h(54,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\School\GPP Programs\GPP-Assignment-2\Escape\player.h(18,47): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\School\GPP Programs\GPP-Assignment-2\Escape\player.cpp(18,40): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\School\GPP Programs\GPP-Assignment-2\Escape\player.cpp(19,42): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  input.cpp
+D:\School\GPP Programs\GPP-Assignment-2\Escape\constants.h(54,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+  image.cpp
+D:\School\GPP Programs\GPP-Assignment-2\Escape\constants.h(54,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+  ground.cpp
+D:\School\GPP Programs\GPP-Assignment-2\Escape\constants.h(54,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\School\GPP Programs\GPP-Assignment-2\Escape\ground.h(18,47): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\School\GPP Programs\GPP-Assignment-2\Escape\ground.cpp(18,40): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\School\GPP Programs\GPP-Assignment-2\Escape\ground.cpp(19,42): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  graphics.cpp
+D:\School\GPP Programs\GPP-Assignment-2\Escape\constants.h(54,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+  game.cpp
+D:\School\GPP Programs\GPP-Assignment-2\Escape\constants.h(54,27): warning C4305: 'initializing': truncation from 'double' to 'float'
   Generating Code...
+  LINK : D:\School\GPP Programs\GPP-Assignment-2\Escape\Debug\PlanetCollision.exe not found or not built by the last incremental link; performing full link
+entity.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
   PlanetCollision.vcxproj -> D:\School\GPP Programs\GPP-Assignment-2\Escape\Debug\PlanetCollision.exe
