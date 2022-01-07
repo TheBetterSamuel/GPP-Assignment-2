@@ -11,3 +11,10 @@
 C++
 
 ##Contributions
+### Samuel Kwan
+* Creating Sprite (Player and Ground)
+* Scrolling Map
+* Map Generation (Floor and Render function)
+
+### Chua Xuan Wei
+* Jumping function for player
