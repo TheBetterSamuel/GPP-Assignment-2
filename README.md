@@ -15,6 +15,7 @@ C++
 * Creating Sprite (Player and Ground)
 * Scrolling Map
 * Map Generation (Floor and Render function)
+* Jumping rotate animation
 
 ### Chua Xuan Wei
 * Jumping function for player
