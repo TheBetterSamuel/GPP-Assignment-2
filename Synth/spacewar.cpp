@@ -100,14 +100,8 @@ void Spacewar::collisions()
 		}
 		if(collidedWithGround){
 			if (!input->isKeyDown(W_KEY)) {
-				if ((player.getDegrees() == 0) || (player.getDegrees() == 90)) {
-					if (((player.getY() + BOX_SIZE) - groundList[i].getY()) < -20)
-						player.setY(groundList[i].getY() - BOX_SIZE);
-				}
-				else {
-					if ((player.getY() - groundList[i].getY()) < -20)
-						player.setY(groundList[i].getY() - BOX_SIZE);
-				}
+				if ((player.getY() - groundList[i].getY()) < 0)
+					player.setY(groundList[i].getY() - BOX_SIZE);
 			}
 		}
 	}

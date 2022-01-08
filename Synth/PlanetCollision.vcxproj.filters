@@ -45,6 +45,18 @@
     <ClCompile Include="ground.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="killbox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="nportal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dsportal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hsPortal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="constants.h">
@@ -78,6 +90,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ground.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="killbox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="nportal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dsportal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hsPortal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

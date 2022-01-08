@@ -43,8 +43,11 @@ const float ROTATION_SPEED = 500; // how fast the [;ayer rotates while jumping
 // height and width o the grid map
 const UINT MAP_HEIGHT = 14;
 const UINT MAP_WIDTH = 24;
+const UINT SPRITE_SIZE = 16;
+const UINT PORTAL_HEIGHT = 32;
+const UINT PORTAL_WIDTH = 8;
 const float BOX_SIZE = (float)GAME_WIDTH / MAP_WIDTH;
-const float SPRITE_SCALE = (float)BOX_SIZE / 16;
+const float SPRITE_SCALE = (float)BOX_SIZE / SPRITE_SIZE;
 
 // game
 const double PI = 3.14159265;
@@ -59,6 +62,9 @@ const float MASS_SHIP = 5.0f;
 // graphic images
 const char GROUND_IMAGE[] = "pictures\\Ground.png";
 const char PLAYER_IMAGE[] = "pictures\\Player.png";
+const char NPORTAL_IMAGE[] = "pictures\\nPortal.png";
+const char DSPORTAL_IMAGE[] = "pictures\\dsPortal.png";
+const char HSPORTAL_IMAGE[] = "pictures\\hsPortal.png";
 
 // key mappings
 // In this game simple constants are used for key mappings. If variables were used

@@ -16,6 +16,7 @@ C++
 * Scrolling Map
 * Map Generation (Floor and Render function)
 * Jumping rotate animation
+* Codebase for  Objects(killbox, nportal, hsportal and dsportal)
 
 ### Chua Xuan Wei
 * Jumping function for player

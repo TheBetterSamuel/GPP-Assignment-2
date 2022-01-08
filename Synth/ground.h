@@ -10,8 +10,8 @@
 
 namespace groundNS
 {
-    const int WIDTH = 16;             // image width
-    const int HEIGHT = 16;            // image height
+    const int WIDTH = SPRITE_SIZE;             // image width
+    const int HEIGHT = SPRITE_SIZE;            // image height
     const float SPEED = MOVESPEED;          // Move based on move speed from constants.h
     const float SCALE = SPRITE_SCALE;       // Scaling up sprites to fit map
     const float G = entityNS::GRAVITY;      // Gravitional constant

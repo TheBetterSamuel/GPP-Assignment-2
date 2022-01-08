@@ -13,6 +13,10 @@
 #include "image.h"
 #include "player.h"
 #include "ground.h"
+#include "killbox.h"
+#include "nportal.h"
+#include "dsportal.h"
+#include "hsportal.h"
 
 //=============================================================================
 // This class is the core of the game
@@ -23,9 +27,12 @@ private:
     // game itemsWS
     TextureManager groundTexture;
     TextureManager playerTexture;
-    std::vector<Ground> activeList;        // the ground
-    Ground groundList[MAP_WIDTH + 1];
-    Ground possible[50];
+    std::vector<Ground> activeGroundList;
+    std::vector<Killbox> activeKillboxList;
+    std::vector<nPortal> activenPortalList;
+    std::vector<dsPortal> activedsPortalList;
+    std::vector<hsPortal> activehsPortalList;
+    Ground groundList[MAP_WIDTH + 1];       // the ground
     Player player;
     UINT distance = 0;                      // distance in number of blocks
 
