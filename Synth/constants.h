@@ -37,7 +37,7 @@ const UINT GAME_HEIGHT = 720;               // height of game in pixels
 
 
 const float MOVESPEED = 300;  //movement speed of the player
-const float JUMP_DY = 800;   //starting dy of player when he jumps(decreases y g per second)
+const float JUMP_DY = 900;   //starting dy of player when he jumps(decreases y g per second)
 const float ROTATION_SPEED = 500; // how fast the [;ayer rotates while jumping
 
 // height and width o the grid map
@@ -62,6 +62,7 @@ const float MASS_SHIP = 5.0f;
 // graphic images
 const char GROUND_IMAGE[] = "pictures\\Ground.png";
 const char PLAYER_IMAGE[] = "pictures\\Player.png";
+const char KILLBOX_IMAGE[] = "pictures\\Player.png";
 const char NPORTAL_IMAGE[] = "pictures\\nPortal.png";
 const char DSPORTAL_IMAGE[] = "pictures\\dsPortal.png";
 const char HSPORTAL_IMAGE[] = "pictures\\hsPortal.png";

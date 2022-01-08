@@ -27,6 +27,10 @@ private:
     // game itemsWS
     TextureManager groundTexture;
     TextureManager playerTexture;
+    TextureManager killboxTexture;
+    TextureManager nPortalTexture;
+    TextureManager dsPortalTexture;
+    TextureManager hsPortalTexture;
     std::vector<Ground> activeGroundList;
     std::vector<Killbox> activeKillboxList;
     std::vector<nPortal> activenPortalList;

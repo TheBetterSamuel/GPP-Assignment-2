@@ -35,6 +35,18 @@ void Spacewar::initialize(HWND hwnd)
 
 	if (!playerTexture.initialize(graphics, PLAYER_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing player textures"));
+
+	if (!killboxTexture.initialize(graphics, KILLBOX_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing killbox textures"));
+
+	if (!nPortalTexture.initialize(graphics, NPORTAL_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing nportal textures"));
+
+	if (!hsPortalTexture.initialize(graphics, HSPORTAL_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing hsportal textures"));
+
+	if (!dsPortalTexture.initialize(graphics, DSPORTAL_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing dsportal textures"));
 	
 	for (int i = 0; i < _countof(groundList); i++) {
 		Ground ground = Ground();
@@ -179,5 +191,53 @@ void Spacewar::resetAll()
 	groundTexture.onResetDevice();
 	playerTexture.onResetDevice();
 	Game::resetAll();
+	return;
+}
+
+//=============================================================================
+// Rendering based on grid and block type
+// G = Ground, K = Killbox, N = nPortal, D = dsPortal, H = hsPortal
+//=============================================================================
+void Spacewar::renderObject(char type, UINT position) {
+	if (type == 'G') {
+		Ground ground;
+		if (!ground.initialize(this, groundNS::WIDTH, groundNS::HEIGHT, 0, &groundTexture))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing ground"));
+		ground.setX(GAME_WIDTH);
+		ground.setY(GAME_HEIGHT - (position * BOX_SIZE));
+		activeGroundList.push_back(ground);
+	}
+	if (type == 'K') {
+		Killbox kbox;
+		if (!kbox.initialize(this, kboxNS::WIDTH, kboxNS::HEIGHT, 0, &killboxTexture))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing killbox"));
+		kbox.setX(GAME_WIDTH);
+		kbox.setY(GAME_HEIGHT - (position * BOX_SIZE));
+		activeKillboxList.push_back(kbox);
+	}
+	if (type == 'N') {
+		nPortal np;
+		if (!np.initialize(this, npNS::WIDTH, npNS::HEIGHT, 0, &nPortalTexture))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing nportal"));
+		np.setX(GAME_WIDTH);
+		np.setY(GAME_HEIGHT - (position * BOX_SIZE));
+		activenPortalList.push_back(np);
+	}
+	if (type == 'H') {
+		hsPortal hsp;
+		if (!hsp.initialize(this, hspNS::WIDTH, hspNS::HEIGHT, 0, &hsPortalTexture))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing hsportal"));
+		hsp.setX(GAME_WIDTH);
+		hsp.setY(GAME_HEIGHT - (position * BOX_SIZE));
+		activehsPortalList.push_back(hsp);
+	}
+	if (type == 'D') {
+		dsPortal dsp;
+		if (!dsp.initialize(this, dspNS::WIDTH, dspNS::HEIGHT, 0, &dsPortalTexture))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing hsportal"));
+		dsp.setX(GAME_WIDTH);
+		dsp.setY(GAME_HEIGHT - (position * BOX_SIZE));
+		activedsPortalList.push_back(dsp);
+	}
 	return;
 }
