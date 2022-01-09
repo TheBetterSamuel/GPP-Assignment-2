@@ -70,7 +70,15 @@ void Spacewar::initialize(HWND hwnd)
 void Spacewar::update()
 {
 	for (int i = 0; i < _countof(groundList); i++) {
-		groundList[i].setVelocity(VECTOR2(-MOVESPEED,0));
+		if (speedState == 0) {
+			groundList[i].setVelocity(VECTOR2(-MOVESPEED, 0));
+		}
+		if (speedState == 1) {
+			groundList[i].setVelocity(VECTOR2(-(MOVESPEED / 2), 0));
+		}
+		if (speedState == 2) {
+			groundList[i].setVelocity(VECTOR2(-(MOVESPEED * 2), 0));
+		}
 		if (groundList[i].getX() <= -BOX_SIZE) {
 			groundList[i].setX(GAME_WIDTH);
 			distance++;
