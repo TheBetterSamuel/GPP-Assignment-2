@@ -69,7 +69,7 @@ void Spacewar::initialize(HWND hwnd)
 //=============================================================================
 void Spacewar::update()
 {
-	for (int i = 0; i < _countof(groundList); i++) {
+	for (size_t i = 0; i < _countof(groundList); i++) {
 		if (speedState == 0) {
 			groundList[i].setVelocity(VECTOR2(-MOVESPEED, 0));
 		}
@@ -84,6 +84,91 @@ void Spacewar::update()
 			distance++;
 		}
 		groundList[i].update(frameTime);
+	}
+
+	//update ground list
+	for (size_t i = 0; i < activeGroundList.size(); i++) {
+		if (speedState == 0) {
+			activeGroundList.at(i).setVelocity(VECTOR2(-MOVESPEED, 0));
+		}
+		if (speedState == 1) {
+			activeGroundList.at(i).setVelocity(VECTOR2(-(MOVESPEED / 2), 0));
+		}
+		if (speedState == 2) {
+			activeGroundList.at(i).setVelocity(VECTOR2(-(MOVESPEED * 2), 0));
+		}
+		if (activeGroundList.at(i).getX() <= -BOX_SIZE) {
+			activeGroundList.erase(activeGroundList.begin() + i);
+		}
+		activeGroundList.at(i).update(frameTime);
+	}
+
+	//update killbox List
+	for (size_t i = 0; i < activeKillboxList.size(); i++) {
+		if (speedState == 0) {
+			activeKillboxList.at(i).setVelocity(VECTOR2(-MOVESPEED, 0));
+		}
+		if (speedState == 1) {
+			activeKillboxList.at(i).setVelocity(VECTOR2(-(MOVESPEED / 2), 0));
+		}
+		if (speedState == 2) {
+			activeKillboxList.at(i).setVelocity(VECTOR2(-(MOVESPEED * 2), 0));
+		}
+		if (activeGroundList.at(i).getX() <= -BOX_SIZE) {
+			activeKillboxList.erase(activeKillboxList.begin() + i);
+		}
+		activeKillboxList.at(i).update(frameTime);
+	}
+
+	//update nportal List
+	for (size_t i = 0; i < activenPortalList.size(); i++) {
+		if (speedState == 0) {
+			activenPortalList.at(i).setVelocity(VECTOR2(-MOVESPEED, 0));
+		}
+		if (speedState == 1) {
+			activenPortalList.at(i).setVelocity(VECTOR2(-(MOVESPEED / 2), 0));
+		}
+		if (speedState == 2) {
+			activenPortalList.at(i).setVelocity(VECTOR2(-(MOVESPEED * 2), 0));
+		}
+		if (activenPortalList.at(i).getX() <= -BOX_SIZE) {
+			activenPortalList.erase(activenPortalList.begin() + i);
+		}
+		activenPortalList.at(i).update(frameTime);
+	}
+
+	//update dsportal List
+	for (size_t i = 0; i < activedsPortalList.size(); i++) {
+		if (speedState == 0) {
+			activedsPortalList.at(i).setVelocity(VECTOR2(-MOVESPEED, 0));
+		}
+		if (speedState == 1) {
+			activedsPortalList.at(i).setVelocity(VECTOR2(-(MOVESPEED / 2), 0));
+		}
+		if (speedState == 2) {
+			activedsPortalList.at(i).setVelocity(VECTOR2(-(MOVESPEED * 2), 0));
+		}
+		if (activedsPortalList.at(i).getX() <= -BOX_SIZE) {
+			activedsPortalList.erase(activedsPortalList.begin() + i);
+		}
+		activedsPortalList.at(i).update(frameTime);
+	}
+
+	//update hsportal List
+	for (size_t i = 0; i < activehsPortalList.size(); i++) {
+		if (speedState == 0) {
+			activehsPortalList.at(i).setVelocity(VECTOR2(-MOVESPEED, 0));
+		}
+		if (speedState == 1) {
+			activehsPortalList.at(i).setVelocity(VECTOR2(-(MOVESPEED / 2), 0));
+		}
+		if (speedState == 2) {
+			activehsPortalList.at(i).setVelocity(VECTOR2(-(MOVESPEED * 2), 0));
+		}
+		if (activehsPortalList.at(i).getX() <= -BOX_SIZE) {
+			activehsPortalList.erase(activehsPortalList.begin() + i);
+		}
+		activehsPortalList.at(i).update(frameTime);
 	}
 
 	player.update(frameTime);
