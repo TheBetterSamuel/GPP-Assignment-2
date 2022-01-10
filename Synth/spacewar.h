@@ -36,7 +36,7 @@ private:
     std::vector<nPortal> activenPortalList;
     std::vector<dsPortal> activedsPortalList;
     std::vector<hsPortal> activehsPortalList;
-    Ground groundList[MAP_WIDTH + 1];       // the ground
+    Ground groundList[MAP_WIDTH + 2];       // the ground
     Player player;
     UINT distance = 0;                      // distance in number of blocks
     UINT speedState = 0;                    // State of the game speed

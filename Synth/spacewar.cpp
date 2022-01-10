@@ -80,7 +80,7 @@ void Spacewar::update()
 			groundList[i].setVelocity(VECTOR2(-(MOVESPEED * 2), 0));
 		}
 		if (groundList[i].getX() <= -BOX_SIZE) {
-			groundList[i].setX(GAME_WIDTH);
+			groundList[i].setX((_countof(groundList) - 1) * BOX_SIZE);
 			distance++;
 		}
 		groundList[i].update(frameTime);

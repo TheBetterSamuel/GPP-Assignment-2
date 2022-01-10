@@ -4,5 +4,4 @@ D:\School\GPP Programs\GPP-Assignment-2\Synth\constants.h(58,27): warning C4305:
 D:\School\GPP Programs\GPP-Assignment-2\Synth\player.h(18,47): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 D:\School\GPP Programs\GPP-Assignment-2\Synth\ground.h(18,47): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 D:\School\GPP Programs\GPP-Assignment-2\Synth\killbox.h(18,47): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-dsportal.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
   PlanetCollision.vcxproj -> D:\School\GPP Programs\GPP-Assignment-2\Synth\Debug\PlanetCollision.exe
