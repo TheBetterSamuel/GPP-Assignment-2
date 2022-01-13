@@ -205,8 +205,9 @@ void Spacewar::collisions()
 		}
 		if(collidedWithGround){
 			if (!input->isKeyDown(W_KEY)) {
-				if ((player.getY() - groundList[i].getY()) < 0)
-					player.setY(groundList[i].getY() - BOX_SIZE);
+				if ((player.getY() - groundList[i].getY()) != 0)
+					if((groundList[i].getY() - player.getY()) < (1.5 * BOX_SIZE))
+						player.setY(groundList[i].getY() - BOX_SIZE);
 			}
 		}
 	}
@@ -243,7 +244,7 @@ void Spacewar::collisions()
 	}
 
 	if(!collidedWithGround)
-	player.setVelY(player.getVelY() + playerNS::G * frameTime);
+	player.setVelY(player.getVelY() + (playerNS::G * frameTime));
 }
 
 //=============================================================================
