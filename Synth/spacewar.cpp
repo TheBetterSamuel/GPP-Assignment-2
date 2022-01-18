@@ -170,6 +170,7 @@ void Spacewar::update()
 		}
 		activehsPortalList.at(i).update(frameTime);
 	}
+	playerStateManager();
 
 	player.update(frameTime);
 }
@@ -196,55 +197,27 @@ void Spacewar::collisions()
 			
 
 			 if (cV.y > 0) {
-				 player.setVelY(0);
-				 collidedWithGround = true;
+				 playerState = ONGROUND;
 			 }
 			 else {
-				 collidedWithGround = false;
+				 playerState = ONAIR;
 			 }
 		}
-		if(collidedWithGround){
-			if (!input->isKeyDown(W_KEY)) {
-				if ((player.getY() - groundList[i].getY()) != 0)
-					if((groundList[i].getY() - player.getY()) < (1.5 * BOX_SIZE))
-						player.setY(groundList[i].getY() - BOX_SIZE);
-			}
+		if (!input->isKeyDown(W_KEY)) {
+			if ((player.getY() - groundList[i].getY()) != 0)
+				if ((groundList[i].getY() - player.getY()) < (1.5 * BOX_SIZE))
+					player.setY(groundList[i].getY() - BOX_SIZE);
 		}
 	}
 
 	//jumping
 	if (input->isKeyDown(W_KEY))            // if W is pressed
 	{
-		if (collidedWithGround) {
-			collidedWithGround = false;
-			player.setVelY(-JUMP_DY);
-		}
-	}
-	//correct angle
-	if (player.getDegrees() >= 360) {
-		player.setDegrees(player.getDegrees() - 360);
+		if (playerState == ONGROUND)
+			playerState = ONJUMP;
 	}
 
-	if (collidedWithGround) {
-		if ((player.getDegrees() > 0) && (player.getDegrees() < 90)) {
-			player.setDegrees(0);
-		}
-		if ((player.getDegrees() > 90) && (player.getDegrees() < 180)) {
-			player.setDegrees(90);
-		}
-		if ((player.getDegrees() > 180) && (player.getDegrees() < 270)) {
-			player.setDegrees(180);
-		}
-		if ((player.getDegrees() > 270) && (player.getDegrees() < 360)) {
-			player.setDegrees(270);
-		}
-	}
-	else {
-		player.setDegrees(player.getDegrees() + (ROTATION_SPEED * frameTime));
-	}
-
-	if(!collidedWithGround)
-	player.setVelY(player.getVelY() + (playerNS::G * frameTime));
+	
 }
 
 //=============================================================================
@@ -286,6 +259,35 @@ void Spacewar::resetAll()
 	playerTexture.onResetDevice();
 	Game::resetAll();
 	return;
+}
+
+//=============================================================================
+// Player State Manager
+//=============================================================================
+void Spacewar::playerStateManager() {
+	if (playerState == ONGROUND) {
+		player.setVelY(0);
+		if ((player.getDegrees() > 0) && (player.getDegrees() < 90)) {
+			player.setDegrees(0);
+		}
+		if ((player.getDegrees() > 90) && (player.getDegrees() < 180)) {
+			player.setDegrees(90);
+		}
+		if ((player.getDegrees() > 180) && (player.getDegrees() < 270)) {
+			player.setDegrees(180);
+		}
+		if ((player.getDegrees() > 270) && (player.getDegrees() < 360)) {
+			player.setDegrees(270);
+		}
+	}
+	if (playerState == ONJUMP) {
+		player.setVelY(-JUMP_DY);
+		playerState = ONAIR;
+	}
+	if (playerState == ONAIR) {
+		player.setVelY(player.getVelY() + (playerNS::G * frameTime));
+		player.setDegrees(player.getDegrees() + (ROTATION_SPEED * frameTime));
+	}
 }
 
 //=============================================================================

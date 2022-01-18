@@ -59,6 +59,12 @@ const float GRAVITY = 9.81;                     // gravitational constant
 const float MASS_PLANET = 1.0e14f;
 const float MASS_SHIP = 5.0f;
 
+//player states
+const UINT ONGROUND = 0;
+const UINT ONJUMP = 1;
+const UINT ONAIR = 2;
+const UINT ONWALL = 3;
+
 // graphic images
 const char GROUND_IMAGE[] = "pictures\\Ground.png";
 const char PLAYER_IMAGE[] = "pictures\\Player.png";
