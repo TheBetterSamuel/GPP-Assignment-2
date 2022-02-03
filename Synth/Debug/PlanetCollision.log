@@ -1,64 +1,7 @@
 ﻿cl : command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-  winmain.cpp
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\constants.h(58,27): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\player.h(18,47): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\ground.h(18,47): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\killbox.h(18,47): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  textureManager.cpp
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\constants.h(58,27): warning C4305: 'initializing': truncation from 'double' to 'float'
   spacewar.cpp
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\constants.h(58,27): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\player.h(18,47): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\ground.h(18,47): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\killbox.h(18,47): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  ground.cpp
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\constants.h(58,27): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\ground.h(18,47): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\ground.cpp(18,40): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\ground.cpp(19,42): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  player.cpp
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\constants.h(58,27): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\player.h(18,47): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\player.cpp(18,40): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\player.cpp(19,42): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  nportal.cpp
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\constants.h(58,27): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\nportal.cpp(11,17): warning C4146: unary minus operator applied to unsigned type, result still unsigned
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\nportal.cpp(12,16): warning C4146: unary minus operator applied to unsigned type, result still unsigned
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\nportal.cpp(18,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\nportal.cpp(19,38): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  killbox.cpp
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\constants.h(58,27): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\killbox.h(18,47): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\killbox.cpp(18,38): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\killbox.cpp(19,40): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  input.cpp
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\constants.h(58,27): warning C4305: 'initializing': truncation from 'double' to 'float'
-  image.cpp
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\constants.h(58,27): warning C4305: 'initializing': truncation from 'double' to 'float'
-  hsPortal.cpp
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\constants.h(58,27): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\hsPortal.cpp(11,17): warning C4146: unary minus operator applied to unsigned type, result still unsigned
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\hsPortal.cpp(12,16): warning C4146: unary minus operator applied to unsigned type, result still unsigned
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\hsPortal.cpp(18,37): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\hsPortal.cpp(19,39): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  graphics.cpp
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\constants.h(58,27): warning C4305: 'initializing': truncation from 'double' to 'float'
-  game.cpp
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\constants.h(58,27): warning C4305: 'initializing': truncation from 'double' to 'float'
-  entity.cpp
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\constants.h(58,27): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\entity.cpp(331,48): warning C4244: 'argument': conversion from 'double' to 'FLOAT', possible loss of data
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\entity.cpp(331,25): warning C4244: 'argument': conversion from 'double' to 'FLOAT', possible loss of data
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\entity.cpp(332,49): warning C4244: 'argument': conversion from 'double' to 'FLOAT', possible loss of data
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\entity.cpp(332,22): warning C4244: 'argument': conversion from 'double' to 'FLOAT', possible loss of data
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\entity.cpp(434,52): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  dsportal.cpp
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\constants.h(58,27): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\dsportal.cpp(11,17): warning C4146: unary minus operator applied to unsigned type, result still unsigned
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\dsportal.cpp(12,16): warning C4146: unary minus operator applied to unsigned type, result still unsigned
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\dsportal.cpp(18,37): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\dsportal.cpp(19,39): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Generating Code...
-dsportal.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
-  PlanetCollision.vcxproj -> C:\Users\leeho\Documents\GitHub\GPP-Assignment-2\Synth\Debug\PlanetCollision.exe
+D:\GPP\GPP-Assignment-2\Synth\constants.h(58,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\GPP\GPP-Assignment-2\Synth\player.h(18,47): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\GPP\GPP-Assignment-2\Synth\ground.h(18,47): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\GPP\GPP-Assignment-2\Synth\killbox.h(18,47): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  PlanetCollision.vcxproj -> D:\GPP\GPP-Assignment-2\Synth\Debug\PlanetCollision.exe
