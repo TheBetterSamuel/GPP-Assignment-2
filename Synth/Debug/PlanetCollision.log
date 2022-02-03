@@ -3,7 +3,7 @@
 C:\Users\derps\source\repos\newrepogpp\Synth\constants.h(58,27): warning C4305: 'initializing': truncation from 'double' to 'float'
 C:\Users\derps\source\repos\newrepogpp\Synth\player.h(18,47): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 C:\Users\derps\source\repos\newrepogpp\Synth\bullet.h(34,44): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\derps\source\repos\newrepogpp\Synth\enemy.h(32,44): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\derps\source\repos\newrepogpp\Synth\enemy.h(38,44): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 C:\Users\derps\source\repos\newrepogpp\Synth\enemy.cpp(39,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 C:\Users\derps\source\repos\newrepogpp\Synth\enemy.cpp(40,38): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   PlanetCollision.vcxproj -> C:\Users\derps\source\repos\newrepogpp\Synth\Debug\PlanetCollision.exe

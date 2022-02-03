@@ -17,7 +17,7 @@
 //============================================================================
 Enemy::Enemy() :
 	playerDetect(),
-	player(),
+	playerptr(),
 
 	// base object constructor
 	Entity(),
@@ -58,7 +58,22 @@ Enemy::~Enemy() {}
 //============================================================================
 bool Enemy::initialize(Game* gamePtr, int width, int height, int ncols, TextureManager* textureM, Player* player)
 {
+	// configure sprite animation
+	this->setFrames(enemyNS::START_FRAME, enemyNS::END_FRAME);
+	this->setCurrentFrame(enemyNS::START_FRAME);
+	this->setFrameDelay(enemyNS::ANIM_DELAY);
+	this->setLoop(1);
+	playerptr = player;
 	return(Entity::initialize(gamePtr, width, height, ncols, textureM));
+}
+
+//=============================================================================
+// draw the enemy
+//=============================================================================
+void Enemy::draw()
+{
+	Image::setScale(SPRITE_SCALE);
+	Image::draw();              // draw player
 }
 
 //============================================================================
@@ -66,6 +81,7 @@ bool Enemy::initialize(Game* gamePtr, int width, int height, int ncols, TextureM
 //============================================================================
 void Enemy::update(float frameTime)
 {
+	setVelocity(VECTOR2(enemyNS::SPEED,0));
 	Entity::update(frameTime);
 	spriteData.x += frameTime * velocity.x;         // move ship along X 
 	spriteData.y += frameTime * velocity.y;         // move ship along Y

@@ -36,6 +36,9 @@ void Spacewar::initialize(HWND hwnd)
 	if (!playerTexture.initialize(graphics, PLAYER_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing player textures"));
 
+	if (!enemyTexture.initialize(graphics, ENEMY_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing enemy textures"));
+
 	if (!killboxTexture.initialize(graphics, KILLBOX_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing killbox textures"));
 
@@ -61,6 +64,13 @@ void Spacewar::initialize(HWND hwnd)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing player"));
 	player.setX(3 * BOX_SIZE);
 	player.setY(GAME_HEIGHT - (2 * BOX_SIZE));
+
+	//test enemy
+	if (!enemy.initialize(this, enemyNS::WIDTH, enemyNS::HEIGHT, 0, &enemyTexture, &player))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing enemy"));
+	enemy.setX(100);
+	enemy.setY(100);
+
 	return;
 }
 
@@ -173,6 +183,7 @@ void Spacewar::update()
 	playerStateManager();
 
 	player.update(frameTime);
+	enemy.update(frameTime);
 }
 
 //=============================================================================
@@ -233,6 +244,7 @@ void Spacewar::render()
 	}
 
 	player.draw();
+	enemy.draw();
 
 	graphics->spriteEnd();                  // end drawing sprites
 }
@@ -245,6 +257,7 @@ void Spacewar::releaseAll()
 {
 	groundTexture.onLostDevice();
 	playerTexture.onLostDevice();
+	enemyTexture.onLostDevice();
 	Game::releaseAll();
 	return;
 }
@@ -257,6 +270,7 @@ void Spacewar::resetAll()
 {
 	groundTexture.onResetDevice();
 	playerTexture.onResetDevice();
+	enemyTexture.onResetDevice();
 	Game::resetAll();
 	return;
 }

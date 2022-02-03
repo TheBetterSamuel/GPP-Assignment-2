@@ -24,8 +24,14 @@
 
 namespace enemyNS
 {
-	const int WIDTH = SPRITE_SIZE;             // image width
-	const int HEIGHT = SPRITE_SIZE;            // image height
+	const int WIDTH = 26;             // image width
+	const int HEIGHT = 26;            // image height
+
+	const int	TEXTURE_COLS = 3;
+	const int	START_FRAME = 0;
+	const int	END_FRAME = 2;
+	const float ANIM_DELAY = 0.2f;
+
 	const float SPEED = MOVESPEED;          // Move based on move speed from constants.h
 	const float SCALE = SPRITE_SCALE;       // Scaling up sprites to fit map
 	const float G = entityNS::GRAVITY;      // Gravitional constant
@@ -47,13 +53,12 @@ private:
 	enum EnemyStates { IDLE, ACTIVE, SHOOT };
 	float lifetime;
 	UINT EnemyState = EnemyStates::IDLE;
-	Graphics* graphics;
-	SpriteData spriteData;
+
 	TextureManager bulletTexture;
 	std::vector<Bullet*> bulletList;
 
 public:
-	Player* player;
+	Player* playerptr;
 	bool playerDetect;
 
 	// default constructor
@@ -68,7 +73,7 @@ public:
 	void shoot(Bullet* bullet, float x, float y, bool flip);
 	// initializes the entity - called on scene initialization
 	virtual bool initialize(Game* gamePtr, int width, int height, int ncols, TextureManager* textureM, Player* playerptr);
-
+	virtual void draw();
 	// prepares the entity for deletion - called before entity is destroyed
 	virtual void cleanup() {}
 

@@ -17,6 +17,7 @@
 #include "nportal.h"
 #include "dsportal.h"
 #include "hsportal.h"
+#include "enemy.h"
 
 //=============================================================================
 // This class is the core of the game
@@ -27,6 +28,7 @@ private:
     // game itemsWS
     TextureManager groundTexture;
     TextureManager playerTexture;
+    TextureManager enemyTexture;
     TextureManager killboxTexture;
     TextureManager nPortalTexture;
     TextureManager dsPortalTexture;
@@ -38,6 +40,7 @@ private:
     std::vector<hsPortal> activehsPortalList;
     Ground groundList[MAP_WIDTH + 2];       // the ground
     Player player;
+    Enemy enemy;
     UINT distance = 0;                      // distance in number of blocks
     UINT speedState = 0;                    // State of the game speed
     UINT playerState = ONGROUND;                   // State of the player

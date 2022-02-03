@@ -72,6 +72,7 @@ const char KILLBOX_IMAGE[] = "pictures\\Player.png";
 const char NPORTAL_IMAGE[] = "pictures\\nPortal.png";
 const char DSPORTAL_IMAGE[] = "pictures\\dsPortal.png";
 const char HSPORTAL_IMAGE[] = "pictures\\hsPortal.png";
+const char ENEMY_IMAGE[] = "pictures\\enemy.jpg";
 
 // key mappings
 // In this game simple constants are used for key mappings. If variables were used
