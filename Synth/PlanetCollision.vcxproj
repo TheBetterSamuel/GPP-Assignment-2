@@ -89,6 +89,7 @@
   <ItemGroup>
     <ClCompile Include="dsportal.cpp" />
     <ClCompile Include="entity.cpp" />
+    <ClCompile Include="fileutils.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="graphics.cpp" />
     <ClCompile Include="hsPortal.cpp" />
@@ -106,6 +107,7 @@
     <ClInclude Include="constants.h" />
     <ClInclude Include="dsportal.h" />
     <ClInclude Include="entity.h" />
+    <ClInclude Include="fileutils.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameError.h" />
     <ClInclude Include="graphics.h" />
@@ -117,6 +119,7 @@
     <ClInclude Include="nportal.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="spacewar.h" />
+    <ClInclude Include="strutils.h" />
     <ClInclude Include="textureManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
