@@ -286,6 +286,9 @@ void Spacewar::playerStateManager() {
 	}
 	if (playerState == ONAIR) {
 		player.setVelY(player.getVelY() + (playerNS::G * frameTime));
+		if (player.getDegrees() >= 360) {
+			player.setDegrees(player.getDegrees() - 360);
+		}
 		player.setDegrees(player.getDegrees() + (ROTATION_SPEED * frameTime));
 	}
 }
