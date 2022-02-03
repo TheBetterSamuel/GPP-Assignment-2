@@ -1,7 +1,9 @@
 ﻿cl : command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-  spacewar.cpp
-D:\GPP\GPP-Assignment-2\Synth\constants.h(58,27): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\GPP\GPP-Assignment-2\Synth\player.h(18,47): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\GPP\GPP-Assignment-2\Synth\ground.h(18,47): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\GPP\GPP-Assignment-2\Synth\killbox.h(18,47): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  PlanetCollision.vcxproj -> D:\GPP\GPP-Assignment-2\Synth\Debug\PlanetCollision.exe
+  enemy.cpp
+C:\Users\derps\source\repos\newrepogpp\Synth\constants.h(58,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\derps\source\repos\newrepogpp\Synth\player.h(18,47): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\derps\source\repos\newrepogpp\Synth\bullet.h(34,44): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\derps\source\repos\newrepogpp\Synth\enemy.h(32,44): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\derps\source\repos\newrepogpp\Synth\enemy.cpp(39,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\derps\source\repos\newrepogpp\Synth\enemy.cpp(40,38): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  PlanetCollision.vcxproj -> C:\Users\derps\source\repos\newrepogpp\Synth\Debug\PlanetCollision.exe
