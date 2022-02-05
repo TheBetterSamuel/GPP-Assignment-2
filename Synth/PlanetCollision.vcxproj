@@ -94,6 +94,7 @@
     <ClCompile Include="fileutils.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="graphics.cpp" />
+    <ClCompile Include="heart.cpp" />
     <ClCompile Include="hsPortal.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="input.cpp" />
@@ -119,6 +120,7 @@
     <ClInclude Include="gameError.h" />
     <ClInclude Include="graphics.h" />
     <ClInclude Include="ground.h" />
+    <ClInclude Include="heart.h" />
     <ClInclude Include="hsPortal.h" />
     <ClInclude Include="idlestate.h" />
     <ClInclude Include="image.h" />

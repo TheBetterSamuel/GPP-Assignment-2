@@ -53,7 +53,10 @@ void Spacewar::initialize(HWND hwnd)
 
 	if (!speedPowerupTexture.initialize(graphics, SPEEDPOWERUP_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing speed power up textures"));
-	
+
+	if (!heartTexture.initialize(graphics, HEART_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing heart textures"));
+
 	for (int i = 0; i < _countof(groundList); i++) {
 		Ground ground = Ground();
 		if (!ground.initialize(this, groundNS::WIDTH, groundNS::HEIGHT, 0, &groundTexture))
@@ -73,6 +76,19 @@ void Spacewar::initialize(HWND hwnd)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing enemy"));
 	enemy.setX(100);
 	enemy.setY(100);
+
+	//Init Heart List
+
+	for (int i = 0; i < MAX_HEART_NO; i++)
+	{
+
+		if (!heartList[i].initialize(this, heartNS::WIDTH, heartNS::HEIGHT, 0, &heartTexture))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing heart" + i));
+
+		heartList[i].setX(GAME_WIDTH / 12 * (MAX_HEART_NO - i));
+		heartList[i].setY(GAME_HEIGHT / 18);
+
+	}
 
 	return;
 }
@@ -224,14 +240,14 @@ void Spacewar::collisions()
 		if (player.collidesWith(groundList[i], cV))
 		{
 			// cV is computed by collidesWith
-			
 
-			 if (cV.y > 0) {
-				 playerState = ONGROUND;
-			 }
-			 else {
-				 playerState = ONAIR;
-			 }
+
+			if (cV.y > 0) {
+				playerState = ONGROUND;
+			}
+			else {
+				playerState = ONAIR;
+			}
 		}
 		if (!input->isKeyDown(W_KEY)) {
 			if ((player.getY() - groundList[i].getY()) != 0)
@@ -247,7 +263,19 @@ void Spacewar::collisions()
 			playerState = ONJUMP;
 	}
 
-	
+	//if (playerShip.collidesWith(e*, collisionVector))
+	//{
+	//		e->setScale(0);
+	//		e->setActive(false);
+	//		if (numOfHits < MAX_HEART_NO)
+	//		{
+	//			numOfHits++;
+	//		}
+	//		for (int i = 0; i < numOfHits; i++)
+	//		{
+	//			heartList[i].setActive(false);
+	//		}
+	//}
 }
 
 //=============================================================================
@@ -265,6 +293,11 @@ void Spacewar::render()
 	player.draw();
 	enemy.draw();
 
+	for (int i = 0; i < MAX_HEART_NO; i++)
+	{
+		heartList[i].draw();
+	}
+
 	graphics->spriteEnd();                  // end drawing sprites
 }
 
@@ -277,6 +310,7 @@ void Spacewar::releaseAll()
 	groundTexture.onLostDevice();
 	playerTexture.onLostDevice();
 	enemyTexture.onLostDevice();
+	heartTexture.onLostDevice();
 	Game::releaseAll();
 	return;
 }
@@ -290,6 +324,7 @@ void Spacewar::resetAll()
 	groundTexture.onResetDevice();
 	playerTexture.onResetDevice();
 	enemyTexture.onResetDevice();
+	heartTexture.onResetDevice();
 	Game::resetAll();
 	return;
 }

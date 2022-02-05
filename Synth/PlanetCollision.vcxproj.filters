@@ -69,6 +69,9 @@
     <ClCompile Include="speedPowerup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="heart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="constants.h">
@@ -138,6 +141,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="activestate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="heart.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
