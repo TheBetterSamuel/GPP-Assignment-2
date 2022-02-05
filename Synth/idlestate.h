@@ -26,6 +26,7 @@ public:
     virtual EnemyState* update(Enemy* enemy, float frameTime) {
         if (1)
         {
+            enemy->setVelocity(VECTOR2(100, 0));
             return nullptr;
         }
     }

@@ -64,6 +64,9 @@ bool Enemy::initialize(Game* gamePtr, int width, int height, int ncols, TextureM
 	this->setFrameDelay(enemyNS::ANIM_DELAY);
 	this->setLoop(1);
 	playerptr = player;
+
+	//IdleState* idle = new IdleState();
+	//currentState = idle;
 	return(Entity::initialize(gamePtr, width, height, ncols, textureM));
 }
 
@@ -81,12 +84,14 @@ void Enemy::draw()
 //============================================================================
 void Enemy::update(float frameTime)
 {
-	setVelocity(VECTOR2(enemyNS::SPEED,0));
 	Entity::update(frameTime);
 	spriteData.x += frameTime * velocity.x;         // move ship along X 
 	spriteData.y += frameTime * velocity.y;         // move ship along Y
 
-	
+	//if (currentState) {
+	//	setState(currentState->update(this, frameTime));
+	//}
+
 }
 
 

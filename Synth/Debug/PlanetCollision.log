@@ -1,8 +1,9 @@
 ﻿cl : command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-  speedPowerup.cpp
+  enemy.cpp
 C:\Users\derps\source\repos\GPP_ASSIGNMENT2\Synth\constants.h(58,27): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\derps\source\repos\GPP_ASSIGNMENT2\Synth\speedPowerup.h(18,47): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\derps\source\repos\GPP_ASSIGNMENT2\Synth\speedPowerup.cpp(18,37): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\derps\source\repos\GPP_ASSIGNMENT2\Synth\speedPowerup.cpp(19,39): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-bullet.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+C:\Users\derps\source\repos\GPP_ASSIGNMENT2\Synth\player.h(18,47): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\derps\source\repos\GPP_ASSIGNMENT2\Synth\bullet.h(34,44): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\derps\source\repos\GPP_ASSIGNMENT2\Synth\enemy.h(39,44): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\derps\source\repos\GPP_ASSIGNMENT2\Synth\enemy.cpp(39,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\derps\source\repos\GPP_ASSIGNMENT2\Synth\enemy.cpp(40,38): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   PlanetCollision.vcxproj -> C:\Users\derps\source\repos\GPP_ASSIGNMENT2\Synth\Debug\PlanetCollision.exe

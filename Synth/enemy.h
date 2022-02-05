@@ -47,7 +47,7 @@ namespace enemyNS
 class Enemy : public Entity
 {
 private:
-	EnemyState* state_;
+	EnemyState* currentState;
 
 	// entity states
 	float shotTimer;
@@ -102,6 +102,11 @@ public:
 	// Set rotation angle in radians.
 	// 0 radians is up. Angles progress clockwise.
 	virtual void setRadians(float rad) { spriteData.angle = rad; }
+
+	virtual void setState(EnemyState* newState)
+	{
+		if (newState) { delete currentState; currentState = newState; }
+	}
 
 	//setstate
 	// if (currentState)
