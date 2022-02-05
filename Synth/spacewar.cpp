@@ -219,6 +219,11 @@ void Spacewar::update()
 
 	player.update(frameTime);
 	enemy.update(frameTime);
+	//update hearts list
+	for (int i = 0; i < MAX_HEART_NO; i++)
+	{
+		heartList[i].update(frameTime);
+	}
 }
 
 //=============================================================================
