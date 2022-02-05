@@ -16,11 +16,12 @@
 // default constructor
 //============================================================================
 Enemy::Enemy() :
-	playerDetect(),
-	playerptr(),
-
 	// base object constructor
-	Entity(),
+	IEnemy(),
+
+	stateRegistry(),
+	currentState(NULL),
+	currentStateName(""),
 	// entity states
 	shotTimer(),
 	cooldownTime(2.0f),
@@ -48,8 +49,24 @@ Enemy::Enemy() :
 //============================================================================
 // default destructor
 //============================================================================
-Enemy::~Enemy() {}
+Enemy::~Enemy() {
+	// safely delete all registered states
 
+	// setup scene registry iterator
+	std::unordered_map<std::string, EnemyState*>::iterator it =
+		stateRegistry.begin();
+
+	// loop through iterator until all elements traversed
+	while (it != stateRegistry.end()) {
+
+		// delete mapped scene object at scene pointer
+		SAFE_DELETE(it->second);
+
+		// increment iterator
+		it++;
+	}
+
+}
 
 // entity methods
 
@@ -65,8 +82,14 @@ bool Enemy::initialize(Game* gamePtr, int width, int height, int ncols, TextureM
 	this->setLoop(1);
 	playerptr = player;
 
-	//IdleState* idle = new IdleState();
-	//currentState = idle;
+	IdleState* idle = new IdleState();
+	registerState(idle, "idle");
+
+	ActiveState* active = new ActiveState();
+	registerState(active, "active");
+
+	transitionToState("idle");
+
 	return(Entity::initialize(gamePtr, width, height, ncols, textureM));
 }
 
@@ -88,9 +111,13 @@ void Enemy::update(float frameTime)
 	spriteData.x += frameTime * velocity.x;         // move ship along X 
 	spriteData.y += frameTime * velocity.y;         // move ship along Y
 
-	//if (currentState) {
-	//	setState(currentState->update(this, frameTime));
-	//}
+	if (currentState) {
+		setState(currentState->update(this, frameTime));
+	}
+
+	if (currentStateName == "idle") {
+		setVisible(0);
+	}
 
 }
 
@@ -105,4 +132,103 @@ void Enemy::shoot(
 	bool	flip
 ) {
 
+}
+
+// ===========================================================================
+// registers a state to the registry for easy retrieval and later use
+// ===========================================================================
+void Enemy::registerState(
+	EnemyState* state,
+	std::string		stateName
+) {
+	// check if scene is not registered, else throw a warning and exit early
+	if (stateRegistry.count(stateName) > 0) {
+
+		// throw a warning
+		throw(
+			GameError(
+				gameErrorNS::WARNING,
+				"Warning: State is already registered for name: " + stateName
+			)
+			);
+
+		// exit early
+		return;
+	}
+
+	// if not already registered, register scene
+	stateRegistry.insert({ stateName, state });
+
+	//// set enemy for enemystate to this instance
+	state->setEnemy(this);
+}
+
+// ===========================================================================
+// transitions to the state with the specified state name as was
+// registered within the state registry.
+// ===========================================================================
+bool Enemy::transitionToState(
+	std::string	stateName
+) {
+	// handle remove scene (transition to no scene)
+	if (stateName == "") {
+
+		// run cleanup on current scene
+		//if (currentState) currentState->cleanup();
+		//if (currentState) currentState->deleteAll();
+
+		// update current scene states
+		currentState = NULL;
+		currentStateName = "";
+
+		// exit early
+		return true;
+	}
+
+
+	// ensure sceneName is registered
+	if (stateRegistry.count(stateName) == 0) {
+
+		// throw a warning
+		throw(
+			GameError(
+				gameErrorNS::WARNING,
+				"Warning: Scene is not registered for id: " + stateName
+			)
+			);
+
+		// exit early
+		return false;
+	}
+
+	// retrieve scene from registry
+	EnemyState* nextState = stateRegistry.at(stateName);
+
+	// ensure scene is retrieved successfully
+	if (nextState == NULL) {
+
+		// throw a warning
+		throw(
+			GameError(
+				gameErrorNS::WARNING,
+				"Warning: Transitioned state is null!"
+			)
+			);
+
+		// exit early
+		return false;
+	}
+
+	// run cleanup on current scene
+	//if (currentState) currentState->cleanup();
+	//if (currentState) currentState->deleteAll();
+
+	// update scene states appropriately
+	currentState = nextState;
+	currentStateName = stateName;
+
+	// initialize new scene
+	//currentState->initialize();
+
+	return true;
 }

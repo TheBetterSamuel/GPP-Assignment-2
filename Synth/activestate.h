@@ -13,9 +13,9 @@
 #define _ACTIVESTATE_H              // file is included in more than one place
 #define WIN32_LEAN_AND_MEAN
 
+#include <vector>
 #include <windows.h>
 #include "constants.h"
-#include "enemystate.h"
 #include "enemy.h"
 
 class ActiveState : public EnemyState

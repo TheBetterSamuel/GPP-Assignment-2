@@ -13,13 +13,16 @@
 #define _ENTITY_ENEMY_H
 
 // include necessary headers
+#include <string>
+#include <unordered_map>
+
 #include "constants.h"
 #include "entity.h"
 #include "player.h"
 #include "bullet.h"
 #include <vector>
-#include "enemystate.h"
 
+#include "ienemy.h"
 
 // related constructs
 
@@ -44,10 +47,16 @@ namespace enemyNS
 
 // class specification
 
-class Enemy : public Entity
+class Enemy : public IEnemy
 {
 private:
+	// contains all scenes registered with this instance.
+	std::unordered_map<std::string, EnemyState*> stateRegistry;
+
 	EnemyState* currentState;
+
+	// string identifier for the current state
+	std::string	currentStateName;
 
 	// entity states
 	float shotTimer;
@@ -107,6 +116,13 @@ public:
 	{
 		if (newState) { delete currentState; currentState = newState; }
 	}
+
+	void registerState(
+		EnemyState* state,
+		std::string		stateName
+	);
+
+	virtual bool transitionToState(std::string stateName);
 
 	//setstate
 	// if (currentState)

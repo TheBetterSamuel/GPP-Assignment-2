@@ -13,9 +13,9 @@
 #define _IDLESTATE_H              // file is included in more than one place
 #define WIN32_LEAN_AND_MEAN
 
+#include <vector>
 #include <windows.h>
 #include "constants.h"
-#include "enemystate.h"
 #include "enemy.h"
 
 class IdleState : public EnemyState
@@ -26,8 +26,10 @@ public:
     virtual EnemyState* update(Enemy* enemy, float frameTime) {
         if (1)
         {
-            enemy->setVelocity(VECTOR2(100, 0));
-            return nullptr;
+            //enemyptr->setVelocity(VECTOR2(20, 0));
+            //enemy->setVelocity(VECTOR2(20, 0));
+            //EnemyState* active = new ActiveState();
+            return NULL;
         }
     }
 };//end of HeroineState class

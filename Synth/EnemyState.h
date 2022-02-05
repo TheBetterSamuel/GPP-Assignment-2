@@ -23,8 +23,15 @@ class Enemy;
 // class specification
 class EnemyState
 {
+protected:
+	Enemy* enemyptr;
 public:
 	virtual ~EnemyState() {}
 	virtual EnemyState* update(Enemy* enemy, float frameTime) = 0;
+	virtual void setEnemy(Enemy* enemy)
+	{
+		enemyptr = enemy;
+	}
+
 };
 #endif
