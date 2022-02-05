@@ -50,6 +50,9 @@ void Spacewar::initialize(HWND hwnd)
 
 	if (!dsPortalTexture.initialize(graphics, DSPORTAL_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing dsportal textures"));
+
+	if (!speedPowerupTexture.initialize(graphics, SPEEDPOWERUP_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing speed power up textures"));
 	
 	for (int i = 0; i < _countof(groundList); i++) {
 		Ground ground = Ground();
@@ -180,6 +183,22 @@ void Spacewar::update()
 		}
 		activehsPortalList.at(i).update(frameTime);
 	}
+	//update speed power up List
+	for (size_t i = 0; i < activeSpeedPowerupList.size(); i++) {
+		if (speedState == 0) {
+			activeSpeedPowerupList.at(i).setVelocity(VECTOR2(-MOVESPEED, 0));
+		}
+		if (speedState == 1) {
+			activeSpeedPowerupList.at(i).setVelocity(VECTOR2(-(MOVESPEED / 2), 0));
+		}
+		if (speedState == 2) {
+			activeSpeedPowerupList.at(i).setVelocity(VECTOR2(-(MOVESPEED * 2), 0));
+		}
+		if (activeSpeedPowerupList.at(i).getX() <= -BOX_SIZE) {
+			activeSpeedPowerupList.erase(activeSpeedPowerupList.begin() + i);
+		}
+		activeSpeedPowerupList.at(i).update(frameTime);
+	}
 	playerStateManager();
 
 	player.update(frameTime);
@@ -309,7 +328,7 @@ void Spacewar::playerStateManager() {
 
 //=============================================================================
 // Rendering based on grid and block type
-// G = Ground, K = Killbox, N = nPortal, D = dsPortal, H = hsPortal
+// G = Ground, K = Killbox, N = nPortal, D = dsPortal, H = hsPortal, S = SpeedPowerup
 //=============================================================================
 void Spacewar::renderObject(char type, UINT position) {
 	if (type == 'G') {
@@ -351,6 +370,14 @@ void Spacewar::renderObject(char type, UINT position) {
 		dsp.setX(GAME_WIDTH);
 		dsp.setY(GAME_HEIGHT - (position * BOX_SIZE));
 		activedsPortalList.push_back(dsp);
+	}
+	if (type == 'S') {
+		SpeedPowerup spu;
+		if (!spu.initialize(this, spuNS::WIDTH, spuNS::HEIGHT, 0, &speedPowerupTexture))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing speed power up"));
+		spu.setX(GAME_WIDTH);
+		spu.setY(GAME_HEIGHT - (position * BOX_SIZE));
+		activeSpeedPowerupList.push_back(spu);
 	}
 	return;
 }

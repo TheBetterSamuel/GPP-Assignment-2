@@ -17,6 +17,7 @@
 #include "nportal.h"
 #include "dsportal.h"
 #include "hsportal.h"
+#include "speedPowerup.h"
 #include "enemy.h"
 
 //=============================================================================
@@ -33,11 +34,13 @@ private:
     TextureManager nPortalTexture;
     TextureManager dsPortalTexture;
     TextureManager hsPortalTexture;
+    TextureManager speedPowerupTexture;
     std::vector<Ground> activeGroundList;
     std::vector<Killbox> activeKillboxList;
     std::vector<nPortal> activenPortalList;
     std::vector<dsPortal> activedsPortalList;
     std::vector<hsPortal> activehsPortalList;
+    std::vector<SpeedPowerup> activeSpeedPowerupList;
     Ground groundList[MAP_WIDTH + 2];       // the ground
     Player player;
     Enemy enemy;
