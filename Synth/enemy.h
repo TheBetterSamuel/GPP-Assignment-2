@@ -1,12 +1,12 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 // Module:			Gameplay Programming
-// Assignment1:		Cheats:Enabled
+// Assignment:		2
 // Student Name:	Tang Ming Feng
 // Student No.:		S10185023E
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 // ===========================================================================
-// InkdotEngine - Enemy Entity Class Specification
+// Enemy Class implementation
 // ===========================================================================
 
 #ifndef _ENTITY_ENEMY_H
@@ -18,6 +18,7 @@
 #include "player.h"
 #include "bullet.h"
 #include <vector>
+#include "enemystate.h"
 
 
 // related constructs
@@ -46,13 +47,12 @@ namespace enemyNS
 class Enemy : public Entity
 {
 private:
+	EnemyState* state_;
 
 	// entity states
 	float shotTimer;
 	float cooldownTime;
-	enum EnemyStates { IDLE, ACTIVE, SHOOT };
 	float lifetime;
-	UINT EnemyState = EnemyStates::IDLE;
 
 	TextureManager bulletTexture;
 	std::vector<Bullet*> bulletList;
@@ -103,7 +103,12 @@ public:
 	// 0 radians is up. Angles progress clockwise.
 	virtual void setRadians(float rad) { spriteData.angle = rad; }
 
-	//void targetPlayer(InkdotEntity player, float prevFrameTime) {};
+	//setstate
+	// if (currentState)
+	// setState(currentState->update(this, deltaTime));
+	//currentstate
+	//
+	// setState(EnemyState* newState): if(newState) { delete currentState; currentState = newState; }
 };
 
 #endif // !_ENTITY_ENEMY_H

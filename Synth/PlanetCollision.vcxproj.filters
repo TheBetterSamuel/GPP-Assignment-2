@@ -66,6 +66,9 @@
     <ClCompile Include="bullet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="speedPowerup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="constants.h">
@@ -119,13 +122,19 @@
     <ClInclude Include="strutils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyState.h">
+    <ClInclude Include="enemystate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="enemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="bullet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="idlestate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="speedPowerup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

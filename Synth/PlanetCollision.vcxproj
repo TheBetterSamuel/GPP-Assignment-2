@@ -102,6 +102,7 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="ground.cpp" />
     <ClCompile Include="spacewar.cpp" />
+    <ClCompile Include="speedPowerup.cpp" />
     <ClCompile Include="textureManager.cpp" />
     <ClCompile Include="winmain.cpp" />
   </ItemGroup>
@@ -110,7 +111,7 @@
     <ClInclude Include="constants.h" />
     <ClInclude Include="dsportal.h" />
     <ClInclude Include="enemy.h" />
-    <ClInclude Include="EnemyState.h" />
+    <ClInclude Include="enemystate.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="fileutils.h" />
     <ClInclude Include="game.h" />
@@ -118,12 +119,14 @@
     <ClInclude Include="graphics.h" />
     <ClInclude Include="ground.h" />
     <ClInclude Include="hsPortal.h" />
+    <ClInclude Include="idlestate.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="killbox.h" />
     <ClInclude Include="nportal.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="spacewar.h" />
+    <ClInclude Include="speedPowerup.h" />
     <ClInclude Include="strutils.h" />
     <ClInclude Include="textureManager.h" />
   </ItemGroup>
