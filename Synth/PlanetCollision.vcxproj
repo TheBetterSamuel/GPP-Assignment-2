@@ -102,6 +102,8 @@
     <ClCompile Include="nportal.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="ground.cpp" />
+    <ClCompile Include="scene.cpp" />
+    <ClCompile Include="scenemanager.cpp" />
     <ClCompile Include="spacewar.cpp" />
     <ClCompile Include="speedPowerup.cpp" />
     <ClCompile Include="textDX.cpp" />

@@ -9,8 +9,8 @@
 // Enemy Class implementation
 // ===========================================================================
 
-#ifndef _SCENEMANAGERINTERFACE_H
-#define _SCENEMANAGERINTERFACE_H
+#ifndef _ISCENEMANAGER_H
+#define _ISCENEMANAGER_H
 
 // import necessary headers
 #include "graphics.h"
