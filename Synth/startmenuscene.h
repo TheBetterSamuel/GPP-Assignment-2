@@ -22,6 +22,51 @@
 #include "heart.h"
 #include "scene.h"
 
+//Menu Options Class Specifications
+struct MenuOption {
+
+    // option label
+    std::string label;
+
+    // label text printer pointer
+    TextDX* labelText;
+
+    // label width
+    int labelWidth;
+
+    // position on screen
+    int xPos, yPos;
+
+    // selected flag
+    bool selected;
+
+
+    // constructor
+    MenuOption(std::string l, TextDX* pText) :
+        label(l),
+        labelText(pText),
+        xPos(0),
+        yPos(0),
+        selected(FALSE)
+    {
+        // calculate label width using text printer
+        labelWidth = 5;//labelText->calculateWidth(label);
+    }
+
+    // print at stored coordinates
+    void print()
+    {
+        if (selected) {
+            labelText->setFontColor(graphicsNS::BLACK);
+        }
+
+        labelText->print(
+            label,
+            xPos,
+            yPos
+        );
+    }
+};
 //=============================================================================
 // This class is the core of the game
 //=============================================================================
@@ -55,6 +100,9 @@ private:
     TextDX* dxFontSmall;       // DirectX fonts
     TextDX* dxFontMedium;
     TextDX* dxFontLarge;
+    MenuOption menuOptionList[2];
+    int selectedOptionIndex;
+    
 
 
 public:

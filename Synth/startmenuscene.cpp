@@ -6,7 +6,7 @@
 // This class is the core of the game
 
 #include "startmenuscene.h"
-
+using namespace std;
 
 //=============================================================================
 // Constructor
@@ -45,6 +45,12 @@ void StartMenuScene::initialize()
 	// 124 pixel high Arial
 	if (dxFontLarge->initialize(graphics, 124, true, false, "Arial") == false)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
+	string s = "Start";
+	string e = "End";
+	menuOptionList[0] = MenuOption(s, dxFontMedium);
+	menuOptionList[1] = MenuOption(e,dxFontMedium);
+
+	menuOptionList[selectedOptionIndex].selected = true;
 
 	return;
 }
@@ -83,9 +89,10 @@ void StartMenuScene::render()
 	dxFontSmall->setFontColor(graphicsNS::WHITE);
 	dxFontMedium->setFontColor(graphicsNS::WHITE);
 	dxFontLarge->setFontColor(graphicsNS::WHITE);
-	dxFontLarge->print("Cdasdasdadadasdadasdasdasd", GAME_WIDTH/2, GAME_HEIGHT/2);
-	dxFontMedium->print("C", GAME_WIDTH / 2, 148);
-	dxFontSmall->print("C", GAME_WIDTH / 2, 184);
+	for (int i = 0; i < _countof(menuOptionList);i++)
+	{
+		menuOptionList[i].print();
+	}
 	getGraphics()->spriteEnd();                  // end drawing sprites
 }
 
@@ -99,7 +106,7 @@ void StartMenuScene::releaseAll()
 }
 
 //=============================================================================
-// The grahics device has been reset.
+// The graphics device has been reset.
 // Recreate all surfaces.
 //=============================================================================
 void StartMenuScene::resetAll()
@@ -117,3 +124,4 @@ void StartMenuScene::cleanup()
 	getGraphics()->setBackColor(BLACKNESS);
 
 }
+
