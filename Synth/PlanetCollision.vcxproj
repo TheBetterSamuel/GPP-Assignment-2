@@ -127,9 +127,13 @@
     <ClInclude Include="ienemy.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />
+    <ClInclude Include="iscene.h" />
+    <ClInclude Include="iscenemanager.h" />
     <ClInclude Include="killbox.h" />
     <ClInclude Include="nportal.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="scene.h" />
+    <ClInclude Include="scenemanager.h" />
     <ClInclude Include="spacewar.h" />
     <ClInclude Include="speedPowerup.h" />
     <ClInclude Include="strutils.h" />
