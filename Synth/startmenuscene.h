@@ -22,6 +22,8 @@
 #include "heart.h"
 #include "scene.h"
 
+using namespace std;
+
 //=============================================================================
 // This class is the core of the game
 //=============================================================================
@@ -55,6 +57,9 @@ private:
     TextDX* dxFontSmall;       // DirectX fonts
     TextDX* dxFontMedium;
     TextDX* dxFontLarge;
+
+    string texts[2] = { "Start","Exit" };
+    int menuSelected = 1;
 
 
 public:

@@ -58,6 +58,38 @@ void StartMenuScene::update(float frameTime)
 	{
 		sceneManager->transitionToScene("TEST_SCENE");
 	}
+	if (getInput()->isKeyDown(0x57)) //keypress "W"
+	{
+		if (menuSelected == 0) {
+			menuSelected = 1;
+		}
+		else {
+			menuSelected--;
+		}
+	}
+	if (getInput()->isKeyDown(0x53)) //keypress "S"
+	{
+		if (menuSelected == 1) {
+			menuSelected = 0;
+		}
+		else {
+			menuSelected++;
+		}
+	}
+	if (getInput()->isKeyDown(VK_RETURN)) //keypress ENTER
+	{
+		switch (menuSelected) {
+		case 0:
+			//starts game
+			break;
+		case 1:
+			//exits game
+			break;
+		default:
+			//exit game
+			break;
+		}
+	}
 }
 
 //=============================================================================
@@ -83,9 +115,18 @@ void StartMenuScene::render()
 	dxFontSmall->setFontColor(graphicsNS::WHITE);
 	dxFontMedium->setFontColor(graphicsNS::WHITE);
 	dxFontLarge->setFontColor(graphicsNS::WHITE);
-	dxFontLarge->print("Cdasdasdadadasdadasdasdasd", GAME_WIDTH/2, GAME_HEIGHT/2);
-	dxFontMedium->print("C", GAME_WIDTH / 2, 148);
-	dxFontSmall->print("C", GAME_WIDTH / 2, 184);
+	for (int i = 0; i < _countof(texts); i++) {
+		int lineHeight = 62 * 1.5;
+		int posX = (GAME_WIDTH / 2);
+		int posY = (GAME_HEIGHT / 3) + (i * lineHeight);
+		if (menuSelected == i) {
+			dxFontMedium->setFontColor(D3DCOLOR_ARGB(255, 255, 255, 255));
+		}
+		else {
+			dxFontMedium->setFontColor(D3DCOLOR_ARGB(150, 255, 255, 255));
+		}
+		dxFontMedium->print(texts[i], posX, posY);
+	}
 	getGraphics()->spriteEnd();                  // end drawing sprites
 }
 
