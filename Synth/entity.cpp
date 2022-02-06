@@ -36,11 +36,10 @@ Entity::Entity() : Image()
 //      *textureM = pointer to TextureManager object
 // Post: returns true if successful, false if failed
 //=============================================================================
-bool Entity::initialize(Scene* sceneptr, int width, int height, int ncols,
+bool Entity::initialize(Graphics* graphics, int width, int height, int ncols,
                             TextureManager *textureM)
 {
-    input = sceneptr->getInput();                // the input system
-    return(Image::initialize(sceneptr->getGraphics(), width, height, ncols, textureM));
+    return(Image::initialize(graphics, width, height, ncols, textureM));
 }
 
 //=============================================================================

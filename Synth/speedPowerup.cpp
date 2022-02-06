@@ -28,9 +28,9 @@ SpeedPowerup::SpeedPowerup() : Entity()
 // Initialize the Ship.
 // Post: returns true if successful, false if failed
 //=============================================================================
-bool SpeedPowerup::initialize(Scene* sceneptr, int width, int height, int ncols, TextureManager* textureM)
+bool SpeedPowerup::initialize(Graphics* graphics, int width, int height, int ncols, TextureManager* textureM)
 {
-    return(Entity::initialize(sceneptr, width, height, ncols, textureM));
+    return(Entity::initialize(graphics, width, height, ncols, textureM));
 }
 
 //=============================================================================

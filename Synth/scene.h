@@ -69,6 +69,7 @@ public:
 	// update objects for each frame
 	virtual void update(float prevFrameTime) = 0;
 
+	virtual void render() = 0;
 	// handle artificial intelligence on each frame
 	virtual void ai() = 0;
 

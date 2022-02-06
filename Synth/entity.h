@@ -157,7 +157,7 @@ class Entity : public Image
     //      height = height of Image in pixels (0 = use full texture height)
     //      ncols = number of columns in texture (1 to n) (0 same as 1)
     //      *textureM = pointer to TextureManager object
-    virtual bool initialize(Scene* sceneptr, int width, int height, int ncols,
+    virtual bool initialize(Graphics* graphics, int width, int height, int ncols,
                             TextureManager *textureM);
     // Activate Entity.
     virtual void activate();

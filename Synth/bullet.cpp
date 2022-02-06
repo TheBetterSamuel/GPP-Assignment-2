@@ -47,8 +47,8 @@ Bullet::~Bullet() {}
 //=============================================================================
 // initializes the entity - called on scene initialization
 //=============================================================================
-bool Bullet::initialize(Scene* sceneptr, int width, int height, int ncols, TextureManager* textureM) {
-	return(Entity::initialize(sceneptr, width, height, ncols, textureM));
+bool Bullet::initialize(Graphics* graphics, int width, int height, int ncols, TextureManager* textureM) {
+	return(Entity::initialize(graphics, width, height, ncols, textureM));
 }
 
 //=============================================================================

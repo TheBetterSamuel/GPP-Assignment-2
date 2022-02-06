@@ -227,6 +227,7 @@ void Game::run(HWND hwnd)
     if (!paused)                    // if not paused
     {
         update();                   // update all game items
+        sceneManager->runCurrentScene(frameTime);
         ai();                       // artificial intelligence
         collisions();               // handle collisions
         input->vibrateControllers(frameTime); // handle controller vibration

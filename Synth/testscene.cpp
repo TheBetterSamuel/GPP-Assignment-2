@@ -29,7 +29,7 @@ TestScene::~TestScene()
 //=============================================================================
 void TestScene::initialize()
 {
-	Scene::initialize();
+
 	Graphics* graphics = getGraphics();
 
 	// main game textures
@@ -63,20 +63,20 @@ void TestScene::initialize()
 
 	for (int i = 0; i < _countof(groundList); i++) {
 		Ground ground = Ground();
-		if (!ground.initialize(this, groundNS::WIDTH, groundNS::HEIGHT, 0, &groundTexture))
+		if (!ground.initialize(graphics, groundNS::WIDTH, groundNS::HEIGHT, 0, &groundTexture))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing ground"));
 		ground.setX(i * BOX_SIZE);
 		ground.setY(GAME_HEIGHT - BOX_SIZE);
 		groundList[i] = ground;
 	}
 
-	if (!player.initialize(this, playerNS::WIDTH, playerNS::HEIGHT, 0, &playerTexture))
+	if (!player.initialize(graphics, playerNS::WIDTH, playerNS::HEIGHT, 0, &playerTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing player"));
 	player.setX(3 * BOX_SIZE);
 	player.setY(GAME_HEIGHT - (2 * BOX_SIZE));
 
 	//test enemy
-	if (!enemy.initialize(this, enemyNS::WIDTH, enemyNS::HEIGHT, 0, &enemyTexture, &player))
+	if (!enemy.initialize(graphics, enemyNS::WIDTH, enemyNS::HEIGHT, 0, &enemyTexture, &player))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing enemy"));
 	enemy.setX(100);
 	enemy.setY(100);
@@ -86,7 +86,7 @@ void TestScene::initialize()
 	for (int i = 0; i < MAX_HEART_NO; i++)
 	{
 
-		if (!heartList[i].initialize(this, heartNS::WIDTH, heartNS::HEIGHT, 0, &heartTexture))
+		if (!heartList[i].initialize(graphics, heartNS::WIDTH, heartNS::HEIGHT, 0, &heartTexture))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing heart" + i));
 
 		heartList[i].setX(GAME_WIDTH / 12 * (MAX_HEART_NO - i));
@@ -375,9 +375,10 @@ void TestScene::playerStateManager(float frameTime) {
 // G = Ground, K = Killbox, N = nPortal, D = dsPortal, H = hsPortal, S = SpeedPowerup
 //=============================================================================
 void TestScene::renderObject(char type, UINT position) {
+	Graphics* graphics = getGraphics();
 	if (type == 'G') {
 		Ground ground;
-		if (!ground.initialize(this, groundNS::WIDTH, groundNS::HEIGHT, 0, &groundTexture))
+		if (!ground.initialize(graphics, groundNS::WIDTH, groundNS::HEIGHT, 0, &groundTexture))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing ground"));
 		ground.setX(GAME_WIDTH);
 		ground.setY(GAME_HEIGHT - (position * BOX_SIZE));
@@ -385,7 +386,7 @@ void TestScene::renderObject(char type, UINT position) {
 	}
 	if (type == 'K') {
 		Killbox kbox;
-		if (!kbox.initialize(this, kboxNS::WIDTH, kboxNS::HEIGHT, 0, &killboxTexture))
+		if (!kbox.initialize(graphics, kboxNS::WIDTH, kboxNS::HEIGHT, 0, &killboxTexture))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing killbox"));
 		kbox.setX(GAME_WIDTH);
 		kbox.setY(GAME_HEIGHT - (position * BOX_SIZE));
@@ -393,7 +394,7 @@ void TestScene::renderObject(char type, UINT position) {
 	}
 	if (type == 'N') {
 		nPortal np;
-		if (!np.initialize(this, npNS::WIDTH, npNS::HEIGHT, 0, &nPortalTexture))
+		if (!np.initialize(graphics, npNS::WIDTH, npNS::HEIGHT, 0, &nPortalTexture))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing nportal"));
 		np.setX(GAME_WIDTH);
 		np.setY(GAME_HEIGHT - (position * BOX_SIZE));
@@ -401,7 +402,7 @@ void TestScene::renderObject(char type, UINT position) {
 	}
 	if (type == 'H') {
 		hsPortal hsp;
-		if (!hsp.initialize(this, hspNS::WIDTH, hspNS::HEIGHT, 0, &hsPortalTexture))
+		if (!hsp.initialize(graphics, hspNS::WIDTH, hspNS::HEIGHT, 0, &hsPortalTexture))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing hsportal"));
 		hsp.setX(GAME_WIDTH);
 		hsp.setY(GAME_HEIGHT - (position * BOX_SIZE));
@@ -409,7 +410,7 @@ void TestScene::renderObject(char type, UINT position) {
 	}
 	if (type == 'D') {
 		dsPortal dsp;
-		if (!dsp.initialize(this, dspNS::WIDTH, dspNS::HEIGHT, 0, &dsPortalTexture))
+		if (!dsp.initialize(graphics, dspNS::WIDTH, dspNS::HEIGHT, 0, &dsPortalTexture))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing hsportal"));
 		dsp.setX(GAME_WIDTH);
 		dsp.setY(GAME_HEIGHT - (position * BOX_SIZE));
@@ -417,7 +418,7 @@ void TestScene::renderObject(char type, UINT position) {
 	}
 	if (type == 'S') {
 		SpeedPowerup spu;
-		if (!spu.initialize(this, spuNS::WIDTH, spuNS::HEIGHT, 0, &speedPowerupTexture))
+		if (!spu.initialize(graphics, spuNS::WIDTH, spuNS::HEIGHT, 0, &speedPowerupTexture))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing speed power up"));
 		spu.setX(GAME_WIDTH);
 		spu.setY(GAME_HEIGHT - (position * BOX_SIZE));

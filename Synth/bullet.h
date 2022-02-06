@@ -63,7 +63,7 @@ public:
 	// entity methods
 
 	// initializes the entity - called on scene initialization
-	virtual bool initialize(Scene* sceneptr, int width, int height, int ncols, TextureManager* textureM);
+	virtual bool initialize(Graphics* graphics, int width, int height, int ncols, TextureManager* textureM);
 
 	// prepares the entity for deletion - called before entity is destroyed
 	virtual void cleanup() {}

@@ -210,7 +210,7 @@ void SceneManager::renderCurrentScene()
 	// sprite drawing
 	getGraphics()->spriteBegin();
 
-
+	currentScene->render();
 	getGraphics()->spriteEnd();
 }
 
