@@ -104,6 +104,7 @@
     <ClCompile Include="ground.cpp" />
     <ClCompile Include="spacewar.cpp" />
     <ClCompile Include="speedPowerup.cpp" />
+    <ClCompile Include="textDX.cpp" />
     <ClCompile Include="textureManager.cpp" />
     <ClCompile Include="winmain.cpp" />
   </ItemGroup>
@@ -132,6 +133,7 @@
     <ClInclude Include="spacewar.h" />
     <ClInclude Include="speedPowerup.h" />
     <ClInclude Include="strutils.h" />
+    <ClInclude Include="textDX.h" />
     <ClInclude Include="textureManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
