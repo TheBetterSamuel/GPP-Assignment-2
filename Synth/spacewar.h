@@ -9,17 +9,7 @@
 
 #include <vector>
 #include "game.h"
-#include "textureManager.h"
-#include "image.h"
-#include "player.h"
-#include "ground.h"
-#include "killbox.h"
-#include "nportal.h"
-#include "dsportal.h"
-#include "hsportal.h"
-#include "speedPowerup.h"
-#include "enemy.h"
-#include "heart.h"
+#include "testscene.h"
 
 //=============================================================================
 // This class is the core of the game
@@ -27,31 +17,7 @@
 class Spacewar : public Game
 {
 private:
-    // game itemsWS
-    TextureManager groundTexture;
-    TextureManager playerTexture;
-    TextureManager enemyTexture;
-    TextureManager killboxTexture;
-    TextureManager nPortalTexture;
-    TextureManager dsPortalTexture;
-    TextureManager hsPortalTexture;
-    TextureManager speedPowerupTexture;
-    TextureManager heartTexture;
-    std::vector<Ground> activeGroundList;
-    std::vector<Killbox> activeKillboxList;
-    std::vector<nPortal> activenPortalList;
-    std::vector<dsPortal> activedsPortalList;
-    std::vector<hsPortal> activehsPortalList;
-    std::vector<SpeedPowerup> activeSpeedPowerupList;
-    Ground groundList[MAP_WIDTH + 2];       // the ground
-    Player player;
-    Enemy enemy;
-    Heart heartList[MAX_HEART_NO];          // max hearts
-    int numOfHits;
-    UINT distance = 0;                      // distance in number of blocks
-    UINT speedState = 0;                    // State of the game speed
-    UINT playerState = ONGROUND;                   // State of the player
-
+    
 
 public:
     // Constructor
@@ -68,8 +34,6 @@ public:
     void render();      // "
     void releaseAll();
     void resetAll();
-    void renderObject(char type, UINT position); //rendering object
-    void playerStateManager();
 };
 
 #endif

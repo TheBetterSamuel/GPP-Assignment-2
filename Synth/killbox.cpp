@@ -28,9 +28,9 @@ Killbox::Killbox() : Entity()
 // Initialize the Ship.
 // Post: returns true if successful, false if failed
 //=============================================================================
-bool Killbox::initialize(Game* gamePtr, int width, int height, int ncols, TextureManager* textureM)
+bool Killbox::initialize(Scene* sceneptr, int width, int height, int ncols, TextureManager* textureM)
 {
-    return(Entity::initialize(gamePtr, width, height, ncols, textureM));
+    return(Entity::initialize(sceneptr, width, height, ncols, textureM));
 }
 
 //=============================================================================

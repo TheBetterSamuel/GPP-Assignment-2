@@ -81,7 +81,7 @@ public:
 	// shoots a bullet
 	void shoot(Bullet* bullet, float x, float y, bool flip);
 	// initializes the entity - called on scene initialization
-	virtual bool initialize(Game* gamePtr, int width, int height, int ncols, TextureManager* textureM, Player* playerptr);
+	virtual bool initialize(Scene* sceneptr, int width, int height, int ncols, TextureManager* textureM, Player* playerptr);
 	virtual void draw();
 	// prepares the entity for deletion - called before entity is destroyed
 	virtual void cleanup() {}

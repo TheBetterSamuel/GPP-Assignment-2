@@ -10,13 +10,20 @@
 //=============================================================================
 // Constructor
 //=============================================================================
-Game::Game()
+Game::Game():
+    hwnd(),
+    graphics(NULL),
+    input(NULL),
+    sceneManager(NULL)
 {
     input = new Input();        // initialize keyboard input immediately
     // additional initialization is handled in later call to input->initialize()
     paused = false;             // game is not paused
-    graphics = NULL;
     initialized = false;
+    // allocate handlers
+    graphics = new Graphics();
+    input = new Input();
+    sceneManager = new SceneManager();
 }
 
 //=============================================================================
@@ -104,6 +111,16 @@ void Game::initialize(HWND hw)
     // throws GameError
     graphics->initialize(hwnd, GAME_WIDTH, GAME_HEIGHT, FULLSCREEN);
 
+    // initialize scene manager
+    sceneManager->initialize(graphics, input);
+
+    //TestScene* testScene = new TestScene();
+    //// register startup scene
+    //sceneManager->registerScene(testScene, "TEST_SCENE");
+
+    // transition to startup scene
+    /*sceneManager->transitionToScene("TEST_SCENE");*/
+
     // initialize input, do not capture mouse
     input->initialize(hwnd, false);             // throws GameError
 
@@ -125,6 +142,8 @@ void Game::renderGame()
     if (SUCCEEDED(graphics->beginScene()))
     {
         render();           // call render() in derived object
+        // render all graphics objects for the current scene to backbuffer
+        sceneManager->renderCurrentScene();
 
         //stop rendering
         graphics->endScene();
@@ -233,13 +252,17 @@ void Game::run(HWND hwnd)
 // Release all reserved video memory so graphics device may be reset.
 //=============================================================================
 void Game::releaseAll()
-{}
+{
+    sceneManager->releaseGraphicsForCurrentScene();
+}
 
 //=============================================================================
 // Recreate all surfaces and reset all entities.
 //=============================================================================
 void Game::resetAll()
-{}
+{
+    sceneManager->resetGraphicsForCurrentScene();
+}
 
 //=============================================================================
 // Delete all reserved memory

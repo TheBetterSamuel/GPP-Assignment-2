@@ -53,17 +53,15 @@ public:
 	/// <summary>
 	/// Initializes the Scene object instance
 	/// </summary>
-	virtual void initialize();
 
 	// deallocate all manually allocated scene objects and reset object to the
 	// pre-initialized state. will be called on instance destruction.
 	virtual void deleteAll();
 
-
 	// abstract scene methods
 
 	// set up scene objects during scene initialization
-	virtual void setup() = 0;
+	virtual void initialize();
 
 	// clean up scene objects and prepare to transit out of scene
 	virtual void cleanup() = 0;
@@ -77,19 +75,13 @@ public:
 	// handle collisions for objects on each frame
 	virtual void collisions() = 0;
 
-	// render sprites for scene foreground: draws over entity sprites
-	virtual void renderForeground() = 0;
-
-	// render sprites for scene background: draws under entity sprites
-	virtual void renderBackground() = 0;
-
 	// releases all memory reserved for graphics objects so that the bound
 	// graphics device can be reset. called when the graphics device is lost.
-	virtual void releaseAllGraphics() = 0;
+	virtual void releaseAll() = 0;
 
 	// recreates and restores all graphics objects. called after a lost
 	// graphics device is restored.
-	virtual void resetAllGraphics() = 0;
+	virtual void resetAll() = 0;
 
 
 	// IScene getters

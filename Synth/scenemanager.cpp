@@ -210,8 +210,6 @@ void SceneManager::renderCurrentScene()
 	// sprite drawing
 	getGraphics()->spriteBegin();
 
-	currentScene->renderBackground();
-	currentScene->renderForeground();
 
 	getGraphics()->spriteEnd();
 }
@@ -221,7 +219,7 @@ void SceneManager::renderCurrentScene()
 // ===========================================================================
 void SceneManager::releaseGraphicsForCurrentScene()
 {
-	if (currentScene) currentScene->releaseAllGraphics();
+	if (currentScene) currentScene->releaseAll();
 }
 
 // ===========================================================================
@@ -229,5 +227,5 @@ void SceneManager::releaseGraphicsForCurrentScene()
 // ===========================================================================
 void SceneManager::resetGraphicsForCurrentScene()
 {
-	if (currentScene) currentScene->resetAllGraphics();
+	if (currentScene) currentScene->resetAll();
 }

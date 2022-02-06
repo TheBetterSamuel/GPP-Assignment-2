@@ -13,6 +13,7 @@
 #include "input.h"
 #include "constants.h"
 #include "gameError.h"
+#include "scenemanager.h"
 
 class Game
 {
@@ -30,6 +31,8 @@ protected:
     DWORD   sleepTime;          // number of milli-seconds to sleep between frames
     bool    paused;             // true if game is paused
     bool    initialized;
+
+    SceneManager* sceneManager;
 
 public:
     // Constructor

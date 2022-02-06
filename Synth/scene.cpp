@@ -40,7 +40,7 @@ void Scene::initialize()
 {
 
 	// setup scene objects
-	setup();
+	initialize();
 }
 
 // ===========================================================================
@@ -50,5 +50,5 @@ void Scene::initialize()
 void Scene::deleteAll()
 {
 	// release memory for all graphics objects and textures
-	releaseAllGraphics();
+	releaseAll();
 }
