@@ -19,7 +19,9 @@ Scene::Scene() :
 
 	// handlers
 	sceneManager(NULL)
-{}
+{
+
+}
 
 // ===========================================================================
 // default destructor
@@ -28,6 +30,7 @@ Scene::~Scene()
 {
 	// deallocate all manually allocated scene objects
 	deleteAll();
+
 }
 
 

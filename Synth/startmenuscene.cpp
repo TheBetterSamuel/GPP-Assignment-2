@@ -5,61 +5,71 @@
 // Chapter 6 spacewar.cpp v1.0
 // This class is the core of the game
 
-#include "spaceWar.h"
+#include "startmenuscene.h"
+
 
 //=============================================================================
 // Constructor
 //=============================================================================
-Spacewar::Spacewar()
+StartMenuScene::StartMenuScene()
 {
-	
+	dxFontSmall = new TextDX();     // DirectX fonts
+	dxFontMedium = new TextDX();
+	dxFontLarge = new TextDX();
 }
 
 //=============================================================================
 // Destructor
 //=============================================================================
-Spacewar::~Spacewar()
+StartMenuScene::~StartMenuScene()
 {
-	releaseAll();           // call onLostDevice() for every graphics item
+	//releaseAll();           // call onLostDevice() for every graphics item
 }
 
 //=============================================================================
 // Initializes the game
 // Throws GameError on error
 //=============================================================================
-void Spacewar::initialize(HWND hwnd)
+void StartMenuScene::initialize()
 {
-	Game::initialize(hwnd); // throws GameError
 
-	
-	TestScene* testScene = new TestScene();
-	sceneManager->registerScene(testScene, "TEST_SCENE");
+	Graphics* graphics = getGraphics();
 
-	StartMenuScene* startmenuscene = new StartMenuScene();
-	sceneManager->registerScene(startmenuscene, "START_MENU_SCENE");
+	if (dxFontSmall->initialize(graphics, 15, true, false, "Arial") == false)
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
 
-	sceneManager->transitionToScene("START_MENU_SCENE");
-	
+	// 62 pixel high Arial
+	if (dxFontMedium->initialize(graphics, 62, true, false, "Arial") == false)
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
+
+	// 124 pixel high Arial
+	if (dxFontLarge->initialize(graphics, 124, true, false, "Arial") == false)
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
+
+	return;
 }
 
 //=============================================================================
 // Update all game items
 //=============================================================================
-void Spacewar::update()
+void StartMenuScene::update(float frameTime)
 {
-	
+	if (getInput()->isKeyDown(0x41)) //keypress "A"
+	{
+		sceneManager->transitionToScene("TEST_SCENE");
+	}
 }
 
 //=============================================================================
 // Artificial Intelligence
 //=============================================================================
-void Spacewar::ai()
+void StartMenuScene::ai()
 {}
 
 //=============================================================================
 // Handle collisions
 //=============================================================================
-void Spacewar::collisions()
+void StartMenuScene::collisions()
 {
 	
 }
@@ -67,19 +77,24 @@ void Spacewar::collisions()
 //=============================================================================
 // Render game items
 //=============================================================================
-void Spacewar::render()
+void StartMenuScene::render()
 {
-	
+	getGraphics()->spriteBegin();                // begin drawing sprites
+	dxFontSmall->setFontColor(graphicsNS::WHITE);
+	dxFontMedium->setFontColor(graphicsNS::WHITE);
+	dxFontLarge->setFontColor(graphicsNS::WHITE);
+	dxFontLarge->print("Cdasdasdadadasdadasdasdasd", GAME_WIDTH/2, GAME_HEIGHT/2);
+	dxFontMedium->print("C", GAME_WIDTH / 2, 148);
+	dxFontSmall->print("C", GAME_WIDTH / 2, 184);
+	getGraphics()->spriteEnd();                  // end drawing sprites
 }
 
 //=============================================================================
 // The graphics device was lost.
 // Release all reserved video memory so graphics device may be reset.
 //=============================================================================
-void Spacewar::releaseAll()
+void StartMenuScene::releaseAll()
 {
-
-	Game::releaseAll();
 	return;
 }
 
@@ -87,11 +102,18 @@ void Spacewar::releaseAll()
 // The grahics device has been reset.
 // Recreate all surfaces.
 //=============================================================================
-void Spacewar::resetAll()
+void StartMenuScene::resetAll()
 {
-
-	Game::resetAll();
+	//Scene::resetAll();
 	return;
 }
 
+// ===========================================================================
+// clean up scene objects and prepare to transit out of scene
+// ===========================================================================
+void StartMenuScene::cleanup()
+{
+	// reset bg color
+	getGraphics()->setBackColor(BLACKNESS);
 
+}

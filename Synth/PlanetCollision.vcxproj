@@ -106,6 +106,7 @@
     <ClCompile Include="scenemanager.cpp" />
     <ClCompile Include="spacewar.cpp" />
     <ClCompile Include="speedPowerup.cpp" />
+    <ClCompile Include="startmenuscene.cpp" />
     <ClCompile Include="testscene.cpp" />
     <ClCompile Include="textDX.cpp" />
     <ClCompile Include="textureManager.cpp" />
@@ -139,6 +140,7 @@
     <ClInclude Include="scenemanager.h" />
     <ClInclude Include="spacewar.h" />
     <ClInclude Include="speedPowerup.h" />
+    <ClInclude Include="startmenuscene.h" />
     <ClInclude Include="strutils.h" />
     <ClInclude Include="testscene.h" />
     <ClInclude Include="textDX.h" />

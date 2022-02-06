@@ -18,7 +18,7 @@
 
 // import necessary headers
 #include "graphics.h"
-//#include "text.h"
+#include "textDX.h"
 #include "input.h"
 #include "constants.h"
 #include "gameError.h"
@@ -31,6 +31,10 @@
 
 class Scene : public IScene
 {
+
+private:
+	
+
 protected:
 
 	// handlers

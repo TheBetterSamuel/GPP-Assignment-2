@@ -10,6 +10,7 @@
 #include <vector>
 #include "game.h"
 #include "testscene.h"
+#include "startmenuscene.h"
 
 //=============================================================================
 // This class is the core of the game
