@@ -6,7 +6,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 // ===========================================================================
-// Enemy Class implementation
+// ISceneManager Class implementation
 // ===========================================================================
 
 #ifndef _ISCENEMANAGER_H
@@ -26,8 +26,7 @@ public:
 
 	// abstract methods to be implemented by child classes
 
-	// should transition to the scene with the specified scene name as
-	// was registered within the scene registry.
+	// should transition to the scene with the specified scene name as was registered within the scene registry.
 	virtual bool transitionToScene(std::string sceneName) = 0;
 
 

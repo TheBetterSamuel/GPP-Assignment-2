@@ -6,17 +6,15 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 // ===========================================================================
-// Enemy Class implementation
+// Scene Class implementation
 // ===========================================================================
 
 #ifndef _SCENE_H
 #define _SCENE_H
 
-// import minimal windows headers
+// import necessary headers
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
-
-// import necessary headers
 #include "graphics.h"
 #include "textDX.h"
 #include "input.h"
@@ -36,9 +34,6 @@ private:
 	
 
 protected:
-
-	// handlers
-
 	// pointer to the associated sceneManager handler
 	ISceneManager* sceneManager;
 
@@ -51,21 +46,13 @@ public:
 	// default destructor
 	~Scene();
 
+	// scene initialization
+	virtual void initialize();
 
-	// extensible scene methods
-
-	/// <summary>
-	/// Initializes the Scene object instance
-	/// </summary>
-
-	// deallocate all manually allocated scene objects and reset object to the
-	// pre-initialized state. will be called on instance destruction.
+	// delete/deallocate all scene objects
 	virtual void deleteAll();
 
 	// abstract scene methods
-
-	// set up scene objects during scene initialization
-	virtual void initialize();
 
 	// clean up scene objects and prepare to transit out of scene
 	virtual void cleanup() = 0;
@@ -74,18 +61,17 @@ public:
 	virtual void update(float prevFrameTime) = 0;
 
 	virtual void render() = 0;
+
 	// handle artificial intelligence on each frame
 	virtual void ai() = 0;
 
 	// handle collisions for objects on each frame
 	virtual void collisions() = 0;
 
-	// releases all memory reserved for graphics objects so that the bound
-	// graphics device can be reset. called when the graphics device is lost.
+	// releases all memory reserved for graphics objects
 	virtual void releaseAll() = 0;
 
-	// recreates and restores all graphics objects. called after a lost
-	// graphics device is restored.
+	// recreates and restores all graphics objects
 	virtual void resetAll() = 0;
 
 

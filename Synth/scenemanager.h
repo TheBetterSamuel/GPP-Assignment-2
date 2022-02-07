@@ -6,7 +6,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 // ===========================================================================
-// Enemy Class implementation
+// Scene manager Class implementation
 // ===========================================================================
 
 #ifndef _SCENEMANAGER_H
@@ -65,29 +65,11 @@ public:
 
 	// methods
 
-	/// <summary>
-	/// Initializes the SceneManager instance
-	/// </summary>
-	/// <param name="g">
-	/// : A pointer to the Graphics handler instance to be used for all scenes
-	/// </param>
-	/// <param name="i">
-	/// : A pointer to the Input handler instance to be used for all scenes
-	/// </param>
 	void initialize(
-		Graphics* g,
-		Input* i
+		Graphics* graphics,
+		Input* input
 	);
 
-	/// <summary>
-	/// Registers a scene to the registry for easy retrieval and later use
-	/// </summary>
-	/// <param name="scene">
-	/// : A pointer to the scene that is to be registered
-	/// </param>
-	/// <param name="identifier">
-	/// : The identifier for the registered scene
-	/// </param>
 	void registerScene(
 		Scene* scene,
 		std::string		sceneName
