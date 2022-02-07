@@ -1,7 +1,13 @@
-// Programming 2D Games
-// Copyright (c) 2011 by: 
-// Charles Kelly
-// Chapter 6 spacewar.h v1.0
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// Module:			Gameplay Programming
+// Assignment:		2
+// Student Name:	Tang Ming Feng
+// Student No.:		S10185023E
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+// ===========================================================================
+// MainGame Class implementation
+// ===========================================================================
 
 #ifndef _SPACEWAR_H             // Prevent multiple definitions if this 
 #define _SPACEWAR_H             // file is included in more than one place
@@ -16,17 +22,17 @@
 //=============================================================================
 // This class is the core of the game
 //=============================================================================
-class Spacewar : public Game
+class MainGame : public Game
 {
 private:
     
 
 public:
     // Constructor
-    Spacewar();
+    MainGame();
 
     // Destructor
-    virtual ~Spacewar();
+    virtual ~MainGame();
 
     // Initialize the game
     void initialize(HWND hwnd);

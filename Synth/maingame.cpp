@@ -5,12 +5,12 @@
 // Chapter 6 spacewar.cpp v1.0
 // This class is the core of the game
 
-#include "spaceWar.h"
+#include "maingame.h"
 
 //=============================================================================
 // Constructor
 //=============================================================================
-Spacewar::Spacewar()
+MainGame::MainGame()
 {
 	
 }
@@ -18,7 +18,7 @@ Spacewar::Spacewar()
 //=============================================================================
 // Destructor
 //=============================================================================
-Spacewar::~Spacewar()
+MainGame::~MainGame()
 {
 	releaseAll();           // call onLostDevice() for every graphics item
 }
@@ -27,7 +27,7 @@ Spacewar::~Spacewar()
 // Initializes the game
 // Throws GameError on error
 //=============================================================================
-void Spacewar::initialize(HWND hwnd)
+void MainGame::initialize(HWND hwnd)
 {
 	Game::initialize(hwnd); // throws GameError
 
@@ -51,7 +51,7 @@ void Spacewar::initialize(HWND hwnd)
 //=============================================================================
 // Update all game items
 //=============================================================================
-void Spacewar::update()
+void MainGame::update()
 {
 	
 }
@@ -59,13 +59,13 @@ void Spacewar::update()
 //=============================================================================
 // Artificial Intelligence
 //=============================================================================
-void Spacewar::ai()
+void MainGame::ai()
 {}
 
 //=============================================================================
 // Handle collisions
 //=============================================================================
-void Spacewar::collisions()
+void MainGame::collisions()
 {
 	
 }
@@ -73,7 +73,7 @@ void Spacewar::collisions()
 //=============================================================================
 // Render game items
 //=============================================================================
-void Spacewar::render()
+void MainGame::render()
 {
 	
 }
@@ -82,7 +82,7 @@ void Spacewar::render()
 // The graphics device was lost.
 // Release all reserved video memory so graphics device may be reset.
 //=============================================================================
-void Spacewar::releaseAll()
+void MainGame::releaseAll()
 {
 
 	Game::releaseAll();
@@ -93,7 +93,7 @@ void Spacewar::releaseAll()
 // The grahics device has been reset.
 // Recreate all surfaces.
 //=============================================================================
-void Spacewar::resetAll()
+void MainGame::resetAll()
 {
 
 	Game::resetAll();

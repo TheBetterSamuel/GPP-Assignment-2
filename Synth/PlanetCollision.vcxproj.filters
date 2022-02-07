@@ -81,7 +81,7 @@
     <ClCompile Include="scenemanager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="spacewar.cpp">
+    <ClCompile Include="maingame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="startmenuscene.cpp">
@@ -119,7 +119,7 @@
     <ClInclude Include="gameError.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="spacewar.h">
+    <ClInclude Include="maingame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="player.h">
