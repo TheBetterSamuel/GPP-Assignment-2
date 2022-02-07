@@ -24,11 +24,10 @@ class ActiveState : public EnemyState
 public:
 
     virtual ~ActiveState() {}
-    virtual void update(IEnemy* enemy, float frameTime) {
-        enemy->setVelocity(VECTOR2(20, 0));
-        //enemy->setVelocity(VECTOR2(20, 0));
-        //EnemyState* active = new ActiveState();
-        
+    virtual void update(IEnemy* enemy, Player* player, float frameTime) {
+        enemy->setVelocity(VECTOR2(-100, 0));
+
     }
+
 };
 #endif

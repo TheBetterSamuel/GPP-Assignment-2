@@ -23,6 +23,6 @@ class EnemyState
 {
 public:
 	virtual ~EnemyState() {}
-	virtual void update(IEnemy* enemy, float frameTime) = 0;
+	virtual void update(IEnemy* enemy, Player* player, float frameTime) = 0;
 };
 #endif

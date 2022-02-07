@@ -112,15 +112,9 @@ void Enemy::update(float frameTime)
 	spriteData.y += frameTime * velocity.y;         // move ship along Y
 
 	if (currentState) {
-		currentState->update(this, frameTime);
+		currentState->update(this, playerptr,frameTime);
 	}
 
-	if (currentStateName == "idle") {
-		setVisible(0);
-	}
-	else {
-		setDeltaV(VECTOR2(50, 0));
-	}
 
 }
 
