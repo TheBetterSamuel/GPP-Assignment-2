@@ -6,7 +6,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 // ===========================================================================
-// Scene manager Class implementation
+// Scene manager Class Specification
 // ===========================================================================
 
 #ifndef _SCENEMANAGER_H
@@ -33,11 +33,10 @@
 class SceneManager : ISceneManager
 {
 private:
-
-	// members
-
-	// contains all scenes registered with this instance.
-	std::unordered_map<std::string, Scene*> sceneRegistry;
+	// variables
+	
+	// "dictionary" for all scenes and their sceneName
+	std::unordered_map<std::string, Scene*> sceneDictionary;
 
 	// pointer to the currently displayed scene (NULL if no scene displayed)
 	Scene* currentScene;
@@ -45,14 +44,13 @@ private:
 	// string identifier for the currently displayed scene
 	std::string	currentSceneName;
 
-
 	// handlers
 
 	// pointer to graphics handler
-	Graphics* graphics;
+	Graphics* graphicsptr;
 
 	// pointer to input handler
-	Input* input;
+	Input* inputptr;
 
 public:
 
@@ -65,37 +63,11 @@ public:
 
 	// methods
 
-	void initialize(
-		Graphics* graphics,
-		Input* input
-	);
+	// initalize
+	void initialize(Graphics* graphics,Input* input);
 
-	void registerScene(
-		Scene* scene,
-		std::string		sceneName
-	);
-
-
-	// ISceneManager methods
-
-	// transitions to the scene with the specified scene name as was
-	// registered within the scene registry.
-	virtual bool transitionToScene(std::string sceneName);
-
-	// returns a pointer to the current graphics handler
-	virtual Graphics* getGraphics() const
-	{
-		return graphics;
-	};
-
-	// returns a pointer to the current input handler
-	virtual Input* getInput() const
-	{
-		return input;
-	};
-
-
-	// scene-delegating methods
+	// register scene state along with scene name as identifier
+	void registerScene(Scene* scene,std::string sceneName);
 
 	// runs the currently displayed scene
 	void runCurrentScene(float prevFrameTime);
@@ -108,6 +80,23 @@ public:
 
 	// reset and restore all graphics objects for current scene
 	void resetGraphicsForCurrentScene();
+
+	// ISceneManager methods
+
+	// transitions to the scene with the sceneName
+	bool transitionToScene(std::string sceneName);
+
+	// returns a pointer to the current graphics handler
+	Graphics* getGraphics() const
+	{
+		return graphicsptr;
+	};
+
+	// returns a pointer to the current input handler
+	Input* getInput() const
+	{
+		return inputptr;
+	};
 
 };
 

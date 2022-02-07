@@ -6,33 +6,30 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 // ===========================================================================
-// Enemy Class implementation
+// Scene Manager Class implementation
 // ===========================================================================
 
 // include specification
 #include "sceneManager.h"
 
+// add all scenes here
 namespace sceneNS {
 	const std::string	NO_SCENE = "NO_SCENE";
 	const std::string	EXIT_GAME = "EXIT_GAME";
-	const std::string	STARTUP = "STARTUP";
 	const std::string	MAIN_MENU = "MAIN_MENU";
-	const std::string	LEVELCREATOR = "LEVEL_CREATOR";
-	const std::string	LEVELSELECT = "LEVEL_SELECT";
 }
 // ===========================================================================
 // default constructor
 // ===========================================================================
 SceneManager::SceneManager() :
-
-	// members
-	sceneRegistry(),
+	// variables
+	sceneDictionary(),
 	currentScene(NULL),
 	currentSceneName(""),
 
 	// handlers
-	graphics(NULL),
-	input(NULL)
+	graphicsptr(NULL),
+	inputptr(NULL)
 {}
 
 // ===========================================================================
@@ -40,21 +37,6 @@ SceneManager::SceneManager() :
 // ===========================================================================
 SceneManager::~SceneManager()
 {
-	// safely delete all registered scenes
-
-	// setup scene registry iterator
-	std::unordered_map<std::string, Scene*>::iterator it =
-		sceneRegistry.begin();
-
-	// loop through iterator until all elements traversed
-	while (it != sceneRegistry.end()) {
-
-		// delete mapped scene object at scene pointer
-		SAFE_DELETE(it->second);
-
-		// increment iterator
-		it++;
-	}
 }
 
 
@@ -63,39 +45,31 @@ SceneManager::~SceneManager()
 // ===========================================================================
 // initializes the SceneManager instance
 // ===========================================================================
-void SceneManager::initialize(
-	Graphics* g,
-	Input* i
-) {
+void SceneManager::initialize(Graphics* graphics,Input* input) {
 	// store argument info into instance state
-	graphics = g;
-	input = i;
+	graphicsptr = graphics;
+	inputptr = input;
 }
 
 // ===========================================================================
-// registers a scene to the registry for easy retrieval and later use
+// registers a scene to the dictionary for easy retrieval and later use
 // ===========================================================================
-void SceneManager::registerScene(
-	Scene* scene,
-	std::string		sceneName
-) {
-	// check if scene is not registered, else throw a warning and exit early
-	if (sceneRegistry.count(sceneName) > 0) {
-
+void SceneManager::registerScene(Scene* scene,std::string sceneName) {
+	// check if there is existing sceneName identifier
+	if (sceneDictionary.count(sceneName) > 0) {
 		// throw a warning
 		throw(
 			GameError(
 				gameErrorNS::WARNING,
-				"Warning: Scene is already registered for id: " + sceneName
-			)
+				"Warning: Scene is already registered for id: " + sceneName)
 			);
 
-		// exit early
+		// exit
 		return;
 	}
 
-	// if not already registered, register scene
-	sceneRegistry.insert({ sceneName, scene });
+	// if doesnt exist yet, register scene
+	sceneDictionary.insert({ sceneName, scene });
 
 	// set scene manager for scene to this instance
 	scene->setSceneManager(this);
@@ -103,11 +77,9 @@ void SceneManager::registerScene(
 
 // ===========================================================================
 // transitions to the scene with the specified scene name as was
-// registered within the scene registry.
+// registered within the scene dictionary.
 // ===========================================================================
-bool SceneManager::transitionToScene(
-	std::string	sceneName
-) {
+bool SceneManager::transitionToScene(std::string sceneName) {
 	// handle remove scene (transition to no scene)
 	if (sceneName == sceneNS::NO_SCENE){
 
@@ -119,7 +91,7 @@ bool SceneManager::transitionToScene(
 		currentScene = NULL;
 		currentSceneName = sceneNS::NO_SCENE;
 
-		// exit early
+		// exit
 		return true;
 	}
 
@@ -134,23 +106,22 @@ bool SceneManager::transitionToScene(
 		PostQuitMessage(0);
 	}
 
-	// ensure sceneName is registered
-	if (sceneRegistry.count(sceneName) == 0) {
+	// check if sceneName doesnt exist
+	if (sceneDictionary.count(sceneName) == 0) {
 
 		// throw a warning
 		throw(
 			GameError(
 				gameErrorNS::WARNING,
-				"Warning: Scene is not registered for id: " + sceneName
-			)
+				"Warning: Scene is not registered for id: " + sceneName)
 			);
 
-		// exit early
+		// exit
 		return false;
 	}
 
-	// retrieve scene from registry
-	Scene* nextScene = sceneRegistry.at(sceneName);
+	// retrieve scene
+	Scene* nextScene = sceneDictionary.at(sceneName);
 
 	// ensure scene is retrieved successfully
 	if (nextScene == NULL) {
@@ -159,8 +130,7 @@ bool SceneManager::transitionToScene(
 		throw(
 			GameError(
 				gameErrorNS::WARNING,
-				"Warning: Transitioned scene is null!"
-			)
+				"Warning: Transitioned scene is null!")
 			);
 
 		// exit early
@@ -187,9 +157,7 @@ bool SceneManager::transitionToScene(
 // ===========================================================================
 // runs the currently displayed scene
 // ===========================================================================
-void SceneManager::runCurrentScene(
-	float prevFrameTime
-) {
+void SceneManager::runCurrentScene(float prevFrameTime) {
 	// run scene handlers in sequence
 
 	// update
