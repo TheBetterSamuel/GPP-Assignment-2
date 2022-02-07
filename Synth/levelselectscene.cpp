@@ -80,7 +80,6 @@ void LevelSelectScene::update(float frameTime)
 		}
 	}
 	else if (getInput()->wasKeyPressed(VK_RETURN)) {
-
 		for (int i = 0; i < options.size(); i++) {
 			if (selectedIndex = i) {
 				sceneManager->transitionToScene("EXIT_GAME");
