@@ -100,6 +100,7 @@
     <ClCompile Include="input.cpp" />
     <ClCompile Include="killbox.cpp" />
     <ClCompile Include="levelselectscene.cpp" />
+    <ClCompile Include="loadscene.cpp" />
     <ClCompile Include="nportal.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="ground.cpp" />
@@ -136,6 +137,7 @@
     <ClInclude Include="iscenemanager.h" />
     <ClInclude Include="killbox.h" />
     <ClInclude Include="levelselectscene.h" />
+    <ClInclude Include="loadscene.h" />
     <ClInclude Include="nportal.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="scene.h" />
