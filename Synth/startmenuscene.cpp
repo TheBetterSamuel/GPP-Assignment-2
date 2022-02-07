@@ -54,11 +54,11 @@ void StartMenuScene::initialize()
 //=============================================================================
 void StartMenuScene::update(float frameTime)
 {
-	if (getInput()->isKeyDown(0x41)) //keypress "A"
+	if (getInput()->wasKeyPressed(0x41)) //keypress "A"
 	{
 		sceneManager->transitionToScene("TEST_SCENE");
 	}
-	if (getInput()->isKeyDown(0x57)) //keypress "W"
+	if (getInput()->wasKeyPressed(0x57)) //keypress "W"
 	{
 		if (menuSelected == 0) {
 			menuSelected = 1;
@@ -67,7 +67,7 @@ void StartMenuScene::update(float frameTime)
 			menuSelected--;
 		}
 	}
-	if (getInput()->isKeyDown(0x53)) //keypress "S"
+	if (getInput()->wasKeyPressed(0x53)) //keypress "S"
 	{
 		if (menuSelected == 1) {
 			menuSelected = 0;
@@ -76,7 +76,7 @@ void StartMenuScene::update(float frameTime)
 			menuSelected++;
 		}
 	}
-	if (getInput()->isKeyDown(VK_RETURN)) //keypress ENTER
+	if (getInput()->wasKeyPressed(VK_RETURN)) //keypress ENTER
 	{
 		switch (menuSelected) {
 		case 0:
