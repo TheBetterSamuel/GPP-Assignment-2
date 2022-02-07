@@ -59,7 +59,7 @@ private:
     TextDX* dxFontLarge;
 
     string texts[2] = { "Start","Exit" };
-    int menuSelected = 1;
+    int menuSelected = 0;
 
 
 public:

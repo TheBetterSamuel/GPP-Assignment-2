@@ -54,10 +54,6 @@ void StartMenuScene::initialize()
 //=============================================================================
 void StartMenuScene::update(float frameTime)
 {
-	if (getInput()->wasKeyPressed(0x41)) //keypress "A"
-	{
-		sceneManager->transitionToScene("TEST_SCENE");
-	}
 	if (getInput()->wasKeyPressed(0x57)) //keypress "W"
 	{
 		if (menuSelected == 0) {
@@ -80,13 +76,13 @@ void StartMenuScene::update(float frameTime)
 	{
 		switch (menuSelected) {
 		case 0:
-			//starts game
+			sceneManager->transitionToScene("LEVEL_SELECT_SCENE");
 			break;
 		case 1:
-			//exits game
+			exit(0);
 			break;
 		default:
-			//exit game
+			sceneManager->transitionToScene("LEVEL_SELECT_SCENE");
 			break;
 		}
 	}
