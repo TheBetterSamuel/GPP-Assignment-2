@@ -30,7 +30,7 @@ bool Heart::initialize(Graphics* graphics, int width, int height, int ncols, Tex
 //=============================================================================
 void Heart::draw()
 {
-    Image::setScale(SPRITE_SCALE);
+    Image::setScale(heartNS::SCALE);
     if (getActive())
         Image::draw();              // draw player
 }

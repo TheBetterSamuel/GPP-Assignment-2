@@ -10,12 +10,11 @@
 
 namespace heartNS
 {
-    const int WIDTH = SPRITE_SIZE;             // image width
-    const int HEIGHT = SPRITE_SIZE;            // image height          
-    const float SCALE = SPRITE_SCALE;       // Scaling up sprites to fit map
-    const int X = GAME_WIDTH / 2 - WIDTH / 2;    // location on screen
-    const int Y = GAME_HEIGHT / 2 - HEIGHT / 2;
-    const int MAX_HEART_SCALE = 0.2;
+    const int WIDTH = 347;             // image width
+    const int HEIGHT = 347;            // image height          
+    const float SCALE = 0.2;       // Scaling up sprites to fit map
+    const int X = GAME_WIDTH - ((WIDTH * SCALE)/2);    // location on screen
+    const int Y = GAME_HEIGHT - HEIGHT;
 }
 
 // inherits from Entity class

@@ -89,7 +89,7 @@ void TestScene::initialize()
 		if (!heartList[i].initialize(graphics, heartNS::WIDTH, heartNS::HEIGHT, 0, &heartTexture))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing heart" + i));
 
-		heartList[i].setX(GAME_WIDTH / 12 * (MAX_HEART_NO - i));
+		heartList[i].setX(heartNS::X - (GAME_WIDTH / 16 * (MAX_HEART_NO - i)));
 		heartList[i].setY(GAME_HEIGHT / 18);
 
 	}

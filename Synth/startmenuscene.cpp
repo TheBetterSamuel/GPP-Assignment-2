@@ -79,13 +79,18 @@ void StartMenuScene::update(float frameTime)
 			sceneManager->transitionToScene("LEVEL_SELECT_SCENE");
 			break;
 		case 1:
-			exit(0);
+			sceneManager->transitionToScene("EXIT_GAME");
 			break;
 		default:
 			sceneManager->transitionToScene("LEVEL_SELECT_SCENE");
 			break;
 		}
 	}
+	if (getInput()->wasKeyPressed(0x41)) //keypress "A"
+	{
+		sceneManager->transitionToScene("TEST_SCENE");
+	}
+	
 }
 
 //=============================================================================
