@@ -38,6 +38,9 @@ void Spacewar::initialize(HWND hwnd)
 	StartMenuScene* startmenuscene = new StartMenuScene();
 	sceneManager->registerScene(startmenuscene, "START_MENU_SCENE");
 
+	LevelSelectScene* levelselectscene = new LevelSelectScene();
+	sceneManager->registerScene(levelselectscene, "LEVEL_SELECT_SCENE");
+
 	sceneManager->transitionToScene("START_MENU_SCENE");
 	
 }

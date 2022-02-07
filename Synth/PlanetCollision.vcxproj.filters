@@ -87,6 +87,9 @@
     <ClCompile Include="startmenuscene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="levelselectscene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="constants.h">
@@ -183,6 +186,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="startmenuscene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="levelselectscene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

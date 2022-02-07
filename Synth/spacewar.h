@@ -11,6 +11,7 @@
 #include "game.h"
 #include "testscene.h"
 #include "startmenuscene.h"
+#include "levelselectscene.h"
 
 //=============================================================================
 // This class is the core of the game
