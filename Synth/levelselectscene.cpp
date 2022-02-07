@@ -63,7 +63,7 @@ void LevelSelectScene::initialize()
 //=============================================================================
 void LevelSelectScene::update(float frameTime)
 {
-	if (getInput()->wasKeyPressed(VK_UP)) {
+	if (getInput()->wasKeyPressed(0x57)) {   //press W
 		if (selectedIndex == 0) {
 			selectedIndex = options.size()-1;
 		}
@@ -71,7 +71,7 @@ void LevelSelectScene::update(float frameTime)
 			selectedIndex--;
 		}
 	}
-	else if (getInput()->wasKeyPressed(VK_DOWN)) {
+	else if (getInput()->wasKeyPressed(0x53)) {  //press S
 		if (selectedIndex == options.size()-1) {
 			selectedIndex = 0;
 		}
