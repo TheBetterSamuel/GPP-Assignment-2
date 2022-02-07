@@ -16,20 +16,18 @@
 #include <vector>
 #include <windows.h>
 #include "constants.h"
-#include "enemy.h"
+#include "ienemy.h"
+#include "EnemyState.h"
 
 class IdleState : public EnemyState
 {
 public:
 
     virtual ~IdleState() {}
-    virtual EnemyState* update(Enemy* enemy, float frameTime) {
+    virtual void update(IEnemy* enemy, float frameTime) {
         if (1)
         {
-            //enemyptr->setVelocity(VECTOR2(20, 0));
-            //enemy->setVelocity(VECTOR2(20, 0));
-            //EnemyState* active = new ActiveState();
-            return NULL;
+            enemy->transitionToState("active");
         }
     }
 };//end of HeroineState class

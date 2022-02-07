@@ -112,11 +112,14 @@ void Enemy::update(float frameTime)
 	spriteData.y += frameTime * velocity.y;         // move ship along Y
 
 	if (currentState) {
-		setState(currentState->update(this, frameTime));
+		currentState->update(this, frameTime);
 	}
 
 	if (currentStateName == "idle") {
 		setVisible(0);
+	}
+	else {
+		setDeltaV(VECTOR2(50, 0));
 	}
 
 }
@@ -159,8 +162,6 @@ void Enemy::registerState(
 	// if not already registered, register scene
 	stateRegistry.insert({ stateName, state });
 
-	//// set enemy for enemystate to this instance
-	state->setEnemy(this);
 }
 
 // ===========================================================================

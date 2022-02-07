@@ -13,23 +13,18 @@
 #define _ENTITY_IENEMY_H
 
 // include necessary headers
-#include "constants.h"
 #include "entity.h"
-#include "player.h"
-#include "bullet.h"
-#include "EnemyState.h"
-
-#include "activestate.h"
-#include "idlestate.h"
 
 // class specification
 
-class IEnemy : public Entity
+class IEnemy
 {
-private:
-	EnemyState* currentState;
-
+protected:
+	bool    active;         // only active entities may collide
+	VECTOR2 velocity;       // velocity
+	VECTOR2 deltaV;         // added to velocity during next call to update()
 public:
+
 
 	// entity methods
 	virtual void draw() = 0;
@@ -62,21 +57,26 @@ public:
 	// 0 radians is up. Angles progress clockwise.
 	virtual void setRadians(float rad) = 0;
 
-	virtual void setState(EnemyState* newState) = 0;
 
-	virtual void registerState(
-		EnemyState* state,
-		std::string		stateName
-	) = 0;
+	// Entity
 
-	virtual bool transitionToState(std::string stateName) = 0;
+	// Set velocity.
+	virtual void  setVelocity(VECTOR2 v) = 0;
+
+	// Set delta velocity. Added to velocity in update().
+	virtual void  setDeltaV(VECTOR2 dv) = 0;
+
+	// Set active.
+	virtual void  setActive(bool a) = 0;
+
+	virtual bool transitionToState(std::string stateName)=0;
 
 	//setstate
-	// if (currentState)
-	// setState(currentState->update(this, deltaTime));
-	//currentstate
-	//
-	// setState(EnemyState* newState): if(newState) { delete currentState; currentState = newState; }
+	/* if (currentState)
+	 setState(currentState->update(this, deltaTime));
+	currentstate
+	
+	 setState(EnemyState* newState): if(newState) { delete currentState; currentState = newState; }*/
 };
 
 #endif // !_ENTITY_ENEMY_H

@@ -21,8 +21,10 @@
 #include "player.h"
 #include "bullet.h"
 #include <vector>
-
+#include "EnemyState.h"
 #include "ienemy.h"
+#include "activestate.h"
+#include "idlestate.h"
 
 // related constructs
 
@@ -47,9 +49,12 @@ namespace enemyNS
 
 // class specification
 
-class Enemy : public IEnemy
+class Enemy : public IEnemy, public Entity
 {
 private:
+	bool    active;         // only active entities may collide
+	VECTOR2 velocity;       // velocity
+	VECTOR2 deltaV;         // added to velocity during next call to update()
 	// contains all scenes registered with this instance.
 	std::unordered_map<std::string, EnemyState*> stateRegistry;
 
@@ -123,6 +128,15 @@ public:
 	);
 
 	virtual bool transitionToState(std::string stateName);
+
+	// Set velocity.
+	virtual void  setVelocity(VECTOR2 v) { velocity = v; }
+
+	// Set delta velocity. Added to velocity in update().
+	virtual void  setDeltaV(VECTOR2 dv) { deltaV = dv; }
+
+	// Set active.
+	virtual void  setActive(bool a) { active = a; }
 
 	//setstate
 	// if (currentState)

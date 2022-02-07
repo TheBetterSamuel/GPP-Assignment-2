@@ -16,22 +16,13 @@
 
 #include <windows.h>
 #include "constants.h"
-
-// forward declaration for enemy to prevent circular dependecy
-class Enemy;
+#include "ienemy.h"
 
 // class specification
 class EnemyState
 {
-protected:
-	Enemy* enemyptr;
 public:
 	virtual ~EnemyState() {}
-	virtual EnemyState* update(Enemy* enemy, float frameTime) = 0;
-	virtual void setEnemy(Enemy* enemy)
-	{
-		enemyptr = enemy;
-	}
-
+	virtual void update(IEnemy* enemy, float frameTime) = 0;
 };
 #endif
