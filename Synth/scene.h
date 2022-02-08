@@ -34,6 +34,7 @@ struct EntitySpec {
 	Entity* entity;
 	bool gravity;
 
+	// constructor
 	EntitySpec(Entity* e, bool g) :
 		entity(e),
 		gravity(g)
@@ -101,6 +102,7 @@ public:
 			Entity* entityptr = entityList[i].entity;
 			if (entityList[i].gravity) {
 				entityptr->setDeltaV(VECTOR2(0, entityptr->getGravity() * frameTime));
+				//for now not * mass because gravity is too high
 			}
 			entityptr->update(frameTime);
 		}
@@ -135,8 +137,7 @@ public:
 		if (!sceneManager) throw(
 			GameError(
 				gameErrorNS::FATAL_ERROR,
-				"Error: SceneManager not bound for this Scene!"
-			)
+				"Error: SceneManager not bound for this Scene!")
 			);
 
 		return sceneManager->getInput();
@@ -144,7 +145,8 @@ public:
 
 	// setters
 
-	// sets the sceneManager for the scene
+	// sets the sceneManager for the scene. Scene needs this pointer to be able to 
+	// call the transition method.
 	void setSceneManager(ISceneManager* sceneMgr)
 	{
 		sceneManager = sceneMgr;

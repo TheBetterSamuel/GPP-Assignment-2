@@ -25,7 +25,7 @@ public:
 
     virtual ~ActiveState() {}
     virtual void update(IEnemy* enemy, Player* player, float frameTime) {
-        enemy->setVelocity(VECTOR2(-100, 0));
+        enemy->setDeltaV(VECTOR2(-100, 0));
         if (!(player && abs(player->getCenter()->x - enemy->getX()) <= 100 && abs(player->getCenter()->y - enemy->getY()) <= 100)) {
             enemy->transitionToState("idle");
         }

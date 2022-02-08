@@ -30,14 +30,14 @@ public:
         lifeTime++;
 		if (lifeTime >= 200) {
 			//flip
-			enemy->setVelocity(VECTOR2(-50, 0));
+			enemy->setDeltaV(VECTOR2(-50, 0));
 			if (lifeTime >= 400) {
 				lifeTime = 0;
 			}
 		}
 		else {
 			//flip 0
-			enemy->setVelocity(VECTOR2(50, 0));
+			enemy->setDeltaV(VECTOR2(50, 0));
 		}
 		if (player && abs(player->getCenter()->x - enemy->getX()) <= 100 && abs(player->getCenter()->y - enemy->getY()) <= 100) {
 			enemy->transitionToState("active");

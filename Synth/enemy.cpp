@@ -52,14 +52,14 @@ Enemy::Enemy() :
 Enemy::~Enemy() {
 	// safely delete all registered states
 
-	// setup scene registry iterator
+	// setup state iterator
 	std::unordered_map<std::string, EnemyState*>::iterator it =
 		stateRegistry.begin();
 
 	// loop through iterator until all elements traversed
 	while (it != stateRegistry.end()) {
 
-		// delete mapped scene object at scene pointer
+		// delete mapped state at state pointer
 		SAFE_DELETE(it->second);
 
 		// increment iterator
@@ -78,16 +78,19 @@ bool Enemy::initialize(Graphics* graphics, int width, int height, int ncols, Tex
 	// configure sprite animation
 	this->setFrames(enemyNS::START_FRAME, enemyNS::END_FRAME);
 	this->setCurrentFrame(enemyNS::START_FRAME);
-	this->setFrameDelay(enemyNS::ANIM_DELAY);
+	//this->setFrameDelay(enemyNS::ANIM_DELAY);
 	this->setLoop(1);
 	playerptr = player;
 
+	// register all states
 	IdleState* idle = new IdleState();
 	registerState(idle, "idle");
 
 	ActiveState* active = new ActiveState();
 	registerState(active, "active");
 
+
+	// transition to initial state
 	transitionToState("idle");
 
 	return(Entity::initialize(graphics, width, height, ncols, textureM));
@@ -108,6 +111,7 @@ void Enemy::draw()
 void Enemy::update(float frameTime)
 {
 	Entity::update(frameTime);
+	velocity += deltaV;
 	spriteData.x += frameTime * velocity.x;         // move ship along X 
 	spriteData.y += frameTime * velocity.y;         // move ship along Y
 	if (currentState) {
