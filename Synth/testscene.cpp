@@ -265,6 +265,12 @@ void TestScene::collisions()
 		}
 	}
 
+	for (size_t i = 0; i < _countof(groundList); i++) {
+		if (enemy.collidesWith(groundList[i], cV)) {
+			enemy.bounce(cV, groundList[i], 2.0);
+		}
+	}
+
 	//jumping
 	if (getInput()->isKeyDown(W_KEY))            // if W is pressed
 	{

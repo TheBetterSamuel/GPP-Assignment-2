@@ -56,3 +56,9 @@ void Scene::deleteAll()
 	// release memory for all graphics objects and textures
 	releaseAll();
 }
+
+void Scene::releaseAll()
+{
+
+}
+

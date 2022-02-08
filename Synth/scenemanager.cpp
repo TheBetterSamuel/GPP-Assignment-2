@@ -160,12 +160,12 @@ bool SceneManager::transitionToScene(std::string sceneName) {
 void SceneManager::runCurrentScene(float prevFrameTime) {
 	// run scene handlers in sequence
 
+	// This is called in the game class, replacing the game's update,ai and collisions.
+	
 	// update
-
 	if (currentScene) currentScene->update(prevFrameTime);
-
+	//ai
 	if (currentScene) currentScene->ai();
-
 	// collisions
 	if (currentScene) currentScene->collisions();
 }
@@ -177,7 +177,7 @@ void SceneManager::renderCurrentScene()
 {
 	// sprite drawing
 	getGraphics()->spriteBegin();
-
+	// calls the current scene to render
 	currentScene->render();
 	getGraphics()->spriteEnd();
 }
@@ -187,6 +187,7 @@ void SceneManager::renderCurrentScene()
 // ===========================================================================
 void SceneManager::releaseGraphicsForCurrentScene()
 {
+	//release memory of the game object graphics in current scene
 	if (currentScene) currentScene->releaseAll();
 }
 
@@ -195,5 +196,6 @@ void SceneManager::releaseGraphicsForCurrentScene()
 // ===========================================================================
 void SceneManager::resetGraphicsForCurrentScene()
 {
+	//recreate grapphics
 	if (currentScene) currentScene->resetAll();
 }
