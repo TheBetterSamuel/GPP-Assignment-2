@@ -60,6 +60,7 @@ private:
 
     string texts[2] = { "Start","Exit" };
     int menuSelected = 0;
+    int textMargin = 50;
 
 
 public:

@@ -22,6 +22,7 @@ Player::Player() : Entity()
     spriteData.rect.bottom = playerNS::HEIGHT;    // rectangle to select parts of an image
     spriteData.rect.right = playerNS::WIDTH;
     mass = playerNS::MASS;
+    collisionType = entityNS::BOX;
 }
 
 //=============================================================================
@@ -47,7 +48,7 @@ void Player::draw()
 //=============================================================================
 void Player::update(float frameTime)
 {
-    
+
     Entity::update(frameTime);
     spriteData.x += frameTime * velocity.x;         // move ship along X 
     spriteData.y += frameTime * velocity.y;         // move ship along Y

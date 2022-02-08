@@ -7,6 +7,8 @@
 
 #include "startmenuscene.h"
 
+using namespace graphicsNS;
+
 
 //=============================================================================
 // Constructor
@@ -35,7 +37,16 @@ void StartMenuScene::initialize()
 
 	Graphics* graphics = getGraphics();
 
-	if (dxFontSmall->initialize(graphics, 15, true, false, "Arial") == false)
+	// main game textures
+	if (!groundTexture.initialize(graphics, GROUND_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing ground textures"));
+
+	if (!playerTexture.initialize(graphics, PLAYER_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing player textures"));
+
+	//render fonts
+	//45 pixel high arial
+	if (dxFontSmall->initialize(graphics, 45, true, false, "Arial") == false)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
 
 	// 62 pixel high Arial
@@ -45,6 +56,21 @@ void StartMenuScene::initialize()
 	// 124 pixel high Arial
 	if (dxFontLarge->initialize(graphics, 124, true, false, "Arial") == false)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
+
+	//game objects
+	for (int i = 0; i < _countof(groundList); i++) {
+		Ground ground = Ground();
+		if (!ground.initialize(graphics, groundNS::WIDTH, groundNS::HEIGHT, 0, &groundTexture))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing ground"));
+		ground.setX(i * BOX_SIZE);
+		ground.setY(GAME_HEIGHT - BOX_SIZE);
+		groundList[i] = ground;
+	}
+
+	if (!player.initialize(graphics, playerNS::WIDTH, playerNS::HEIGHT, 0, &playerTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing player"));
+	player.setX(3 * BOX_SIZE);
+	player.setY(GAME_HEIGHT - (2 * BOX_SIZE));
 
 	return;
 }
@@ -90,7 +116,27 @@ void StartMenuScene::update(float frameTime)
 	{
 		sceneManager->transitionToScene("TEST_SCENE");
 	}
-	
+
+	//updates ground
+	for (size_t i = 0; i < _countof(groundList); i++) {
+		if (speedState == 0) {
+			groundList[i].setVelocity(VECTOR2(-MOVESPEED, 0));
+		}
+		if (speedState == 1) {
+			groundList[i].setVelocity(VECTOR2(-(MOVESPEED / 2), 0));
+		}
+		if (speedState == 2) {
+			groundList[i].setVelocity(VECTOR2(-(MOVESPEED * 2), 0));
+		}
+		if (groundList[i].getX() <= -BOX_SIZE) {
+			groundList[i].setX((_countof(groundList) - 1) * BOX_SIZE);
+			distance++;
+		}
+		groundList[i].update(frameTime);
+	}
+	player.update(frameTime);
+	playerStateManager(frameTime);
+
 }
 
 //=============================================================================
@@ -100,35 +146,71 @@ void StartMenuScene::ai()
 {}
 
 //=============================================================================
-// Handle collisions
-//=============================================================================
-void StartMenuScene::collisions()
-{
-	
-}
-
-//=============================================================================
 // Render game items
 //=============================================================================
 void StartMenuScene::render()
 {
 	getGraphics()->spriteBegin();                // begin drawing sprites
-	dxFontSmall->setFontColor(graphicsNS::WHITE);
-	dxFontMedium->setFontColor(graphicsNS::WHITE);
-	dxFontLarge->setFontColor(graphicsNS::WHITE);
+	dxFontSmall->setFontColor(WHITE);
+	dxFontMedium->setFontColor(CYAN);
+	dxFontLarge->setFontColor(WHITE);
 	for (int i = 0; i < _countof(texts); i++) {
-		int lineHeight = 62 * 1.5;
-		int posX = (GAME_WIDTH / 2);
+		int lineHeight = 45 * 1.5;
+		int posX = textMargin;
 		int posY = (GAME_HEIGHT / 3) + (i * lineHeight);
 		if (menuSelected == i) {
-			dxFontMedium->setFontColor(D3DCOLOR_ARGB(255, 255, 255, 255));
+			dxFontSmall->setFontColor(D3DCOLOR_ARGB(255, 255, 255, 255));
 		}
 		else {
-			dxFontMedium->setFontColor(D3DCOLOR_ARGB(150, 255, 255, 255));
+			dxFontSmall->setFontColor(D3DCOLOR_ARGB(150, 255, 255, 255));
 		}
-		dxFontMedium->print(texts[i], posX, posY);
+		dxFontSmall->print(texts[i], posX, posY);
 	}
+	dxFontMedium->print("Synth", textMargin, textMargin);
+
+	for (int g = 0; g < _countof(groundList); g++)
+	{
+		groundList[g].draw();
+	}
+
+	player.draw();
 	getGraphics()->spriteEnd();                  // end drawing sprites
+}
+
+//=============================================================================
+// Handle collisions
+//=============================================================================
+void StartMenuScene::collisions()
+{
+	VECTOR2 cV;
+
+	for (size_t i = 0; i < _countof(groundList); i++) {
+		if (player.collidesWith(groundList[i], cV))
+		{
+			// cV is computed by collidesWith
+
+			if (cV.y > 0) {
+				if (player.getVelY() > 0)
+					playerState = ONGROUND;
+			}
+			else {
+				playerState = ONAIR;
+			}
+		}
+		if (!getInput()->isKeyDown(VK_SPACE)) {
+			if (playerState == ONGROUND)
+				if ((groundList[i].getY() - player.getY()) != 0)
+					if ((groundList[i].getY() - player.getY()) < (1.5 * BOX_SIZE))
+						player.setY(groundList[i].getY() - BOX_SIZE);
+		}
+	}
+
+	//jumping
+	if (getInput()->isKeyDown(VK_SPACE))            // if SPACE is pressed
+	{
+		if (playerState == ONGROUND)
+			playerState = ONJUMP;
+	}
 }
 
 //=============================================================================
@@ -137,6 +219,8 @@ void StartMenuScene::render()
 //=============================================================================
 void StartMenuScene::releaseAll()
 {
+	groundTexture.onLostDevice();
+	playerTexture.onLostDevice();
 	return;
 }
 
@@ -146,6 +230,8 @@ void StartMenuScene::releaseAll()
 //=============================================================================
 void StartMenuScene::resetAll()
 {
+	groundTexture.onResetDevice();
+	playerTexture.onResetDevice();
 	//Scene::resetAll();
 	return;
 }
@@ -158,4 +244,36 @@ void StartMenuScene::cleanup()
 	// reset bg color
 	getGraphics()->setBackColor(BLACKNESS);
 
+}
+
+//=============================================================================
+// Player State Manager
+//=============================================================================
+void StartMenuScene::playerStateManager(float frameTime) {
+	if (playerState == ONGROUND) {
+		player.setVelY(0);
+		if ((player.getDegrees() > 0) && (player.getDegrees() < 90)) {
+			player.setDegrees(0);
+		}
+		if ((player.getDegrees() > 90) && (player.getDegrees() < 180)) {
+			player.setDegrees(90);
+		}
+		if ((player.getDegrees() > 180) && (player.getDegrees() < 270)) {
+			player.setDegrees(180);
+		}
+		if ((player.getDegrees() > 270) && (player.getDegrees() < 360)) {
+			player.setDegrees(270);
+		}
+	}
+	if (playerState == ONJUMP) {
+		player.setVelY(-JUMP_DY);
+		playerState = ONAIR;
+	}
+	if (playerState == ONAIR) {
+		player.setVelY(player.getVelY() + (playerNS::G * frameTime));
+		if (player.getDegrees() >= 360) {
+			player.setDegrees(player.getDegrees() - 360);
+		}
+		player.setDegrees(player.getDegrees() + (ROTATION_SPEED * frameTime));
+	}
 }
