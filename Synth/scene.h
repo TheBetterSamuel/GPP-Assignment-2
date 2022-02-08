@@ -26,6 +26,7 @@
 #include "entity.h"
 #include <vector>
 #include "textDX.h"
+#include <unordered_map>
 
 using namespace std;
 
@@ -41,7 +42,8 @@ protected:
 	// pointer to the associated sceneManager handler
 	ISceneManager* sceneManager;
 
-	vector<Entity> entityList;
+	vector<Entity*> entityList;
+
 
 
 public:
@@ -80,12 +82,18 @@ public:
 	// recreates and restores all graphics objects
 	virtual void resetAll() = 0;
 
-	void addEntity(Entity e) {
-		entityList.push_back(e);
+	void addEntity(string name,Entity* entity) {
+		entityList.push_back(entity);
 	};
 	void updateAllEntities(float frameTime) {
 		for (int i = 0; i < entityList.size(); i++) {
-			entityList[i].update(frameTime);
+			entityList[i]->update(frameTime);
+		}
+	}
+
+	void renderAllEntities() {
+		for (int i = 0; i < entityList.size(); i++) {
+			entityList[i]->draw();
 		}
 	}
 
@@ -118,13 +126,6 @@ public:
 
 		return sceneManager->getInput();
 	}
-
-	//// returns the entity manager for the scene
-	//EntityManager* getEntityManager()
-	//{
-	//	return &entityManager;
-	//}
-
 
 	// setters
 
