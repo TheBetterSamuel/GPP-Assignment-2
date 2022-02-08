@@ -47,7 +47,7 @@ private:
     Player player;
     Enemy enemy;
     Heart heartList[MAX_HEART_NO];          // max hearts
-    int numOfHits;
+    int numOfHits = 0;
     UINT distance = 0;                      // distance in number of blocks
     UINT speedState = 0;                    // State of the game speed
     UINT playerState = ONGROUND;                   // State of the player

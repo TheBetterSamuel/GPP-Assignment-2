@@ -12,7 +12,6 @@
 //=============================================================================
 TestScene::TestScene()
 {
-	numOfHits = 0;
 }
 
 //=============================================================================
@@ -94,8 +93,6 @@ void TestScene::initialize()
 
 	}
 
-	addEntity("enemy", &enemy);
-	addEntity("player", &player);
 	return;
 }
 
@@ -221,10 +218,10 @@ void TestScene::update(float frameTime)
 		}
 		activeSpeedPowerupList.at(i).update(frameTime);
 	}
-
 	playerStateManager(frameTime);
 
-	updateAllEntities(frameTime);
+	player.update(frameTime);
+	enemy.update(frameTime);
 	//update hearts list
 	for (int i = 0; i < MAX_HEART_NO; i++)
 	{
@@ -267,12 +264,6 @@ void TestScene::collisions()
 		}
 	}
 
-	for (size_t i = 0; i < _countof(groundList); i++) {
-		if (enemy.collidesWith(groundList[i], cV)) {
-			enemy.bounce(cV, groundList[i], 2.0);
-		}
-	}
-
 	//jumping
 	if (getInput()->isKeyDown(W_KEY))            // if W is pressed
 	{
@@ -303,7 +294,8 @@ void TestScene::render()
 	getGraphics()->spriteBegin();                // begin drawing sprites
 
 
-	for (int g = 0; g < _countof(groundList); g++) {
+	for (int g = 0; g < _countof(groundList); g++)
+	{
 		groundList[g].draw();
 	}
 
@@ -313,6 +305,11 @@ void TestScene::render()
 	for (int i = 0; i < MAX_HEART_NO; i++)
 	{
 		heartList[i].draw();
+	}
+
+	if (numOfHits >= MAX_HEART_NO)
+	{
+		sceneManager->transitionToScene("EXIT_GAME");
 	}
 
 	getGraphics()->spriteEnd();                  // end drawing sprites
