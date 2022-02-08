@@ -82,7 +82,7 @@ public:
 	// recreates and restores all graphics objects
 	virtual void resetAll() = 0;
 
-	void addEntity(string name,Entity* entity) {
+	void addEntity(Entity* entity) {
 		entityList.push_back(entity);
 	};
 	void updateAllEntities(float frameTime) {

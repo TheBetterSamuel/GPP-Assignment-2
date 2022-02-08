@@ -92,7 +92,7 @@ void TestScene::initialize()
 		heartList[i].setY(GAME_HEIGHT / 18);
 
 	}
-
+	addEntity(&player);
 	return;
 }
 
@@ -219,7 +219,7 @@ void TestScene::update(float frameTime)
 		activeSpeedPowerupList.at(i).update(frameTime);
 	}
 	playerStateManager(frameTime);
-
+	updateAllEntities(frameTime);
 	player.update(frameTime);
 	enemy.update(frameTime);
 	//update hearts list
