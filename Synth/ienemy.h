@@ -26,6 +26,7 @@ namespace enemyNS
 	const int	END_FRAME = 2;
 	const float ANIM_DELAY = 0.2f;
 
+	const float DETECT_RADIUS = 100;
 	const float INTERVAL = 200; // interval for changing directions when idling
 	const float SPEED = 100;          // Move based on move speed from constants.h
 	const float SCALE = SPRITE_SCALE;       // Scaling up sprites to fit map
