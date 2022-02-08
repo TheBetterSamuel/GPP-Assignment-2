@@ -35,6 +35,7 @@ public:
     virtual bool initialize(Graphics* graphics, int width, int height, int ncols, TextureManager* textureM);
     void update(float frameTime);
     void damage();
+    int numOfHits;
 
     //get and set velocity.x and velocity.y
     virtual float getVelX() const { return velocity.x; }
