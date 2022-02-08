@@ -76,10 +76,10 @@ void TestScene2::initialize()
 	player.setY(GAME_HEIGHT - (2 * BOX_SIZE));
 
 	//test enemy
-	if (!enemy.initialize(graphics, enemyNS::WIDTH, enemyNS::HEIGHT, 0, &enemyTexture, &player))
+	/*if (!enemy.initialize(graphics, enemyNS::WIDTH, enemyNS::HEIGHT, 0, &enemyTexture, &player))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing enemy"));
 	enemy.setX(100);
-	enemy.setY(100);
+	enemy.setY(100);*/
 
 	//Init Heart List
 
@@ -93,6 +93,14 @@ void TestScene2::initialize()
 		heartList[i].setY(GAME_HEIGHT / 18);
 
 	}
+
+	if (!killbox.initialize(graphics, kboxNS::WIDTH, kboxNS::HEIGHT, 0, &killboxTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing killbox"));
+	killbox.setX(600);
+	killbox.setY(600);
+
+
+
 	return;
 }
 
@@ -150,7 +158,7 @@ void TestScene2::update(float frameTime)
 	}
 
 	//update killbox List
-	for (size_t i = 0; i < activeKillboxList.size(); i++) {
+	/*for (size_t i = 0; i < activeKillboxList.size(); i++) {
 		if (speedState == 0) {
 			activeKillboxList.at(i).setVelocity(VECTOR2(-MOVESPEED, 0));
 		}
@@ -164,7 +172,7 @@ void TestScene2::update(float frameTime)
 			activeKillboxList.erase(activeKillboxList.begin() + i);
 		}
 		activeKillboxList.at(i).update(frameTime);
-	}
+	}*/
 
 	//update nportal List
 	for (size_t i = 0; i < activenPortalList.size(); i++) {
@@ -287,6 +295,10 @@ void TestScene2::collisions()
 			playerState = ONJUMP;
 	}
 
+	//collides with a killbox
+	if (player.collidesWith(killbox, cV))
+		player.damage();
+
 	//if (playerShip.collidesWith(e*, collisionVector))
 	//{
 	//		e->setScale(0);
@@ -316,6 +328,7 @@ void TestScene2::render()
 
 	player.draw();
 	enemy.draw();
+	killbox.draw();
 
 	for (int i = 0; i < player.playerhp; i++)
 	{
@@ -335,6 +348,8 @@ void TestScene2::releaseAll()
 	playerTexture.onLostDevice();
 	enemyTexture.onLostDevice();
 	heartTexture.onLostDevice();
+	killboxTexture.onLostDevice();
+
 	//Scene::releaseAll();
 	return;
 }
@@ -349,6 +364,8 @@ void TestScene2::resetAll()
 	playerTexture.onResetDevice();
 	enemyTexture.onResetDevice();
 	heartTexture.onResetDevice();
+	killboxTexture.onResetDevice();
+
 	//Scene::resetAll();
 	return;
 }
@@ -387,9 +404,9 @@ void TestScene2::playerStateManager(float frameTime) {
 		if (player.getDegrees() <= 0)
 			player.setDegrees(player.getDegrees() + 360);
 		if (player.getVelX() > 0)
-			player.setDegrees(player.getDegrees() + (ROTATION_SPEED / frameTime));
+			player.setDegrees(player.getDegrees() + (ROTATION_SPEED * frameTime));
 		else if (player.getVelX() < 0)
-			player.setDegrees(player.getDegrees() - (ROTATION_SPEED / frameTime));
+			player.setDegrees(player.getDegrees() - (ROTATION_SPEED * frameTime));
 		else
 			player.setDegrees(player.getDegrees());
 	}
@@ -415,7 +432,7 @@ void TestScene2::renderObject(char type, UINT position) {
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing killbox"));
 		kbox.setX(GAME_WIDTH);
 		kbox.setY(GAME_HEIGHT - (position * BOX_SIZE));
-		activeKillboxList.push_back(kbox);
+		//activeKillboxList.push_back(kbox);
 	}
 	if (type == 'N') {
 		nPortal np;
