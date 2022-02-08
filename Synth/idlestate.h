@@ -40,7 +40,7 @@ public:
 			enemy->setDeltaV(VECTOR2(enemyNS::SPEED*frameTime , 0));
 		}
 		if (player && abs(player->getCenter()->x - enemy->getX()) <= enemyNS::DETECT_RADIUS && abs(player->getCenter()->y - enemy->getY()) <= enemyNS::DETECT_RADIUS) {
-			enemy->transitionToState("active");
+			enemy->changeState("active");
 		}
     }
 };//end of HeroineState class

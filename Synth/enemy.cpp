@@ -1,12 +1,12 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 // Module:			Gameplay Programming
-// Assignment1:		Cheats:Enabled
+// Assignment:		2
 // Student Name:	Tang Ming Feng
 // Student No.:		S10185023E
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 // ===========================================================================
-// InkdotEngine - Enemy Entity Class Implementation
+// Enemy Class implementation
 // ===========================================================================
 
 // include specifications
@@ -19,7 +19,7 @@ Enemy::Enemy() :
 	// base object constructor
 	IEnemy(),
 
-	stateRegistry(),
+	enemyStates(),
 	currentState(NULL),
 	currentStateName(""),
 	// entity states
@@ -50,21 +50,9 @@ Enemy::Enemy() :
 // default destructor
 //============================================================================
 Enemy::~Enemy() {
-	// safely delete all registered states
-
-	// setup state iterator
-	std::unordered_map<std::string, EnemyState*>::iterator it =
-		stateRegistry.begin();
-
-	// loop through iterator until all elements traversed
-	while (it != stateRegistry.end()) {
-
-		// delete mapped state at state pointer
-		SAFE_DELETE(it->second);
-
-		// increment iterator
-		it++;
-	}
+	/*for (int i = 0; i < enemyStates.size(); i++) {
+		delete (enemyStates[i]);
+	}*/
 
 }
 
@@ -80,18 +68,18 @@ bool Enemy::initialize(Graphics* graphics, int width, int height, int ncols, Tex
 	//this->setCurrentFrame(enemyNS::START_FRAME);
 	//this->setFrameDelay(enemyNS::ANIM_DELAY);
 	//this->setLoop(1);
-	playerptr = player;
+	playerptr = player; // needed to follow player real-time
 
 	// register all states
 	IdleState* idle = new IdleState();
-	registerState(idle, "idle");
+	addState(idle, "idle");
 
 	ActiveState* active = new ActiveState();
-	registerState(active, "active");
+	addState(active, "active");
 
 
 	// transition to initial state
-	transitionToState("idle");
+	changeState("idle");
 
 	return(Entity::initialize(graphics, width, height, ncols, textureM));
 }
@@ -102,7 +90,7 @@ bool Enemy::initialize(Graphics* graphics, int width, int height, int ncols, Tex
 void Enemy::draw()
 {
 	Image::setScale(SPRITE_SCALE);
-	Image::draw();              // draw player
+	Image::draw();              
 }
 
 //============================================================================
@@ -136,98 +124,59 @@ void Enemy::shoot(
 }
 
 // ===========================================================================
-// registers a state to the registry for easy retrieval and later use
+// add state to  enemy state
 // ===========================================================================
-void Enemy::registerState(
+void Enemy::addState(
 	EnemyState* state,
 	std::string		stateName
 ) {
 	// check if scene is not registered, else throw a warning and exit early
-	if (stateRegistry.count(stateName) > 0) {
-
+	if (enemyStates.count(stateName) == 0) {
+		// if not already registered, register scene
+		enemyStates.insert({ stateName, state });
+	}
+	else {
 		// throw a warning
 		throw(
 			GameError(
 				gameErrorNS::WARNING,
-				"Warning: State is already registered for name: " + stateName
-			)
+				"Warning: State is already registered for name: " + stateName)
 			);
-
-		// exit early
 		return;
 	}
-
-	// if not already registered, register scene
-	stateRegistry.insert({ stateName, state });
 
 }
 
 // ===========================================================================
-// transitions to the state with the specified state name as was
-// registered within the state registry.
+// change state
 // ===========================================================================
-bool Enemy::transitionToState(
+bool Enemy::changeState(
 	std::string	stateName
 ) {
-	// handle remove scene (transition to no scene)
 	if (stateName == "") {
-
-		// run cleanup on current scene
-		//if (currentState) currentState->cleanup();
-		//if (currentState) currentState->deleteAll();
-
-		// update current scene states
-		currentState = NULL;
-		currentStateName = "";
-
-		// exit early
-		return true;
+		// if empty, go back to default state
+		changeState("idle");
 	}
-
 
 	// ensure sceneName is registered
-	if (stateRegistry.count(stateName) == 0) {
-
-		// throw a warning
+	if (enemyStates.count(stateName) == 0) {
 		throw(
 			GameError(
 				gameErrorNS::WARNING,
-				"Warning: Scene is not registered for id: " + stateName
-			)
+				"Warning: State not found!")
 			);
 
 		// exit early
 		return false;
 	}
 
-	// retrieve scene from registry
-	EnemyState* nextState = stateRegistry.at(stateName);
-
-	// ensure scene is retrieved successfully
-	if (nextState == NULL) {
-
-		// throw a warning
-		throw(
-			GameError(
-				gameErrorNS::WARNING,
-				"Warning: Transitioned state is null!"
-			)
-			);
-
-		// exit early
+	EnemyState* nextState = enemyStates.at(stateName);
+	if (nextState) {
+		currentState = nextState;
+		currentStateName = stateName;
+		return true;
+	}
+	else {
 		return false;
 	}
-
-	// run cleanup on current scene
-	//if (currentState) currentState->cleanup();
-	//if (currentState) currentState->deleteAll();
-
-	// update scene states appropriately
-	currentState = nextState;
-	currentStateName = stateName;
-
-	// initialize new scene
-	//currentState->initialize();
-
-	return true;
 }

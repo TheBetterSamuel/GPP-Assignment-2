@@ -25,9 +25,9 @@ public:
 
     virtual ~ActiveState() {}
     virtual void update(IEnemy* enemy, Player* player, float frameTime) {
-        enemy->setVelocity(VECTOR2(player->getCenter()->x - enemy->getX(), enemy->getY()));
-        if (!(player && abs(player->getCenter()->x - enemy->getX()) <= enemyNS::DETECT_RADIUS && abs(player->getCenter()->y - enemy->getY()) <= enemyNS::DETECT_RADIUS)) {
-            enemy->transitionToState("idle");
+        enemy->setVelocity(VECTOR2(player->getCenter()->x - enemy->getCenterX(), enemy->getCenterY()));
+        if (!(player && abs(player->getCenter()->x - enemy->getCenterX()) <= enemyNS::DETECT_RADIUS && abs(player->getCenter()->y - enemy->getCenterY()) <= enemyNS::DETECT_RADIUS)) {
+            enemy->changeState("idle");
         }
     }
 

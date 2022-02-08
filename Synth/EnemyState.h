@@ -24,6 +24,7 @@ class EnemyState
 {
 public:
 	virtual ~EnemyState() {}
+	// abstract functions
 	virtual void update(IEnemy* enemy, Player* player, float frameTime) = 0;
 };
 #endif
