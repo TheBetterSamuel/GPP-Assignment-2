@@ -89,8 +89,18 @@ public:
 
 	// Set active.
 	virtual void  setActive(bool a) = 0;
+	// Set visible.
+	virtual void setVisible(bool v) = 0;
+	// Return scale factor.
+	virtual float getScale() = 0;
 
-	virtual bool transitionToState(std::string stateName)=0;
+	// Return center X.
+	virtual float getCenterX() = 0;
+
+	// Return center Y.
+	virtual float getCenterY() = 0;
+
+	virtual bool changeState(std::string stateName)=0;
 
 	//setstate
 	/* if (currentState)

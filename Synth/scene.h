@@ -8,6 +8,7 @@
 // ===========================================================================
 // Scene Class specification
 // ===========================================================================
+// acts as a state template, so I did not think it needed a CPP
 
 #ifndef _SCENE_H
 #define _SCENE_H
@@ -50,11 +51,8 @@ struct EntitySpec {
 class Scene : public IScene
 {
 
-private:
-	
-
 protected:
-	// pointer to the associated sceneManager handler
+	// pointer to the associated sceneManager (to call transition method)
 	ISceneManager* sceneManager;
 
 	// entity pointer, gravity
@@ -63,23 +61,14 @@ protected:
 
 
 public:
-
-	// default constructor
-	Scene();
-
-	// default destructor
-	~Scene();
+	Scene() {};
+	virtual ~Scene() {};
+	// abstract functions
 
 	// scene initialization
-	virtual void initialize();
-
-	// delete/deallocate all scene objects
-	virtual void deleteAll();
+	virtual void initialize()=0;
 
 	// abstract scene methods
-
-	// clean up scene objects and prepare to transit out of scene
-	virtual void cleanup() = 0;
 
 	// update objects for each frame
 	virtual void update(float prevFrameTime)=0;
@@ -97,6 +86,8 @@ public:
 
 	// recreates and restores all graphics objects
 	virtual void resetAll() = 0;
+
+	// unique functions
 
 	void addEntity(Entity* entity, string name,bool gravity) {
 		entityList.push_back(EntitySpec(entity, name, gravity));
@@ -124,8 +115,14 @@ public:
 			entityList[i].entity->draw();
 		}
 	}
-	
-	// IScene getters
+
+	// sets the sceneManager for the scene. Scene needs this pointer to be able to 
+	// call the transition method.
+	void setSceneManager(ISceneManager* sceneMgr)
+	{
+		sceneManager = sceneMgr;
+	}
+	// IScene function overrides
 
 	// returns the graphics handler for the scene
 	Graphics* getGraphics() const
@@ -134,8 +131,7 @@ public:
 		if (!sceneManager) throw(
 			GameError(
 				gameErrorNS::FATAL_ERROR,
-				"Error: SceneManager not bound for this Scene!"
-			)
+				"Error: SceneManager not bound for this Scene!")
 			);
 
 		return sceneManager->getGraphics();
@@ -152,15 +148,6 @@ public:
 			);
 
 		return sceneManager->getInput();
-	}
-
-	// setters
-
-	// sets the sceneManager for the scene. Scene needs this pointer to be able to 
-	// call the transition method.
-	void setSceneManager(ISceneManager* sceneMgr)
-	{
-		sceneManager = sceneMgr;
 	}
 
 };

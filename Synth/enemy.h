@@ -38,9 +38,11 @@ private:
 	bool    active;         // only active entities may collide
 	VECTOR2 velocity;       // velocity
 	VECTOR2 deltaV;         // added to velocity during next call to update()
-	// contains all scenes registered with this instance.
-	std::unordered_map<std::string, EnemyState*> stateRegistry;
 
+	// dictionary of enemy states
+	std::unordered_map<std::string, EnemyState*> enemyStates;
+
+	// pointer to the current state (so we can call the methods from it)
 	EnemyState* currentState;
 
 	// string identifier for the current state
@@ -86,6 +88,9 @@ public:
 	// Return Y position.
 	virtual float getY() { return spriteData.y; }
 
+	// Return scale factor.
+	virtual float getScale() { return spriteData.scale; }
+
 	// Set X location.
 	virtual void setX(float newX) { spriteData.x = newX; }
 
@@ -105,12 +110,12 @@ public:
 		if (newState) { delete currentState; currentState = newState; }
 	}
 
-	void registerState(
+	void addState(
 		EnemyState* state,
 		std::string		stateName
 	);
 
-	virtual bool transitionToState(std::string stateName);
+	virtual bool changeState(std::string stateName);
 
 	// Set velocity.
 	virtual void  setVelocity(VECTOR2 v) { velocity = v; }
@@ -120,6 +125,18 @@ public:
 
 	// Set active.
 	virtual void  setActive(bool a) { active = a; }
+
+	// Set visible.
+	virtual void setVisible(bool v) { visible = v; }
+
+	// Set scale.
+	virtual void setScale(float s) { spriteData.scale = s; }
+
+	// Return center X.
+	virtual float getCenterX() { return spriteData.x + spriteData.width / 2 * getScale(); }
+
+	// Return center Y.
+	virtual float getCenterY() { return spriteData.y + spriteData.height / 2 * getScale(); }
 
 	//setstate
 	// if (currentState)

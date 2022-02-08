@@ -83,9 +83,8 @@ bool SceneManager::transitionToScene(std::string sceneName) {
 	// handle remove scene (transition to no scene)
 	if (sceneName == sceneNS::NO_SCENE){
 
-		// run cleanup on current scene
-		if (currentScene) currentScene->cleanup();
-		if (currentScene) currentScene->deleteAll();
+		// clear current scene
+		if (currentScene) currentScene->releaseAll();
 
 		// update current scene states
 		currentScene = NULL;
@@ -98,9 +97,6 @@ bool SceneManager::transitionToScene(std::string sceneName) {
 	// handle exiting game
 	else if (sceneName == sceneNS::EXIT_GAME) {
 
-		// run cleanup on current scene
-		if (currentScene) currentScene->cleanup();
-		if (currentScene) currentScene->deleteAll();
 
 		// quit main message loop
 		PostQuitMessage(0);
@@ -138,8 +134,7 @@ bool SceneManager::transitionToScene(std::string sceneName) {
 	}
 
 	// run cleanup on current scene
-	if (currentScene) currentScene->cleanup();
-	if (currentScene) currentScene->deleteAll();
+	if (currentScene) currentScene->releaseAll();
 
 	// update scene states appropriately
 	currentScene = nextScene;
