@@ -19,6 +19,7 @@ namespace playerNS
     const int X = GAME_WIDTH / 2 - WIDTH / 2;   // location on screen
     const int Y = GAME_HEIGHT / 2 - HEIGHT / 2;
     const float MASS = 3000.0f;              // mass
+
 }
 
 // inherits from Entity class
@@ -33,6 +34,7 @@ public:
     virtual void draw();
     virtual bool initialize(Graphics* graphics, int width, int height, int ncols, TextureManager* textureM);
     void update(float frameTime);
+    void damage();
 
     //get and set velocity.x and velocity.y
     virtual float getVelX() const { return velocity.x; }
@@ -41,4 +43,3 @@ public:
     virtual void setVelY(float VelY) { velocity.y = VelY; }
 };
 #endif
-
