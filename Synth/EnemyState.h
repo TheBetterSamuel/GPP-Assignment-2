@@ -17,6 +17,7 @@
 #include <windows.h>
 #include "constants.h"
 #include "ienemy.h"
+#include "Player.h"
 
 // class specification
 class EnemyState

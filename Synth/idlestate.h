@@ -28,14 +28,20 @@ public:
     virtual ~IdleState() {}
     virtual void update(IEnemy* enemy, Player* player, float frameTime) {
         lifeTime++;
-        enemy->setVelocity(VECTOR2(-100, 0));
-        if (player) {
-            enemy->setVelocity(VECTOR2(0, 100));
-        }
-        if (lifeTime>=500)
-        {
-            enemy->transitionToState("active");
-        }
+		if (lifeTime >= 200) {
+			//flip
+			enemy->setVelocity(VECTOR2(-50, 0));
+			if (lifeTime >= 400) {
+				lifeTime = 0;
+			}
+		}
+		else {
+			//flip 0
+			enemy->setVelocity(VECTOR2(50, 0));
+		}
+		if (player && abs(player->getCenter()->x - enemy->getX()) <= 100 && abs(player->getCenter()->y - enemy->getY()) <= 100) {
+			enemy->transitionToState("active");
+		}
     }
 };//end of HeroineState class
 #endif
