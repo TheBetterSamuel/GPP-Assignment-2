@@ -110,18 +110,24 @@ void TestScene2::initialize()
 void TestScene2::update(float frameTime)
 {
 	//Player Movement
-	if (getInput()->isKeyDown(A_KEY))            // if move right
+	if (getInput()->isKeyDown(A_KEY) && player.getVelX() > -300)            // if move right
 	{
-		player.setVelX(-playerNS::SPEED);
+		player.setVelX(player.getVelX() - playerNS::SPEED/50 - 9);
 	}
-	else if (getInput()->isKeyDown(D_KEY))            // if move right
+	if (getInput()->isKeyDown(D_KEY) && player.getVelX() < 300)            // if move right
 	{
-		player.setVelX(playerNS::SPEED);
+		player.setVelX(player.getVelX() + playerNS::SPEED/50 + 9);
 	}
-	else {
-		player.setVelX(0);
+	else if (0 > player.getVelX() ){
+		int decel = player.getVelX() + playerNS::SPEED / 50;
+		player.setVelX(decel);
 	}
-
+	else{
+		int decel1 = player.getVelX() - playerNS::SPEED / 50 -1 ;
+		player.setVelX(decel1);
+	}
+	
+	
 	//Ground movement
 	/*for (size_t i = 0; i < _countof(groundList); i++) {
 		if (speedState == 0) {
@@ -246,16 +252,11 @@ void TestScene2::update(float frameTime)
 	player.update(frameTime);
 	enemy.update(frameTime);
 	updateAllEntities(frameTime);
-
 	//update hearts list
 	for (int i = 0; i < player.playerhp; i++)
 	{
 		heartList[i].update(frameTime);
 	}
-	
-	//collision cooldown
-	
-	
 }
 
 //=============================================================================
@@ -301,9 +302,10 @@ void TestScene2::collisions()
 	}
 
 	//collides with a killbox
-	if (player.collidesWith(killbox, cV)&&player.cancollide)
+	if (player.collidesWith(killbox, cV)) {
 		player.damage();
-
+		player.bounce(cV,killbox, 2);
+	}
 	//if (playerShip.collidesWith(e*, collisionVector))
 	//{
 	//		e->setScale(0);

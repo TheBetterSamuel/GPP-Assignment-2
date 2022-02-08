@@ -39,6 +39,7 @@ public:
     float cooldown = 1.0f;
     float lifeTime = 5.0f;
     bool cancollide = false;
+    
 
 
     //get and set velocity.x and velocity.y
