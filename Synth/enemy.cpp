@@ -76,10 +76,10 @@ Enemy::~Enemy() {
 bool Enemy::initialize(Graphics* graphics, int width, int height, int ncols, TextureManager* textureM, Player* player)
 {
 	// configure sprite animation
-	this->setFrames(enemyNS::START_FRAME, enemyNS::END_FRAME);
-	this->setCurrentFrame(enemyNS::START_FRAME);
+	//this->setFrames(enemyNS::START_FRAME, enemyNS::END_FRAME);
+	//this->setCurrentFrame(enemyNS::START_FRAME);
 	//this->setFrameDelay(enemyNS::ANIM_DELAY);
-	this->setLoop(1);
+	//this->setLoop(1);
 	playerptr = player;
 
 	// register all states
@@ -110,14 +110,15 @@ void Enemy::draw()
 //============================================================================
 void Enemy::update(float frameTime)
 {
+	if (currentState) {
+		currentState->update(this, playerptr, frameTime);
+	}
+
 	Entity::update(frameTime);
 	velocity += deltaV;
 	spriteData.x += frameTime * velocity.x;         // move ship along X 
 	spriteData.y += frameTime * velocity.y;         // move ship along Y
-	if (currentState) {
-		currentState->update(this, playerptr,frameTime);
-	}
-
+	
 
 }
 

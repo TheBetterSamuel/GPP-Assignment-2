@@ -93,7 +93,8 @@ void TestScene::initialize()
 		heartList[i].setY(GAME_HEIGHT / 18);
 
 	}
-	addEntity(&player, 1);
+	addEntity(&player, "player", 1);
+	addEntity(&enemy, "enemy",1);
 	return;
 }
 
@@ -221,8 +222,6 @@ void TestScene::update(float frameTime)
 	}
 	playerStateManager(frameTime);
 	updateAllEntities(frameTime);
-	player.update(frameTime);
-	enemy.update(frameTime);
 	//update hearts list
 	for (int i = 0; i < MAX_HEART_NO; i++)
 	{

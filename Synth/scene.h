@@ -27,16 +27,20 @@
 #include <vector>
 #include "textDX.h"
 #include <unordered_map>
+#include "enemy.h"
+#include "Player.h"
 
 using namespace std;
 
 struct EntitySpec {
 	Entity* entity;
+	string name;
 	bool gravity;
 
 	// constructor
-	EntitySpec(Entity* e, bool g) :
+	EntitySpec(Entity* e, string n,bool g) :
 		entity(e),
+		name(n),
 		gravity(g)
 	{
 	}
@@ -94,8 +98,8 @@ public:
 	// recreates and restores all graphics objects
 	virtual void resetAll() = 0;
 
-	void addEntity(Entity* entity, bool gravity) {
-		entityList.push_back(EntitySpec(entity, gravity));
+	void addEntity(Entity* entity, string name,bool gravity) {
+		entityList.push_back(EntitySpec(entity, name, gravity));
 	};
 	void updateAllEntities(float frameTime) {
 		for (int i = 0; i < entityList.size(); i++) {
@@ -104,6 +108,12 @@ public:
 				entityptr->setDeltaV(VECTOR2(0, entityptr->getGravity() * frameTime));
 				//for now not * mass because gravity is too high
 			}
+			//if (entityList[i].name == "enemy") {
+			//	dynamic_cast<Enemy*>(entityptr)->update(frameTime);
+			//}
+			//else if (entityList[i].name == "player") {
+			//	dynamic_cast<Player*>(entityptr)->update(frameTime);
+			//}
 			entityptr->update(frameTime);
 		}
 	}

@@ -15,6 +15,26 @@
 // include necessary headers
 #include "entity.h"
 
+// put here since enemy class imports this file anyways
+namespace enemyNS
+{
+	const int WIDTH = 26;             // image width
+	const int HEIGHT = 26;            // image height
+
+	const int	TEXTURE_COLS = 3;
+	const int	START_FRAME = 0;
+	const int	END_FRAME = 2;
+	const float ANIM_DELAY = 0.2f;
+
+	const float INTERVAL = 200; // interval for changing directions when idling
+	const float SPEED = 100;          // Move based on move speed from constants.h
+	const float SCALE = SPRITE_SCALE;       // Scaling up sprites to fit map
+	const float G = entityNS::GRAVITY;      // Gravitional constant
+	const int COLLISION_DIST = (BOX_SIZE / 4) - 2; // Distance from center of player to edge of player, with 2 pixels of leeway
+	const int X = GAME_WIDTH / 2 - WIDTH / 2;   // location on screen
+	const int Y = GAME_HEIGHT / 2 - HEIGHT / 2;
+	const float MASS = 3000.0f;              // mass
+}
 // class specification
 
 class IEnemy

@@ -28,16 +28,16 @@ public:
     virtual ~IdleState() {}
     virtual void update(IEnemy* enemy, Player* player, float frameTime) {
         lifeTime++;
-		if (lifeTime >= 200) {
+		if (lifeTime >= enemyNS::INTERVAL) {
 			//flip
-			enemy->setDeltaV(VECTOR2(-50, 0));
-			if (lifeTime >= 400) {
+			enemy->setDeltaV(VECTOR2(-enemyNS::SPEED*frameTime, 0));
+			if (lifeTime >= enemyNS::INTERVAL*2) {
 				lifeTime = 0;
 			}
 		}
 		else {
 			//flip 0
-			enemy->setDeltaV(VECTOR2(50, 0));
+			enemy->setDeltaV(VECTOR2(enemyNS::SPEED*frameTime , 0));
 		}
 		if (player && abs(player->getCenter()->x - enemy->getX()) <= 100 && abs(player->getCenter()->y - enemy->getY()) <= 100) {
 			enemy->transitionToState("active");
