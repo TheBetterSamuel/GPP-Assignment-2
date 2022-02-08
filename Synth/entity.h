@@ -9,8 +9,6 @@
 
 #include "image.h"
 #include "input.h"
-#include "game.h"
-#include "scene.h"
 
 namespace entityNS
 {

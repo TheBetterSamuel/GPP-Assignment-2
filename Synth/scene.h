@@ -23,7 +23,11 @@
 #include "ISceneManager.h"
 #include "IScene.h"
 #include <string>
+#include "entity.h"
+#include <vector>
+#include "textDX.h"
 
+using namespace std;
 
 // class specification
 
@@ -36,6 +40,8 @@ private:
 protected:
 	// pointer to the associated sceneManager handler
 	ISceneManager* sceneManager;
+
+	vector<Entity> entityList;
 
 
 public:
@@ -58,7 +64,7 @@ public:
 	virtual void cleanup() = 0;
 
 	// update objects for each frame
-	virtual void update(float prevFrameTime) = 0;
+	virtual void update(float prevFrameTime)=0;
 
 	virtual void render() = 0;
 
@@ -74,6 +80,14 @@ public:
 	// recreates and restores all graphics objects
 	virtual void resetAll() = 0;
 
+	void addEntity(Entity e) {
+		entityList.push_back(e);
+	};
+	void updateAllEntities(float frameTime) {
+		for (int i = 0; i < entityList.size(); i++) {
+			entityList[i].update(frameTime);
+		}
+	}
 
 	// IScene getters
 

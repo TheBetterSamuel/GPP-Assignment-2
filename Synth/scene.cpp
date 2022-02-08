@@ -45,7 +45,8 @@ void Scene::initialize()
 	// setup scene objects
 	initialize();
 }
-
+void Scene::update(float frameTime) {
+}
 // ===========================================================================
 // deallocate all manually allocated scene objects and reset object to the
 // pre-initialized state. will be called on instance destruction.

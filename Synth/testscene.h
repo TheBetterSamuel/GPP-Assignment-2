@@ -20,7 +20,6 @@
 #include "speedPowerup.h"
 #include "enemy.h"
 #include "heart.h"
-#include "scene.h"
 
 //=============================================================================
 // This class is the core of the game

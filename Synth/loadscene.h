@@ -20,6 +20,7 @@
 #include "graphics.h"
 #include "fileutils.h"
 #include <string>
+#include "scene.h"
 
 // class specification
 
