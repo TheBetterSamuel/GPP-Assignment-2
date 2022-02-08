@@ -39,7 +39,7 @@ public:
 			//flip 0
 			enemy->setDeltaV(VECTOR2(enemyNS::SPEED*frameTime , 0));
 		}
-		if (player && abs(player->getCenter()->x - enemy->getX()) <= 100 && abs(player->getCenter()->y - enemy->getY()) <= 100) {
+		if (player && abs(player->getCenter()->x - enemy->getX()) <= enemyNS::DETECT_RADIUS && abs(player->getCenter()->y - enemy->getY()) <= enemyNS::DETECT_RADIUS) {
 			enemy->transitionToState("active");
 		}
     }
