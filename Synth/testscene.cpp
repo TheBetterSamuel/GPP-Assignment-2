@@ -12,7 +12,6 @@
 //=============================================================================
 TestScene::TestScene()
 {
-	numOfHits = 0;
 }
 
 //=============================================================================
@@ -83,13 +82,13 @@ void TestScene::initialize()
 
 	//Init Heart List
 
-	for (int i = 0; i < MAX_HEART_NO; i++)
+	for (int i = 0; i < player.playerhp; i++)
 	{
 
 		if (!heartList[i].initialize(graphics, heartNS::WIDTH, heartNS::HEIGHT, 0, &heartTexture))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing heart" + i));
 
-		heartList[i].setX(heartNS::X - (GAME_WIDTH / 16 * (MAX_HEART_NO - i)));
+		heartList[i].setX(heartNS::X - (GAME_WIDTH / 16 * (player.playerhp - i)));
 		heartList[i].setY(GAME_HEIGHT / 18);
 
 	}
@@ -223,10 +222,15 @@ void TestScene::update(float frameTime)
 	playerStateManager(frameTime);
 	updateAllEntities(frameTime);
 	//update hearts list
-	for (int i = 0; i < MAX_HEART_NO; i++)
+	for (int i = 0; i < player.playerhp; i++)
 	{
 		heartList[i].update(frameTime);
 	}
+	if (getInput()->wasKeyPressed(VK_SPACE))  //SPACE
+	{
+		player.damage();
+	}
+	
 }
 
 //=============================================================================
@@ -302,12 +306,12 @@ void TestScene::render()
 	player.draw();
 	enemy.draw();
 
-	for (int i = 0; i < MAX_HEART_NO; i++)
+	for (int i = 0; i < player.playerhp; i++)
 	{
 		heartList[i].draw();
 	}
 
-	if (numOfHits >= MAX_HEART_NO)
+	if (player.playerhp == 0)
 	{
 		sceneManager->transitionToScene("EXIT_GAME");
 	}

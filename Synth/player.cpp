@@ -58,5 +58,5 @@ void Player::update(float frameTime)
 //player dmg
 void Player::damage() 
 {
-    numOfHits++;
+    playerhp--;
 }

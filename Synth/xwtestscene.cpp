@@ -83,13 +83,13 @@ void TestScene2::initialize()
 
 	//Init Heart List
 
-	for (int i = 0; i < MAX_HEART_NO; i++)
+	for (int i = 0; i < player.playerhp; i++)
 	{
 
 		if (!heartList[i].initialize(graphics, heartNS::WIDTH, heartNS::HEIGHT, 0, &heartTexture))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing heart" + i));
 
-		heartList[i].setX(heartNS::X - (GAME_WIDTH / 16 * (MAX_HEART_NO - i)));
+		heartList[i].setX(heartNS::X - (GAME_WIDTH / 16 * (player.playerhp - i)));
 		heartList[i].setY(GAME_HEIGHT / 18);
 
 	}
@@ -239,7 +239,7 @@ void TestScene2::update(float frameTime)
 	enemy.update(frameTime);
 	updateAllEntities(frameTime);
 	//update hearts list
-	for (int i = 0; i < MAX_HEART_NO; i++)
+	for (int i = 0; i < player.playerhp; i++)
 	{
 		heartList[i].update(frameTime);
 	}
@@ -317,7 +317,7 @@ void TestScene2::render()
 	player.draw();
 	enemy.draw();
 
-	for (int i = 0; i < MAX_HEART_NO; i++)
+	for (int i = 0; i < player.playerhp; i++)
 	{
 		heartList[i].draw();
 	}

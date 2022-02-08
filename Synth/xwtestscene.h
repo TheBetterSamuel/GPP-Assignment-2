@@ -47,7 +47,7 @@ private:
     Ground groundList[MAP_WIDTH + 2];       // the ground
     Player player;
     Enemy enemy;
-    Heart heartList[MAX_HEART_NO];          // max hearts
+    Heart heartList[MAX_HP];          // max hearts
     int numOfHits;
     UINT distance = 0;                      // distance in number of blocks
     UINT speedState = 0;                    // State of the game speed

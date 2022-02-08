@@ -58,7 +58,7 @@ const float MAX_FRAME_TIME = 1.0f / MIN_FRAME_RATE; // maximum time used in calc
 const float GRAVITY = 9.81;                     // gravitational constant
 const float MASS_PLANET = 1.0e14f;
 const float MASS_SHIP = 5.0f;
-const int MAX_HEART_NO = 3;
+const int MAX_HP = 3;
 
 //player states
 const UINT ONGROUND = 0;
