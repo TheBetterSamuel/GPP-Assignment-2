@@ -52,11 +52,27 @@ void Player::update(float frameTime)
     Entity::update(frameTime);
     spriteData.x += frameTime * velocity.x;         // move ship along X 
     spriteData.y += frameTime * velocity.y;         // move ship along Y
+    if (lifeTime <= 6) {
+        lifeTime += frameTime;
+    }
+    if (lifeTime >= cooldown)
+    {
+        cancollide = true;
+    }
+    else
+    {
+        cancollide = false;
+    }
 
 }
 
 //player dmg
 void Player::damage() 
 {
-    playerhp--;
+    if (cancollide == true) 
+    {
+        playerhp--;
+        lifeTime = 0.0f;
+    }
+
 }
