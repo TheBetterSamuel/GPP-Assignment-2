@@ -246,11 +246,16 @@ void TestScene2::update(float frameTime)
 	player.update(frameTime);
 	enemy.update(frameTime);
 	updateAllEntities(frameTime);
+
 	//update hearts list
 	for (int i = 0; i < player.playerhp; i++)
 	{
 		heartList[i].update(frameTime);
 	}
+	
+	//collision cooldown
+	
+	
 }
 
 //=============================================================================
@@ -296,7 +301,7 @@ void TestScene2::collisions()
 	}
 
 	//collides with a killbox
-	if (player.collidesWith(killbox, cV))
+	if (player.collidesWith(killbox, cV)&&player.cancollide)
 		player.damage();
 
 	//if (playerShip.collidesWith(e*, collisionVector))
