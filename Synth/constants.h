@@ -36,9 +36,9 @@ const UINT GAME_WIDTH = 1280;               // width of game in pixels
 const UINT GAME_HEIGHT = 720;               // height of game in pixels
 
 
-const float MOVESPEED = 300;  //movement speed of the player
-const float JUMP_DY = 900;   //starting dy of player when he jumps(decreases y g per second)
-const float ROTATION_SPEED = 500; // how fast the [;ayer rotates while jumping
+const float MOVESPEED = 500;  //movement speed of the player
+const float JUMP_DY = 1000;   //starting dy of player when he jumps(decreases y g per second)
+const float ROTATION_SPEED = 200; // how fast the [;ayer rotates while jumping
 
 // height and width o the grid map
 const UINT MAP_HEIGHT = 14;
