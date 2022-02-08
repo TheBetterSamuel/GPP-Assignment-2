@@ -93,7 +93,7 @@ void TestScene::initialize()
 		heartList[i].setY(GAME_HEIGHT / 18);
 
 	}
-	addEntity(&player);
+	addEntity(&player, 1);
 	return;
 }
 

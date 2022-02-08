@@ -30,6 +30,16 @@
 
 using namespace std;
 
+struct EntitySpec {
+	Entity* entity;
+	bool gravity;
+
+	EntitySpec(Entity* e, bool g) :
+		entity(e),
+		gravity(g)
+	{
+	}
+};
 // class specification
 
 class Scene : public IScene
@@ -42,7 +52,8 @@ protected:
 	// pointer to the associated sceneManager handler
 	ISceneManager* sceneManager;
 
-	vector<Entity*> entityList;
+	// entity pointer, gravity
+	vector<EntitySpec> entityList;
 
 
 
@@ -82,21 +93,25 @@ public:
 	// recreates and restores all graphics objects
 	virtual void resetAll() = 0;
 
-	void addEntity(Entity* entity) {
-		entityList.push_back(entity);
+	void addEntity(Entity* entity, bool gravity) {
+		entityList.push_back(EntitySpec(entity, gravity));
 	};
 	void updateAllEntities(float frameTime) {
 		for (int i = 0; i < entityList.size(); i++) {
-			entityList[i]->update(frameTime);
+			Entity* entityptr = entityList[i].entity;
+			if (entityList[i].gravity) {
+				entityptr->setDeltaV(VECTOR2(0, entityptr->getGravity() * frameTime));
+			}
+			entityptr->update(frameTime);
 		}
 	}
 
 	void renderAllEntities() {
 		for (int i = 0; i < entityList.size(); i++) {
-			entityList[i]->draw();
+			entityList[i].entity->draw();
 		}
 	}
-
+	
 	// IScene getters
 
 	// returns the graphics handler for the scene
