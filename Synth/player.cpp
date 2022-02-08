@@ -54,3 +54,9 @@ void Player::update(float frameTime)
     spriteData.y += frameTime * velocity.y;         // move ship along Y
 
 }
+
+//player dmg
+void Player::damage() 
+{
+    numOfHits++;
+}
