@@ -113,6 +113,7 @@
     <ClCompile Include="textDX.cpp" />
     <ClCompile Include="textureManager.cpp" />
     <ClCompile Include="winmain.cpp" />
+    <ClCompile Include="xwtestscene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="activestate.h" />
@@ -149,6 +150,7 @@
     <ClInclude Include="testscene.h" />
     <ClInclude Include="textDX.h" />
     <ClInclude Include="textureManager.h" />
+    <ClInclude Include="xwtestscene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

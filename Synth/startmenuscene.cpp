@@ -116,6 +116,8 @@ void StartMenuScene::update(float frameTime)
 	{
 		sceneManager->transitionToScene("TEST_SCENE");
 	}
+	if (getInput()->wasKeyPressed(0x42))
+		sceneManager->transitionToScene("TEST_SCENE2");
 
 	//updates ground
 	for (size_t i = 0; i < _countof(groundList); i++) {

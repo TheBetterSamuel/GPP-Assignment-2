@@ -16,6 +16,7 @@
 #include <vector>
 #include "game.h"
 #include "testscene.h"
+#include "xwtestscene.h"
 #include "startmenuscene.h"
 #include "levelselectscene.h"
 

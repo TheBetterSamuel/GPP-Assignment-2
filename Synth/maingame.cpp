@@ -35,6 +35,9 @@ void MainGame::initialize(HWND hwnd)
 	TestScene* testScene = new TestScene();
 	sceneManager->registerScene(testScene, "TEST_SCENE");
 
+	TestScene2* testScene2 = new TestScene2();
+	sceneManager->registerScene(testScene2, "TEST_SCENE2");
+
 	StartMenuScene* startmenuscene = new StartMenuScene();
 	sceneManager->registerScene(startmenuscene, "START_MENU_SCENE");
 
