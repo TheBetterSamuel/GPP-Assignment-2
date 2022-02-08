@@ -120,6 +120,7 @@ public:
 
 	void renderAllEntities() {
 		for (int i = 0; i < entityList.size(); i++) {
+			entityList[i].entity->Image::setScale(SPRITE_SCALE);
 			entityList[i].entity->draw();
 		}
 	}
