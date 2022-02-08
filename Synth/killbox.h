@@ -31,7 +31,22 @@ public:
     // inherited member functions
     virtual void draw();
     virtual bool initialize(Graphics* graphics, int width, int height, int ncols, TextureManager* textureM);
-    void update(float frameTime);
+    // updates the entity - called each frame after scene update() ends
+    virtual void update(float frameTime);
+
+
+
+    // Return X position.
+    virtual float getX() { return spriteData.x; }
+
+    // Return Y position.
+    virtual float getY() { return spriteData.y; }
+
+    // Set X location.
+    virtual void setX(float newX) { spriteData.x = newX; }
+
+    // Set Y location.
+    virtual void setY(float newY) { spriteData.y = newY; }
 };
 #endif
 

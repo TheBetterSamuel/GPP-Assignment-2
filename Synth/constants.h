@@ -69,7 +69,7 @@ const UINT ONWALL = 3;
 // graphic images
 const char GROUND_IMAGE[] = "pictures\\Ground.png";
 const char PLAYER_IMAGE[] = "pictures\\Player.png";
-const char KILLBOX_IMAGE[] = "pictures\\Player.png";
+const char KILLBOX_IMAGE[] = "pictures\\Killbox.png";
 const char NPORTAL_IMAGE[] = "pictures\\nPortal.png";
 const char DSPORTAL_IMAGE[] = "pictures\\dsPortal.png";
 const char HSPORTAL_IMAGE[] = "pictures\\hsPortal.png";

@@ -39,13 +39,14 @@ private:
     TextureManager speedPowerupTexture;
     TextureManager heartTexture;
     std::vector<Ground> activeGroundList;
-    std::vector<Killbox> activeKillboxList;
+    //std::vector<Killbox> activeKillboxList;
     std::vector<nPortal> activenPortalList;
     std::vector<dsPortal> activedsPortalList;
     std::vector<hsPortal> activehsPortalList;
     std::vector<SpeedPowerup> activeSpeedPowerupList;
     Ground groundList[MAP_WIDTH + 2];       // the ground
     Player player;
+    Killbox killbox;
     Enemy enemy;
     Heart heartList[MAX_HP];          // max hearts
     int numOfHits;
