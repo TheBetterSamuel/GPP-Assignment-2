@@ -12,11 +12,9 @@
 #ifndef _SCENEMANAGER_H
 #define _SCENEMANAGER_H
 
-// import minimal windows headers
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
-// import necessary headers
 #include "graphics.h"
 #include "input.h"
 #include "constants.h"
@@ -33,7 +31,6 @@
 class SceneManager : ISceneManager
 {
 private:
-	// variables
 	
 	// "dictionary" for all scenes and their sceneName
 	std::unordered_map<std::string, Scene*> sceneDictionary;
@@ -44,12 +41,10 @@ private:
 	// string identifier for the currently displayed scene
 	std::string	currentSceneName;
 
-	// handlers
-
-	// pointer to graphics handler
+	// pointer to graphics handler in game
 	Graphics* graphicsptr;
 
-	// pointer to input handler
+	// pointer to input handler in game
 	Input* inputptr;
 
 public:
@@ -60,7 +55,6 @@ public:
 	// default destructor
 	~SceneManager();
 
-
 	// methods
 
 	// initalize
@@ -70,29 +64,29 @@ public:
 	void registerScene(Scene* scene,std::string sceneName);
 
 	// runs the currently displayed scene
-	void runCurrentScene(float prevFrameTime);
+	void updateCurrentScene(float prevFrameTime);
 
 	// renders the currently displayed scene
 	void renderCurrentScene();
 
-	// release all graphics objects from memory for current scene
+	// release all graphics for current scene
 	void releaseGraphicsForCurrentScene();
 
-	// reset and restore all graphics objects for current scene
+	// reset all graphics for current scene
 	void resetGraphicsForCurrentScene();
 
-	// ISceneManager methods
+	// ISceneManager function overrides
 
 	// transitions to the scene with the sceneName
 	bool transitionToScene(std::string sceneName);
 
-	// returns a pointer to the current graphics handler
+	// returns a pointer to the current graphics
 	Graphics* getGraphics() const
 	{
 		return graphicsptr;
 	};
 
-	// returns a pointer to the current input handler
+	// returns a pointer to the current input
 	Input* getInput() const
 	{
 		return inputptr;

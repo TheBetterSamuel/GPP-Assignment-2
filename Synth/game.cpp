@@ -164,8 +164,8 @@ void Game::renderGame()
     //start rendering
     if (SUCCEEDED(graphics->beginScene()))
     {
-        render();           // call render() in derived object
-        // render all graphics objects for the current scene to backbuffer
+
+        // render objects from current scene
         sceneManager->renderCurrentScene();
 
         //stop rendering
@@ -204,6 +204,8 @@ void Game::handleLostGraphicsDevice()
         else
             return;                 // other device error
     }
+
+    //sceneManager->resetGraphicsForCurrentScene();
 }
 
 //=============================================================================
@@ -250,7 +252,8 @@ void Game::run(HWND hwnd)
     if (!paused)                    // if not paused
     {
 
-        sceneManager->runCurrentScene(frameTime);
+        // update current scene
+        sceneManager->updateCurrentScene(frameTime);
 
         input->vibrateControllers(frameTime); // handle controller vibration
     }
@@ -268,36 +271,6 @@ void Game::run(HWND hwnd)
     // Clear input
     // Call this after all key checks are done
     input->clear(inputNS::KEYS_PRESSED);
-}
-
-//=============================================================================
-// Update all game items
-//=============================================================================
-void Game::update()
-{
-
-}
-
-//=============================================================================
-// Artificial Intelligence
-//=============================================================================
-void Game::ai()
-{}
-
-//=============================================================================
-// Handle collisions
-//=============================================================================
-void Game::collisions()
-{
-
-}
-
-//=============================================================================
-// Render game items
-//=============================================================================
-void Game::render()
-{
-
 }
 
 //=============================================================================

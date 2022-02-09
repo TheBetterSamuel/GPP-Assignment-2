@@ -12,7 +12,6 @@
 #ifndef _ISCENE_H
 #define _ISCENE_H
 
-// import necessary headers
 #include "graphics.h"
 #include "input.h"
 
@@ -23,12 +22,12 @@ class IScene
 {
 public:
 
-	// abstract getters to be implemented by child classes
+	// abstract methods
 
-	// should return a pointer to the current graphics handler
+	// return a pointer to the current graphics
 	virtual Graphics* getGraphics() const = 0;
 
-	// should return a pointer to the current input handler
+	// return a pointer to the current input
 	virtual Input* getInput() const = 0;
 
 };

@@ -17,7 +17,6 @@
 #include "input.h"
 #include <string>
 
-
 // class specification
 
 class ISceneManager
@@ -27,8 +26,6 @@ public:
 	// abstract methods
 
 	virtual bool transitionToScene(std::string sceneName) = 0;
-
-	// abstract getters to be implemented by child classes
 	virtual Graphics* getGraphics() const = 0;
 	virtual Input* getInput() const = 0;
 

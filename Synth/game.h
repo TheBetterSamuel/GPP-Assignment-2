@@ -15,6 +15,7 @@
 #include "gameError.h"
 #include "scenemanager.h"
 
+// all scene states
 #include "testscene.h"
 #include "xwtestscene.h"
 #include "startmenuscene.h"
@@ -86,24 +87,7 @@ public:
     // Exit the game
     void exitGame() { PostMessage(hwnd, WM_DESTROY, 0, 0); }
 
-    // Pure virtual function declarations
-    // These functions MUST be written in any class that inherits from Game
-
-    // Update game items.
-    virtual void update();
-
-    // Perform AI calculations.
-    virtual void ai();
-
-    // Check for collisions.
-    virtual void collisions();
-
-    // Render graphics.
-    // Call graphics->spriteBegin();
-    //   draw sprites
-    // Call graphics->spriteEnd();
-    //   draw non-sprites
-    virtual void render();
+    // ai, collisions, render, update all transferred over to scenemanager class to handle
 };
 
 #endif

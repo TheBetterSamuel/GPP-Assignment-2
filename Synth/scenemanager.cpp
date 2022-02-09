@@ -9,25 +9,21 @@
 // Scene Manager Class implementation
 // ===========================================================================
 
-// include specification
 #include "sceneManager.h"
 
-// add all scenes here
+// scene name constants
 namespace sceneNS {
-	const std::string	NO_SCENE = "NO_SCENE";
 	const std::string	EXIT_GAME = "EXIT_GAME";
-	const std::string	MAIN_MENU = "MAIN_MENU";
 }
+
 // ===========================================================================
 // default constructor
 // ===========================================================================
 SceneManager::SceneManager() :
-	// variables
+	// initial values
 	sceneDictionary(),
 	currentScene(NULL),
 	currentSceneName(""),
-
-	// handlers
 	graphicsptr(NULL),
 	inputptr(NULL)
 {}
@@ -36,23 +32,19 @@ SceneManager::SceneManager() :
 // default destructor
 // ===========================================================================
 SceneManager::~SceneManager()
-{
-}
-
-
-// methods
+{}
 
 // ===========================================================================
-// initializes the SceneManager instance
+// initializes a scenemanager instance
 // ===========================================================================
 void SceneManager::initialize(Graphics* graphics,Input* input) {
-	// store argument info into instance state
+	// get graphics and input from game
 	graphicsptr = graphics;
 	inputptr = input;
 }
 
 // ===========================================================================
-// registers a scene to the dictionary for easy retrieval and later use
+// register scene to dictionary with string
 // ===========================================================================
 void SceneManager::registerScene(Scene* scene,std::string sceneName) {
 	// check if there is existing sceneName identifier
@@ -63,7 +55,6 @@ void SceneManager::registerScene(Scene* scene,std::string sceneName) {
 				gameErrorNS::WARNING,
 				"Warning: Scene is already registered for id: " + sceneName)
 			);
-
 		// exit
 		return;
 	}
@@ -71,7 +62,7 @@ void SceneManager::registerScene(Scene* scene,std::string sceneName) {
 	// if doesnt exist yet, register scene
 	sceneDictionary.insert({ sceneName, scene });
 
-	// set scene manager for scene to this instance
+	// set scene manager for the scene to this instance
 	scene->setSceneManager(this);
 }
 
@@ -80,25 +71,10 @@ void SceneManager::registerScene(Scene* scene,std::string sceneName) {
 // registered within the scene dictionary.
 // ===========================================================================
 bool SceneManager::transitionToScene(std::string sceneName) {
-	// handle remove scene (transition to no scene)
-	if (sceneName == sceneNS::NO_SCENE){
 
-		// clear current scene
-		if (currentScene) currentScene->releaseAll();
-
-		// update current scene states
-		currentScene = NULL;
-		currentSceneName = sceneNS::NO_SCENE;
-
-		// exit
-		return true;
-	}
-
-	// handle exiting game
-	else if (sceneName == sceneNS::EXIT_GAME) {
-
-
-		// quit main message loop
+	// exit game through scene transition
+	if (sceneName == sceneNS::EXIT_GAME) {
+		// quit game
 		PostQuitMessage(0);
 	}
 
@@ -111,15 +87,14 @@ bool SceneManager::transitionToScene(std::string sceneName) {
 				gameErrorNS::WARNING,
 				"Warning: Scene is not registered for id: " + sceneName)
 			);
-
 		// exit
 		return false;
 	}
 
-	// retrieve scene
+	// retrieve scene based on string
 	Scene* nextScene = sceneDictionary.at(sceneName);
 
-	// ensure scene is retrieved successfully
+	// ensure scene is not null
 	if (nextScene == NULL) {
 
 		// throw a warning
@@ -136,7 +111,7 @@ bool SceneManager::transitionToScene(std::string sceneName) {
 	// run cleanup on current scene
 	if (currentScene) currentScene->releaseAll();
 
-	// update scene states appropriately
+	// update scenemanager states appropriately
 	currentScene = nextScene;
 	currentSceneName = sceneName;
 
@@ -146,14 +121,10 @@ bool SceneManager::transitionToScene(std::string sceneName) {
 	return true;
 }
 
-
-// scene-delegating methods
-
 // ===========================================================================
-// runs the currently displayed scene
+// update current scene
 // ===========================================================================
-void SceneManager::runCurrentScene(float prevFrameTime) {
-	// run scene handlers in sequence
+void SceneManager::updateCurrentScene(float prevFrameTime) {
 
 	// This is called in the game class, replacing the game's update,ai and collisions.
 	
@@ -187,7 +158,7 @@ void SceneManager::releaseGraphicsForCurrentScene()
 }
 
 // ===========================================================================
-// reset and restore all graphics objects for current scene
+// reset all graphics objects for current scene
 // ===========================================================================
 void SceneManager::resetGraphicsForCurrentScene()
 {
