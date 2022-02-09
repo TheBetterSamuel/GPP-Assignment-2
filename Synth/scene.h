@@ -8,12 +8,11 @@
 // ===========================================================================
 // Scene Class specification
 // ===========================================================================
-// acts as a state template, so I did not think it needed a CPP
+// acts as a state template, so I did not think this needs a CPP
 
 #ifndef _SCENE_H
 #define _SCENE_H
 
-// import necessary headers
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include "graphics.h"
@@ -33,6 +32,7 @@
 
 using namespace std;
 
+// Entity structure to store other values along with the entity pointer
 struct EntitySpec {
 	Entity* entity;
 	string name;
@@ -46,6 +46,7 @@ struct EntitySpec {
 	{
 	}
 };
+
 // class specification
 
 class Scene : public IScene
@@ -55,43 +56,46 @@ protected:
 	// pointer to the associated sceneManager (to call transition method)
 	ISceneManager* sceneManager;
 
-	// entity pointer, gravity
+	// list of the entities along with its other variables
 	vector<EntitySpec> entityList;
 
 
-
 public:
-	Scene() {};
-	virtual ~Scene() {};
+
 	// abstract functions
 
-	// scene initialization
+	// initialization
 	virtual void initialize()=0;
 
-	// abstract scene methods
-
-	// update objects for each frame
+	// update objects
 	virtual void update(float prevFrameTime)=0;
 
 	virtual void render() = 0;
 
-	// handle artificial intelligence on each frame
+	// handle ai
 	virtual void ai() = 0;
 
-	// handle collisions for objects on each frame
+	// handle collisions
 	virtual void collisions() = 0;
 
 	// releases all memory reserved for graphics objects
 	virtual void releaseAll() = 0;
 
-	// recreates and restores all graphics objects
+	// resets all graphics objects
 	virtual void resetAll() = 0;
 
-	// unique functions
+	// scene functions
 
+	// ===========================================================================
+	// Add Entity to the scene's entity list. Added through an EntitySpec struct
+	// ===========================================================================
 	void addEntity(Entity* entity, string name,bool gravity) {
 		entityList.push_back(EntitySpec(entity, name, gravity));
 	};
+
+	// ===========================================================================
+	// Updates all entities, applies gravity for those entities specified.
+	// ===========================================================================
 	void updateAllEntities(float frameTime) {
 		for (int i = 0; i < entityList.size(); i++) {
 			Entity* entityptr = entityList[i].entity;
@@ -109,6 +113,9 @@ public:
 		}
 	}
 
+	// ===========================================================================
+	// Renders/draws all entities.
+	// ===========================================================================
 	void renderAllEntities() {
 		for (int i = 0; i < entityList.size(); i++) {
 			entityList[i].entity->Image::setScale(SPRITE_SCALE);
@@ -116,12 +123,14 @@ public:
 		}
 	}
 
-	// sets the sceneManager for the scene. Scene needs this pointer to be able to 
-	// call the transition method.
+	// ===========================================================================
+	// Set scene manager for a scene. Needed to call transitionToScene method.
+	// ===========================================================================
 	void setSceneManager(ISceneManager* sceneMgr)
 	{
 		sceneManager = sceneMgr;
 	}
+
 	// IScene function overrides
 
 	// returns the graphics handler for the scene

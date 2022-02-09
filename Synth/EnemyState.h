@@ -8,11 +8,13 @@
 // ===========================================================================
 // Enemy State Class implementation
 // ===========================================================================
+// template for all enemy states. Does not need a cpp.
 
 
 #ifndef _ENEMYSTATE_H            // Prevent multiple definitions if this 
 #define _ENEMYSTATE_H              // file is included in more than one place
 #define WIN32_LEAN_AND_MEAN
+
 
 #include <windows.h>
 #include "constants.h"
@@ -25,11 +27,15 @@
 class EnemyState
 {
 public:
-	virtual ~EnemyState() {}
+
 	// abstract functions
 	virtual void update(IEnemy* enemy, Player* player, float frameTime) = 0;
 
+	// ===========================================================================
+	// Returns true if player is in range
+	// ===========================================================================
 	bool playerDetected(Player* player, IEnemy* enemy) {
+		// if there is no player, which is highly unusual, throw warning
 		if (!player) {
 			// throw a warning
 			throw(
@@ -42,6 +48,7 @@ public:
 			return false;
 		}
 
+		// check if distance between enemy and player is lesser than the detect radius
 		if (abs(player->getCenterX() - enemy->getCenterX()) <= // x distance inbetween
 			enemyNS::DETECT_RADIUS &&
 			abs(player->getCenterY() - enemy->getCenterY()) <= // y distance inbetween
@@ -54,7 +61,9 @@ public:
 		}
 	}
 
-	// follow the player using unit vector
+	// ===========================================================================
+	// Follow player using unit vector
+	// ===========================================================================
 	void followPlayer(IEnemy* enemy, Player* player, float frameTime) {
 		VECTOR2 vector = VECTOR2((-enemy->getCenterX() + player->getCenterX()), (-enemy->getCenterY() + player->getCenterY())); // get vector from enemy to player
 		/*float lengthsqr = enemyVector.x * enemyVector.x + enemyVector.y * enemyVector.y;

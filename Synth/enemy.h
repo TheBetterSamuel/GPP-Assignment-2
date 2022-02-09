@@ -12,7 +12,6 @@
 #ifndef _ENTITY_ENEMY_H
 #define _ENTITY_ENEMY_H
 
-// include necessary headers
 #include <string>
 #include <unordered_map>
 
@@ -27,18 +26,11 @@
 #include "walkleft.h"
 #include "walkright.h"
 
-// related constructs
-
-
-
 // class specification
 
 class Enemy : public IEnemy, public Entity
 {
 private:
-	bool    active;         // only active entities may collide
-	VECTOR2 velocity;       // velocity
-	VECTOR2 deltaV;         // added to velocity during next call to update()
 
 	// dictionary of enemy states
 	std::unordered_map<std::string, EnemyState*> enemyStates;
@@ -49,17 +41,12 @@ private:
 	// string identifier for the current state
 	std::string	currentStateName;
 
-	// entity states
-	float shotTimer;
-	float cooldownTime;
-	float lifetime;
-
-	TextureManager bulletTexture;
-	std::vector<Bullet*> bulletList;
 
 public:
+
+	// pointer to player. Enemy cannot function without player as it needs to access
+	// player's location to follow it.
 	Player* playerptr;
-	bool playerDetect;
 
 	// default constructor
 	Enemy();
@@ -69,33 +56,35 @@ public:
 
 
 	// entity methods
-	// shoots a bullet
-	void shoot(Bullet* bullet, float x, float y, bool flip);
-	// initializes the entity - called on scene initialization
+
+	// initializes the entity. Player pointer needed to be able to track player's location
 	virtual bool initialize(Graphics* graphics, int width, int height, int ncols, TextureManager* textureM, Player* playerptr);
+	
+	//renders enemy
 	virtual void draw();
-	// prepares the entity for deletion - called before entity is destroyed
+
+	// prepares the entity for deletion 
 	virtual void cleanup() {}
 
-	// updates the entity - called each frame after scene update() ends
+	// updates the entity
 	virtual void update(float frameTime);
 
-	// handles artificial intelligence for the entity - called each frame
+	// handles ai 
 	virtual void ai() {}
 
-	// Return X position.
+	// Return X position
 	virtual float getX() { return spriteData.x; }
 
-	// Return Y position.
+	// Return Y position
 	virtual float getY() { return spriteData.y; }
 
-	// Return scale factor.
+	// Return scale factor
 	virtual float getScale() { return spriteData.scale; }
 
-	// Set X location.
+	// Set X location
 	virtual void setX(float newX) { spriteData.x = newX; }
 
-	// Set Y location.
+	// Set Y location
 	virtual void setY(float newY) { spriteData.y = newY; }
 
 	// Set rotation angle in degrees.
@@ -105,18 +94,6 @@ public:
 	// Set rotation angle in radians.
 	// 0 radians is up. Angles progress clockwise.
 	virtual void setRadians(float rad) { spriteData.angle = rad; }
-
-	virtual void setState(EnemyState* newState)
-	{
-		if (newState) { delete currentState; currentState = newState; }
-	}
-
-	void addState(
-		EnemyState* state,
-		std::string		stateName
-	);
-
-	virtual bool changeState(std::string stateName);
 
 	// Set velocity.
 	virtual void  setVelocity(VECTOR2 v) { velocity = v; }
@@ -139,14 +116,19 @@ public:
 	// Return center Y.
 	virtual float getCenterY() { return spriteData.y + spriteData.height / 2 * getScale(); }
 
+	// Flip horizontal
 	virtual void flipHorizontal(bool flip) { spriteData.flipHorizontal = flip; }
 
-	//setstate
-	// if (currentState)
-	// setState(currentState->update(this, deltaTime));
-	//currentstate
-	//
-	// setState(EnemyState* newState): if(newState) { delete currentState; currentState = newState; }
+	// state machine functions
+
+	// add state to enemy state dictionary
+	void addState(
+		EnemyState* state,
+		std::string		stateName
+	);
+
+	// change enemy state
+	virtual bool changeState(std::string stateName);
 };
 
 #endif // !_ENTITY_ENEMY_H

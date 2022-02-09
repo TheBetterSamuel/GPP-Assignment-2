@@ -16,20 +16,14 @@
 // default constructor
 //============================================================================
 Enemy::Enemy() :
-	// base object constructor
+	// parent class constructor
 	IEnemy(),
-
+	// state machine
 	enemyStates(),
 	currentState(NULL),
-	currentStateName(""),
-	// entity states
-	shotTimer(),
-	cooldownTime(2.0f),
-
-	// bullet states
-	bulletTexture(),
-	bulletList()
+	currentStateName("")
 {
+	// initialize sprite data
 	edge.left = -(enemyNS::COLLISION_DIST);
 	edge.top = -(enemyNS::COLLISION_DIST);
 	edge.right = enemyNS::COLLISION_DIST;
@@ -97,7 +91,7 @@ void Enemy::draw()
 }
 
 //============================================================================
-// updates the entity - called each frame before scene update() starts
+// updates the entity
 //============================================================================
 void Enemy::update(float frameTime)
 {
@@ -112,21 +106,8 @@ void Enemy::update(float frameTime)
 
 }
 
-
-//============================================================================
-// shoots a bullet
-//============================================================================
-void Enemy::shoot(
-	Bullet* bullet,
-	float	x,
-	float	y,
-	bool	flip
-) {
-
-}
-
 // ===========================================================================
-// add state to  enemy state
+// add state to  enemy state dictionary
 // ===========================================================================
 void Enemy::addState(
 	EnemyState* state,
@@ -150,13 +131,13 @@ void Enemy::addState(
 }
 
 // ===========================================================================
-// change state
+// change state based on string. This helps prevent circular dependency
 // ===========================================================================
 bool Enemy::changeState(
 	std::string	stateName
 ) {
 	if (stateName == "") {
-		// if empty, show error
+		// if empty, issue warning
 		throw(
 			GameError(
 				gameErrorNS::WARNING,
@@ -179,8 +160,11 @@ bool Enemy::changeState(
 		return false;
 	}
 
+	// find state based on string input
 	EnemyState* nextState = enemyStates.at(stateName);
+
 	if (nextState) {
+		// update current state
 		currentState = nextState;
 		currentStateName = stateName;
 		return true;
