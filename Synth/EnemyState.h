@@ -18,6 +18,8 @@
 #include "constants.h"
 #include "ienemy.h"
 #include "Player.h"
+#include <vector>
+#include <D3dx9math.h>
 
 // class specification
 class EnemyState
@@ -52,8 +54,21 @@ public:
 		}
 	}
 
+	// follow the player using unit vector
 	void followPlayer(IEnemy* enemy, Player* player, float frameTime) {
-		enemy->setVelocity(VECTOR2((-enemy->getCenterX() + player->getCenterX()) * enemyNS::SPEED* frameTime, (-enemy->getCenterY() + player->getCenterY()))*enemyNS::SPEED*frameTime);
+		VECTOR2 vector = VECTOR2((-enemy->getCenterX() + player->getCenterX()), (-enemy->getCenterY() + player->getCenterY())); // get vector from enemy to player
+		/*float lengthsqr = enemyVector.x * enemyVector.x + enemyVector.y * enemyVector.y;
+		VECTOR2 unitVector = enemyVector / sqrt(lengthsqr);*/
+		VECTOR2* unitVector = D3DXVec2Normalize(&vector, &vector); // get unit vector from enemy to player
+		//unitVector.y = 0;
+		if (vector <= 0) {
+			enemy->flipHorizontal(1);
+		}
+		else {
+			enemy->flipHorizontal(0);
+		}
+		enemy->setVelocity(*unitVector * enemyNS::FOLLOWSPEED * frameTime); // follow the player
 	}
+	
 };
 #endif

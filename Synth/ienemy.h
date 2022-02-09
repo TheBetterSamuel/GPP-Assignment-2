@@ -31,6 +31,7 @@ namespace enemyNS
 	const float INTERVAL = 3.0f; // interval for changing directions when idling
 	const float IDLE_RANGE = 50;
 	const float SPEED = 100;          // Move based on move speed from constants.h
+	const float FOLLOWSPEED = 20000;
 	const float SCALE = SPRITE_SCALE;       // Scaling up sprites to fit map
 	const float G = entityNS::GRAVITY;      // Gravitional constant
 	const int COLLISION_DIST = (BOX_SIZE / 4) - 2; // Distance from center of player to edge of player, with 2 pixels of leeway
