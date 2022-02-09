@@ -30,9 +30,9 @@ public:
         lifeTime+=frameTime;
         enemy->flipHorizontal(0);
         enemy->setDeltaV(VECTOR2(enemyNS::SPEED*frameTime,0));
-		if (player && abs(player->getCenter()->x - enemy->getX()) <= enemyNS::DETECT_RADIUS && abs(player->getCenter()->y - enemy->getY()) <= enemyNS::DETECT_RADIUS) {
-			enemy->changeState("active");
-		}
+        if (playerDetected(player, enemy)) {
+            enemy->changeState("active");
+        }
         else if (lifeTime >= enemyNS::INTERVAL) {
             lifeTime = 0;
             enemy->setVelocity(VECTOR2(0, 0));

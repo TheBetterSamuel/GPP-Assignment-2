@@ -82,7 +82,7 @@ bool Enemy::initialize(Graphics* graphics, int width, int height, int ncols, Tex
 
 
 	// transition to initial state
-	changeState("right");
+	changeState(enemyNS::INITIAL_STATE);
 
 	return(Entity::initialize(graphics, width, height, ncols, textureM));
 }

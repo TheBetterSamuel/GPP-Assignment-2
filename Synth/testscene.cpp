@@ -132,7 +132,7 @@ void TestScene::initialize()
 
 	}
 	addEntity(&player, "player", 1);
-	addEntity(&enemy, "enemy",1);
+	addEntity(&enemy, "enemy",0);
 	return;
 }
 
