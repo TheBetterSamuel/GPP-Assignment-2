@@ -110,11 +110,11 @@ void TestScene2::initialize()
 void TestScene2::update(float frameTime)
 {
 	//Player Movement
-	if (getInput()->isKeyDown(A_KEY) && player.getVelX() > -300)            // if move right
+	if (getInput()->isKeyDown(A_KEY) && player.getVelX() > -500)            // if move right
 	{
 		player.setVelX(player.getVelX() - playerNS::SPEED/50 - 9);
 	}
-	if (getInput()->isKeyDown(D_KEY) && player.getVelX() < 300)            // if move right
+	if (getInput()->isKeyDown(D_KEY) && player.getVelX() < 500)            // if move right
 	{
 		player.setVelX(player.getVelX() + playerNS::SPEED/50 + 9);
 	}
@@ -123,7 +123,7 @@ void TestScene2::update(float frameTime)
 		player.setVelX(decel);
 	}
 	else{
-		int decel1 = player.getVelX() - playerNS::SPEED / 50 -1 ;
+		int decel1 = player.getVelX() - playerNS::SPEED / 50;
 		player.setVelX(decel1);
 	}
 	
