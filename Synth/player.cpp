@@ -64,6 +64,20 @@ void Player::update(float frameTime)
         cancollide = false;
     }
 
+    //powerup stuffs
+    if (sinceLast <= 6) {
+        sinceLast += frameTime;
+    }
+    if (sinceLast >= cooldown)
+    {
+        canPower = true;
+        playerSpd = 500;
+    }
+    else
+    {
+        canPower = false;
+        
+    }
 }
 
 //player dmg
@@ -75,4 +89,13 @@ void Player::damage()
         lifeTime = 0.0f;
     }
 
+}
+
+void Player::power()
+{
+    if (canPower == true)
+    {
+        playerSpd = 10000;
+        sinceLast = 0.0f;
+    }
 }

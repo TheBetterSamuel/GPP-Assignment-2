@@ -35,12 +35,16 @@ public:
     virtual bool initialize(Graphics* graphics, int width, int height, int ncols, TextureManager* textureM);
     void update(float frameTime);
     void damage();
+    void power();
+    int playerSpd = 500;
     int playerhp = 3;
     float cooldown = 1.0f;
     float lifeTime = 5.0f;
     bool cancollide = false;
-    
+    float sinceLast = 5.0f;
+    bool canPower = false;
 
+    
 
     //get and set velocity.x and velocity.y
     virtual float getVelX() const { return velocity.x; }
