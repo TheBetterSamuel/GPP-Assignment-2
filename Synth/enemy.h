@@ -24,7 +24,8 @@
 #include "EnemyState.h"
 #include "ienemy.h"
 #include "activestate.h"
-#include "idlestate.h"
+#include "walkleft.h"
+#include "walkright.h"
 
 // related constructs
 

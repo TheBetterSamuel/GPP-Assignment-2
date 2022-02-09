@@ -152,7 +152,7 @@
     <ClInclude Include="bullet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="idlestate.h">
+    <ClInclude Include="walkright.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="speedPowerup.h">
@@ -198,6 +198,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="walkleft.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
