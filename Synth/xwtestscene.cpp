@@ -109,20 +109,26 @@ void TestScene2::initialize()
 //=============================================================================
 void TestScene2::update(float frameTime)
 {
-	//Player Movement
+	// Default Player Movement
+	
+	
 	if (getInput()->isKeyDown(A_KEY) && player.getVelX() > -500)            // if move right
 	{
-		player.setVelX(player.getVelX() - playerNS::SPEED/50 - 9);
+		player.setVelX(player.getVelX() - player.playerSpd / 50 - 9);
 	}
 	if (getInput()->isKeyDown(D_KEY) && player.getVelX() < 500)            // if move right
 	{
-		player.setVelX(player.getVelX() + playerNS::SPEED/50 + 9);
+		player.setVelX(player.getVelX() + player.playerSpd / 50 + 9);
 	}
-	else if (0 > player.getVelX() ){
+
+	if (0 > player.getVelX() )
+	{
 		int decel = player.getVelX() + playerNS::SPEED / 50;
 		player.setVelX(decel);
 	}
-	else{
+
+	else if (0 < player.getVelX()) 
+	{
 		int decel1 = player.getVelX() - playerNS::SPEED / 50;
 		player.setVelX(decel1);
 	}
@@ -257,6 +263,9 @@ void TestScene2::update(float frameTime)
 	{
 		heartList[i].update(frameTime);
 	}
+
+	/*if (player.playerhp == 0)
+		sceneManager->transitionToScene("EXIT_GAME");*/
 }
 
 //=============================================================================
@@ -305,6 +314,7 @@ void TestScene2::collisions()
 	if (player.collidesWith(killbox, cV)) {
 		player.damage();
 		player.bounce(cV,killbox, 2);
+		player.power();
 	}
 	//if (playerShip.collidesWith(e*, collisionVector))
 	//{
