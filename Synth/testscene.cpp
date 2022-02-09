@@ -106,7 +106,7 @@ void TestScene::initialize()
 			}
 			if (level.getMap().at(i).at(j) == levelDictionary::KILLBOX) {
 				Killbox killbox;
-				if (!killbox.initialize(graphics, kboxNS::WIDTH, kboxNS::HEIGHT, 0, &killboxTexture, &player))
+				if (!killbox.initialize(graphics, kboxNS::WIDTH, kboxNS::HEIGHT, 0, &killboxTexture))
 					throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing killbox"));
 				killbox.setX(j * BOX_SIZE);
 				killbox.setY(i * BOX_SIZE);

@@ -1,5 +1,17 @@
 #include "level.h"
 
+
+Level::Level()
+{
+}
+
+//=============================================================================
+// Destructor
+//=============================================================================
+Level::~Level()
+{
+	//releaseAll();           // call onLostDevice() for every graphics item
+}
 const void Level::loadData(string filePath) {
 	ifstream data(filePath);
 

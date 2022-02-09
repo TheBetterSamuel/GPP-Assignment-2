@@ -45,7 +45,7 @@ public:
 	// constructor
 	Level();
 	// Destructor
-	virtual ~Level() {}
+	virtual ~Level();
 
 	//get map
 	virtual const vector <vector<string>> getMap() {
@@ -53,10 +53,10 @@ public:
 	}
 
 	//load data
-	virtual const void loadData(string filePath) {}
+	virtual const void loadData(string filePath);
 
 	//clear map
-	virtual const void clearMap() {}
+	virtual const void clearMap();
 
 	// get for all vectors
 	virtual const vector <Ground> getGroundList() {
