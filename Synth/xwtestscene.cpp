@@ -257,6 +257,9 @@ void TestScene2::update(float frameTime)
 	{
 		heartList[i].update(frameTime);
 	}
+
+	if (player.playerhp == 0)
+		sceneManager->transitionToScene("EXIT_GAME");
 }
 
 //=============================================================================
