@@ -78,9 +78,6 @@
     <ClCompile Include="scenemanager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="maingame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="startmenuscene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -120,9 +117,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="gameError.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="maingame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="player.h">
