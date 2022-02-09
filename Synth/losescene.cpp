@@ -79,6 +79,7 @@ void LoseScene::collisions()
 // Render game items
 //=============================================================================
 void LoseScene::render()
+
 {
 	getGraphics()->spriteBegin();                // begin drawing sprites
 	dxFontSmall->setFontColor(graphicsNS::WHITE);
