@@ -21,7 +21,6 @@
 #include "constants.h"
 #include "gameError.h"
 #include "ISceneManager.h"
-#include "IScene.h"
 #include <string>
 #include "entity.h"
 #include <vector>
@@ -49,7 +48,7 @@ struct EntitySpec {
 
 // class specification
 
-class Scene : public IScene
+class Scene
 {
 
 protected:
@@ -130,8 +129,6 @@ public:
 	{
 		sceneManager = sceneMgr;
 	}
-
-	// IScene function overrides
 
 	// returns the graphics handler for the scene
 	Graphics* getGraphics() const

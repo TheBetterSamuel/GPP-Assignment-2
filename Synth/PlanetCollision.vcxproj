@@ -135,7 +135,6 @@
     <ClInclude Include="ienemy.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />
-    <ClInclude Include="iscene.h" />
     <ClInclude Include="iscenemanager.h" />
     <ClInclude Include="killbox.h" />
     <ClInclude Include="level.h" />
