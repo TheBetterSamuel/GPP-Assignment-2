@@ -71,15 +71,18 @@ bool Enemy::initialize(Graphics* graphics, int width, int height, int ncols, Tex
 	playerptr = player; // needed to follow player real-time
 
 	// register all states
-	IdleState* idle = new IdleState();
-	addState(idle, "idle");
+	WalkRight* right = new WalkRight();
+	addState(right, "right");
+
+	WalkLeft* left = new WalkLeft();
+	addState(left, "left");
 
 	ActiveState* active = new ActiveState();
 	addState(active, "active");
 
 
 	// transition to initial state
-	changeState("idle");
+	changeState("right");
 
 	return(Entity::initialize(graphics, width, height, ncols, textureM));
 }
@@ -102,11 +105,10 @@ void Enemy::update(float frameTime)
 		currentState->update(this, playerptr, frameTime);
 	}
 
-	Entity::update(frameTime);
 	velocity += deltaV;
 	spriteData.x += frameTime * velocity.x;         // move ship along X 
 	spriteData.y += frameTime * velocity.y;         // move ship along Y
-	
+	Entity::update(frameTime);
 
 }
 
@@ -154,8 +156,15 @@ bool Enemy::changeState(
 	std::string	stateName
 ) {
 	if (stateName == "") {
-		// if empty, go back to default state
-		changeState("idle");
+		// if empty, show error
+		throw(
+			GameError(
+				gameErrorNS::WARNING,
+				"Warning: Change State is empty!")
+			);
+
+		// exit early
+		return false;
 	}
 
 	// ensure sceneName is registered

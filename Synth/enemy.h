@@ -24,7 +24,8 @@
 #include "EnemyState.h"
 #include "ienemy.h"
 #include "activestate.h"
-#include "idlestate.h"
+#include "walkleft.h"
+#include "walkright.h"
 
 // related constructs
 
@@ -137,6 +138,8 @@ public:
 
 	// Return center Y.
 	virtual float getCenterY() { return spriteData.y + spriteData.height / 2 * getScale(); }
+
+	virtual void flipHorizontal(bool flip) { spriteData.flipHorizontal = flip; }
 
 	//setstate
 	// if (currentState)

@@ -129,7 +129,7 @@
     <ClInclude Include="ground.h" />
     <ClInclude Include="heart.h" />
     <ClInclude Include="hsPortal.h" />
-    <ClInclude Include="idlestate.h" />
+    <ClInclude Include="walkright.h" />
     <ClInclude Include="ienemy.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />
@@ -149,6 +149,7 @@
     <ClInclude Include="testscene.h" />
     <ClInclude Include="textDX.h" />
     <ClInclude Include="textureManager.h" />
+    <ClInclude Include="walkleft.h" />
     <ClInclude Include="xwtestscene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
