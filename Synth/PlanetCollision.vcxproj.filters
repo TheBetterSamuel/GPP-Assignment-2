@@ -93,6 +93,9 @@
     <ClCompile Include="level.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="losescene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="constants.h">
@@ -201,6 +204,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="walkleft.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="losescene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -102,6 +102,7 @@
     <ClCompile Include="level.cpp" />
     <ClCompile Include="levelselectscene.cpp" />
     <ClCompile Include="loadscene.cpp" />
+    <ClCompile Include="losescene.cpp" />
     <ClCompile Include="nportal.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="ground.cpp" />
@@ -129,6 +130,7 @@
     <ClInclude Include="ground.h" />
     <ClInclude Include="heart.h" />
     <ClInclude Include="hsPortal.h" />
+    <ClInclude Include="losescene.h" />
     <ClInclude Include="walkright.h" />
     <ClInclude Include="ienemy.h" />
     <ClInclude Include="image.h" />
