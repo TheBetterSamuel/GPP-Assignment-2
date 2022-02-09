@@ -19,13 +19,14 @@
 #include "xwtestscene.h"
 #include "startmenuscene.h"
 #include "levelselectscene.h"
+#include "losescene.h"
 
 class Game
 {
 protected:
     // common game properties
-    Graphics *graphics;         // pointer to Graphics
-    Input   *input;             // pointer to Input
+    Graphics* graphics;         // pointer to Graphics
+    Input* input;             // pointer to Input
     HWND    hwnd;               // window handle
     HRESULT hr;                 // standard return type
     LARGE_INTEGER timeStart;    // Performance Counter start value
@@ -48,7 +49,7 @@ public:
     // Member functions
 
     // Window message handler
-    LRESULT messageHandler( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam );
+    LRESULT messageHandler(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
     // Initialize the game
     // Pre: hwnd is handle to window
@@ -77,13 +78,13 @@ public:
     void setDisplayMode(graphicsNS::DISPLAY_MODE mode = graphicsNS::TOGGLE);
 
     // Return pointer to Graphics.
-    Graphics* getGraphics() {return graphics;}
+    Graphics* getGraphics() { return graphics; }
 
     // Return pointer to Input.
-    Input* getInput()       {return input;}
+    Input* getInput() { return input; }
 
     // Exit the game
-    void exitGame()         {PostMessage(hwnd, WM_DESTROY, 0, 0);}
+    void exitGame() { PostMessage(hwnd, WM_DESTROY, 0, 0); }
 
     // Pure virtual function declarations
     // These functions MUST be written in any class that inherits from Game

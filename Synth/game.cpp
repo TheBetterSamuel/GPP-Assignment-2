@@ -10,7 +10,7 @@
 //=============================================================================
 // Constructor
 //=============================================================================
-Game::Game():
+Game::Game() :
     hwnd(),
     graphics(NULL),
     input(NULL),
@@ -38,64 +38,64 @@ Game::~Game()
 //=============================================================================
 // Window message handler
 //=============================================================================
-LRESULT Game::messageHandler( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam )
+LRESULT Game::messageHandler(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-    if(initialized)     // do not process messages if not initialized
+    if (initialized)     // do not process messages if not initialized
     {
-        switch( msg )
+        switch (msg)
         {
-            case WM_DESTROY:
-                PostQuitMessage(0);        //tell Windows to kill this program
-                return 0;
-            case WM_KEYDOWN: case WM_SYSKEYDOWN:    // key down
-                input->keyDown(wParam);
-                return 0;
-            case WM_KEYUP: case WM_SYSKEYUP:        // key up
-                input->keyUp(wParam);
-                return 0;
-            case WM_CHAR:                           // character entered
-                input->keyIn(wParam);
-                return 0;
-            case WM_MOUSEMOVE:                      // mouse moved
-                input->mouseIn(lParam);
-                return 0;
-            case WM_INPUT:                          // raw mouse data in
-                input->mouseRawIn(lParam);
-                return 0;
-            case WM_LBUTTONDOWN:                    // left mouse button down
-                input->setMouseLButton(true);
-                input->mouseIn(lParam);             // mouse position
-                return 0;
-            case WM_LBUTTONUP:                      // left mouse button up
-                input->setMouseLButton(false);
-                input->mouseIn(lParam);             // mouse position
-                return 0;
-            case WM_MBUTTONDOWN:                    // middle mouse button down
-                input->setMouseMButton(true);
-                input->mouseIn(lParam);             // mouse position
-                return 0;
-            case WM_MBUTTONUP:                      // middle mouse button up
-                input->setMouseMButton(false);
-                input->mouseIn(lParam);             // mouse position
-                return 0;
-            case WM_RBUTTONDOWN:                    // right mouse button down
-                input->setMouseRButton(true);
-                input->mouseIn(lParam);             // mouse position
-                return 0;
-            case WM_RBUTTONUP:                      // right mouse button up
-                input->setMouseRButton(false);
-                input->mouseIn(lParam);             // mouse position
-                return 0;
-            case WM_XBUTTONDOWN: case WM_XBUTTONUP: // mouse X button down/up
-                input->setMouseXButton(wParam);
-                input->mouseIn(lParam);             // mouse position
-                return 0;
-            case WM_DEVICECHANGE:                   // check for controller insert
-                input->checkControllers();
-                return 0;
+        case WM_DESTROY:
+            PostQuitMessage(0);        //tell Windows to kill this program
+            return 0;
+        case WM_KEYDOWN: case WM_SYSKEYDOWN:    // key down
+            input->keyDown(wParam);
+            return 0;
+        case WM_KEYUP: case WM_SYSKEYUP:        // key up
+            input->keyUp(wParam);
+            return 0;
+        case WM_CHAR:                           // character entered
+            input->keyIn(wParam);
+            return 0;
+        case WM_MOUSEMOVE:                      // mouse moved
+            input->mouseIn(lParam);
+            return 0;
+        case WM_INPUT:                          // raw mouse data in
+            input->mouseRawIn(lParam);
+            return 0;
+        case WM_LBUTTONDOWN:                    // left mouse button down
+            input->setMouseLButton(true);
+            input->mouseIn(lParam);             // mouse position
+            return 0;
+        case WM_LBUTTONUP:                      // left mouse button up
+            input->setMouseLButton(false);
+            input->mouseIn(lParam);             // mouse position
+            return 0;
+        case WM_MBUTTONDOWN:                    // middle mouse button down
+            input->setMouseMButton(true);
+            input->mouseIn(lParam);             // mouse position
+            return 0;
+        case WM_MBUTTONUP:                      // middle mouse button up
+            input->setMouseMButton(false);
+            input->mouseIn(lParam);             // mouse position
+            return 0;
+        case WM_RBUTTONDOWN:                    // right mouse button down
+            input->setMouseRButton(true);
+            input->mouseIn(lParam);             // mouse position
+            return 0;
+        case WM_RBUTTONUP:                      // right mouse button up
+            input->setMouseRButton(false);
+            input->mouseIn(lParam);             // mouse position
+            return 0;
+        case WM_XBUTTONDOWN: case WM_XBUTTONUP: // mouse X button down/up
+            input->setMouseXButton(wParam);
+            input->mouseIn(lParam);             // mouse position
+            return 0;
+        case WM_DEVICECHANGE:                   // check for controller insert
+            input->checkControllers();
+            return 0;
         }
     }
-    return DefWindowProc( hwnd, msg, wParam, lParam );    // let Windows handle it
+    return DefWindowProc(hwnd, msg, wParam, lParam);    // let Windows handle it
 }
 
 //=============================================================================
@@ -128,6 +128,9 @@ void Game::initialize(HWND hw)
     LevelSelectScene* levelselectscene = new LevelSelectScene();
     sceneManager->registerScene(levelselectscene, "LEVEL_SELECT_SCENE");
 
+    LoseScene* losescene = new LoseScene();
+    sceneManager->registerScene(losescene, "LOSE_SCENE");
+
     /*LoadLevelScene* loadlevelscene = new LoadLevelScene();
     sceneManager->registerScene(loadlevelscene, "LOAD_LEVEL_SCENE");*/
 
@@ -145,7 +148,7 @@ void Game::initialize(HWND hw)
     input->initialize(hwnd, false);             // throws GameError
 
     // attempt to set up high resolution timer
-    if(QueryPerformanceFrequency(&timerFreq) == false)
+    if (QueryPerformanceFrequency(&timerFreq) == false)
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing high resolution timer"));
 
     QueryPerformanceCounter(&timeStart);        // get starting time
@@ -181,20 +184,20 @@ void Game::handleLostGraphicsDevice()
 {
     // test for and handle lost device
     hr = graphics->getDeviceState();
-    if(FAILED(hr))                  // if graphics device is not in a valid state
+    if (FAILED(hr))                  // if graphics device is not in a valid state
     {
         // if the device is lost and not available for reset
-        if(hr == D3DERR_DEVICELOST)
+        if (hr == D3DERR_DEVICELOST)
         {
             Sleep(100);             // yield cpu time (100 mili-seconds)
             return;
-        } 
+        }
         // the device was lost but is now available for reset
-        else if(hr == D3DERR_DEVICENOTRESET)
+        else if (hr == D3DERR_DEVICENOTRESET)
         {
             releaseAll();
             hr = graphics->reset(); // attempt to reset graphics device
-            if(FAILED(hr))          // if reset failed
+            if (FAILED(hr))          // if reset failed
                 return;
             resetAll();
         }
@@ -218,18 +221,18 @@ void Game::setDisplayMode(graphicsNS::DISPLAY_MODE mode)
 //=============================================================================
 void Game::run(HWND hwnd)
 {
-    if(graphics == NULL)            // if graphics not initialized
+    if (graphics == NULL)            // if graphics not initialized
         return;
 
     // calculate elapsed time of last frame, save in frameTime
     QueryPerformanceCounter(&timeEnd);
-    frameTime = (float)(timeEnd.QuadPart - timeStart.QuadPart ) / (float)timerFreq.QuadPart;
+    frameTime = (float)(timeEnd.QuadPart - timeStart.QuadPart) / (float)timerFreq.QuadPart;
 
     // Power saving code, requires winmm.lib
     // if not enough time has elapsed for desired frame rate
-    if (frameTime < MIN_FRAME_TIME) 
+    if (frameTime < MIN_FRAME_TIME)
     {
-        sleepTime = (DWORD)((MIN_FRAME_TIME - frameTime)*1000);
+        sleepTime = (DWORD)((MIN_FRAME_TIME - frameTime) * 1000);
         timeBeginPeriod(1);         // Request 1mS resolution for windows timer
         Sleep(sleepTime);           // release cpu for sleepTime
         timeEndPeriod(1);           // End 1mS timer resolution
@@ -237,7 +240,7 @@ void Game::run(HWND hwnd)
     }
 
     if (frameTime > 0.0)
-        fps = (fps*0.99f) + (0.01f/frameTime);  // average fps
+        fps = (fps * 0.99f) + (0.01f / frameTime);  // average fps
     if (frameTime > MAX_FRAME_TIME) // if frame rate is very slow
         frameTime = MAX_FRAME_TIME; // limit maximum frameTime
     timeStart = timeEnd;
