@@ -114,6 +114,26 @@ void Game::initialize(HWND hw)
     // initialize scene manager
     sceneManager->initialize(graphics, input);
 
+    // scene initializations
+
+    TestScene* testScene = new TestScene();
+    sceneManager->registerScene(testScene, "TEST_SCENE");
+
+    TestScene2* testScene2 = new TestScene2();
+    sceneManager->registerScene(testScene2, "TEST_SCENE2");
+
+    StartMenuScene* startmenuscene = new StartMenuScene();
+    sceneManager->registerScene(startmenuscene, "START_MENU_SCENE");
+
+    LevelSelectScene* levelselectscene = new LevelSelectScene();
+    sceneManager->registerScene(levelselectscene, "LEVEL_SELECT_SCENE");
+
+    /*LoadLevelScene* loadlevelscene = new LoadLevelScene();
+    sceneManager->registerScene(loadlevelscene, "LOAD_LEVEL_SCENE");*/
+
+    // initial scene
+    sceneManager->transitionToScene("START_MENU_SCENE");
+
     //TestScene* testScene = new TestScene();
     //// register startup scene
     //sceneManager->registerScene(testScene, "TEST_SCENE");
@@ -245,6 +265,36 @@ void Game::run(HWND hwnd)
     // Clear input
     // Call this after all key checks are done
     input->clear(inputNS::KEYS_PRESSED);
+}
+
+//=============================================================================
+// Update all game items
+//=============================================================================
+void Game::update()
+{
+
+}
+
+//=============================================================================
+// Artificial Intelligence
+//=============================================================================
+void Game::ai()
+{}
+
+//=============================================================================
+// Handle collisions
+//=============================================================================
+void Game::collisions()
+{
+
+}
+
+//=============================================================================
+// Render game items
+//=============================================================================
+void Game::render()
+{
+
 }
 
 //=============================================================================

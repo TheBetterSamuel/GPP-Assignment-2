@@ -15,6 +15,11 @@
 #include "gameError.h"
 #include "scenemanager.h"
 
+#include "testscene.h"
+#include "xwtestscene.h"
+#include "startmenuscene.h"
+#include "levelselectscene.h"
+
 class Game
 {
 protected:
@@ -84,20 +89,20 @@ public:
     // These functions MUST be written in any class that inherits from Game
 
     // Update game items.
-    virtual void update() = 0;
+    virtual void update();
 
     // Perform AI calculations.
-    virtual void ai() = 0;
+    virtual void ai();
 
     // Check for collisions.
-    virtual void collisions() = 0;
+    virtual void collisions();
 
     // Render graphics.
     // Call graphics->spriteBegin();
     //   draw sprites
     // Call graphics->spriteEnd();
     //   draw non-sprites
-    virtual void render() = 0;
+    virtual void render();
 };
 
 #endif

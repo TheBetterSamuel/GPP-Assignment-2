@@ -105,7 +105,6 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="ground.cpp" />
     <ClCompile Include="scenemanager.cpp" />
-    <ClCompile Include="maingame.cpp" />
     <ClCompile Include="speedPowerup.cpp" />
     <ClCompile Include="startmenuscene.cpp" />
     <ClCompile Include="testscene.cpp" />
@@ -142,7 +141,6 @@
     <ClInclude Include="player.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="scenemanager.h" />
-    <ClInclude Include="maingame.h" />
     <ClInclude Include="speedPowerup.h" />
     <ClInclude Include="startmenuscene.h" />
     <ClInclude Include="strutils.h" />
