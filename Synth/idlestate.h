@@ -30,13 +30,16 @@ public:
         lifeTime++;
 		if (lifeTime >= enemyNS::INTERVAL) {
 			//flip
+			enemy->flipHorizontal(1);
 			enemy->setDeltaV(VECTOR2(-enemyNS::SPEED*frameTime, 0));
 			if (lifeTime >= enemyNS::INTERVAL*2) {
+				enemy->setVelocity(VECTOR2(0, 0));
 				lifeTime = 0;
 			}
 		}
 		else {
-			//flip 0
+			//flip 
+			enemy->flipHorizontal(0);
 			enemy->setDeltaV(VECTOR2(enemyNS::SPEED*frameTime , 0));
 		}
 		if (player && abs(player->getCenter()->x - enemy->getX()) <= enemyNS::DETECT_RADIUS && abs(player->getCenter()->y - enemy->getY()) <= enemyNS::DETECT_RADIUS) {

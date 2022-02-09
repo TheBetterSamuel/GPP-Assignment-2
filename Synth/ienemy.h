@@ -28,6 +28,7 @@ namespace enemyNS
 
 	const float DETECT_RADIUS = 100;
 	const float INTERVAL = 200; // interval for changing directions when idling
+	const float IDLE_RANGE = 50;
 	const float SPEED = 100;          // Move based on move speed from constants.h
 	const float SCALE = SPRITE_SCALE;       // Scaling up sprites to fit map
 	const float G = entityNS::GRAVITY;      // Gravitional constant
@@ -101,6 +102,8 @@ public:
 	virtual float getCenterY() = 0;
 
 	virtual bool changeState(std::string stateName)=0;
+
+	virtual void flipHorizontal(bool flip) = 0;
 
 	//setstate
 	/* if (currentState)
