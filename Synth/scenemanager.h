@@ -34,6 +34,9 @@ private:
 	
 	// "dictionary" for all scenes and their sceneName
 	std::unordered_map<std::string, Scene*> sceneDictionary;
+	// improvement: use struct sceneStruct with scene pointer, string name and bool for checking if this is a level.
+	// Add a command to retrieve scene states which are level, which can be called in level select.
+	// With this, level select will update automatically when a new level scene is added.
 
 	// pointer to the currently displayed scene (NULL if no scene displayed)
 	Scene* currentScene;
