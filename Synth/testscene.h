@@ -20,6 +20,7 @@
 #include "speedPowerup.h"
 #include "enemy.h"
 #include "heart.h"
+#include "level.h"
 
 //=============================================================================
 // This class is the core of the game
@@ -50,6 +51,8 @@ private:
     UINT distance = 0;                      // distance in number of blocks
     UINT speedState = 0;                    // State of the game speed
     UINT playerState = ONGROUND;                   // State of the player
+
+    Level level;
 
 
 public:

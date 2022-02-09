@@ -77,6 +77,9 @@ const char SPEEDPOWERUP_IMAGE[] = "pictures\\SpeedPowerup.png";
 const char HEART_IMAGE[] = "pictures\\heart.png";
 const char ENEMY_IMAGE[] = "pictures\\enemy.jpg";
 
+//filepaths for csv data
+const char LEVELPATH_2[] = "Levels\\lv2.csv";
+
 // key mappings
 // In this game simple constants are used for key mappings. If variables were used
 // it would be possible to save and restore key mappings from a data file.

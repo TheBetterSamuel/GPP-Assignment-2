@@ -12,6 +12,14 @@
 #include <iostream>
 #include <fstream> 
 #include <sstream>
+#include "player.h"
+#include "ground.h"
+#include "killbox.h"
+#include "nportal.h"
+#include "dsportal.h"
+#include "hsportal.h"
+#include "speedPowerup.h"
+#include "enemy.h"
 
 using namespace std;
 
@@ -19,13 +27,19 @@ using namespace std;
 namespace levelDictionary {
 	const string GROUND = "G";
 	const string KILLBOX = "K";
-	const string START = "S";
-	const string END = "E";
+	const string PLAYER = "P";
+	const string FINISH = "F";
+	const string ENEMY = "E";
+	const string SPEEDPOWERUP = "S";
 }
 class Level
 {
 protected:
 	vector <vector<string>> map;
+	vector <Ground> groundList;
+	vector <Killbox> killboxList;
+	vector <Enemy> enemyList;
+	vector <SpeedPowerup> speedpowerupList;
 
 public:
 	// constructor
@@ -33,7 +47,7 @@ public:
 	// Destructor
 	virtual ~Level() {}
 
-	///get map
+	//get map
 	virtual const vector <vector<string>> getMap() {
 		return map;
 	}
@@ -43,6 +57,38 @@ public:
 
 	//clear map
 	virtual const void clearMap() {}
+
+	// get for all vectors
+	virtual const vector <Ground> getGroundList() {
+		return groundList;
+	}
+	virtual const vector <Killbox> getKillboxList() {
+		return killboxList;
+	}
+	virtual const vector <Enemy> getEnemyList() {
+		return enemyList;
+	}
+	virtual const vector <SpeedPowerup> getSpeedpowerupList() {
+		return speedpowerupList;
+	}
+
+	//set for all vectors
+	virtual const void setGroundList(vector <Ground> v) {
+		groundList = v;
+		return;
+	}
+	virtual const void setKillboxList(vector <Killbox> v) {
+		killboxList = v;
+		return;
+	}
+	virtual const void setEnemyList(vector <Enemy> v) {
+		enemyList = v;
+		return;
+	}
+	virtual const void setGroundList(vector <SpeedPowerup> v) {
+		speedpowerupList = v;
+		return;
+	}
 };
 
 #endif

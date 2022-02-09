@@ -28,6 +28,8 @@ TestScene::~TestScene()
 //=============================================================================
 void TestScene::initialize()
 {
+	level = Level();
+	level.loadData(LEVELPATH_2);
 
 	Graphics* graphics = getGraphics();
 
@@ -79,6 +81,43 @@ void TestScene::initialize()
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing enemy"));
 	enemy.setX(100);
 	enemy.setY(100);
+	vector<Ground> gv = level.getGroundList();
+	vector<Killbox> gk = level.getKillboxList();
+	vector<Enemy> ge = level.getEnemyList();
+	vector<SpeedPowerup> gs = level.getSpeedpowerupList();
+	//render from map
+	for (int i = 0; i < level.getMap().size(); i++) {
+		for (int j = 0; j < level.getMap().at(i).size(); j++) {
+			if (level.getMap().at(i).at(j) == levelDictionary::GROUND) {
+				Ground ground;
+				if (!ground.initialize(graphics, groundNS::WIDTH, groundNS::HEIGHT, 0, &groundTexture))
+					throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing ground"));
+				ground.setX(j * BOX_SIZE);
+				ground.setY(i * BOX_SIZE);
+				gv.push_back(ground);
+			}
+			if (level.getMap().at(i).at(j) == levelDictionary::ENEMY) {
+				Enemy enemy;
+				if (!enemy.initialize(graphics, enemyNS::WIDTH, enemyNS::HEIGHT, 0, &enemyTexture, &player))
+					throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing enemy"));
+				enemy.setX(j * BOX_SIZE);
+				enemy.setY(i * BOX_SIZE);
+				ge.push_back(enemy);
+			}
+			if (level.getMap().at(i).at(j) == levelDictionary::KILLBOX) {
+				Killbox killbox;
+				if (!killbox.initialize(graphics, kboxNS::WIDTH, kboxNS::HEIGHT, 0, &killboxTexture, &player))
+					throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing killbox"));
+				killbox.setX(j * BOX_SIZE);
+				killbox.setY(i * BOX_SIZE);
+				ge.push_back(enemy);
+			}
+			if (level.getMap().at(i).at(j) == levelDictionary::PLAYER) {
+				player.setX(j * BOX_SIZE);
+				player.setY(i * BOX_SIZE);
+			}
+		}
+	}
 
 	//Init Heart List
 
@@ -231,6 +270,18 @@ void TestScene::update(float frameTime)
 		player.damage();
 	}
 	
+	for (int i = 0; i < level.getGroundList().size(); i++) {
+		Ground ground = level.getGroundList().at(i);
+		ground.update(frameTime);
+	}
+	for (int i = 0; i < level.getKillboxList().size(); i++) {
+		Killbox killbox = level.getKillboxList().at(i);
+		killbox.update(frameTime);
+	}
+	for (int i = 0; i < level.getEnemyList().size(); i++) {
+		Enemy enemy = level.getEnemyList().at(i);
+		enemy.update(frameTime);
+	}
 }
 
 //=============================================================================
@@ -316,6 +367,19 @@ void TestScene::render()
 		sceneManager->transitionToScene("EXIT_GAME");
 	}
 
+	for (int i = 0; i < level.getGroundList().size(); i++) {
+		Ground ground = level.getGroundList().at(i);
+		ground.draw();
+	}
+	for (int i = 0; i < level.getKillboxList().size(); i++) {
+		Killbox killbox = level.getKillboxList().at(i);
+		killbox.draw();
+	}
+	for (int i = 0; i < level.getEnemyList().size(); i++) {
+		Enemy enemy = level.getEnemyList().at(i);
+		enemy.draw();
+	}
+
 	getGraphics()->spriteEnd();                  // end drawing sprites
 }
 
@@ -327,6 +391,7 @@ void TestScene::releaseAll()
 {
 	groundTexture.onLostDevice();
 	playerTexture.onLostDevice();
+	killboxTexture.onLostDevice();
 	enemyTexture.onLostDevice();
 	heartTexture.onLostDevice();
 	//Scene::releaseAll();
@@ -341,6 +406,7 @@ void TestScene::resetAll()
 {
 	groundTexture.onResetDevice();
 	playerTexture.onResetDevice();
+	killboxTexture.onResetDevice();
 	enemyTexture.onResetDevice();
 	heartTexture.onResetDevice();
 	//Scene::resetAll();
