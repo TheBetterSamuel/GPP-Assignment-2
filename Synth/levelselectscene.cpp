@@ -47,13 +47,16 @@ void LevelSelectScene::initialize()
 	if (dxFontLarge->initialize(graphics, 124, true, false, "Arial") == false)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
 
-	// register menu options
-	vector<string> list = FileUtils::getFiles("Levels");
+	// register menu options with file io
+	/*vector<string> list = FileUtils::getFiles("Levels");
 	OutputDebugStringA("Levels:");
 	for (int i = 0; i < list.size(); i++) {
 		options.push_back(list[i]);
 	}
-	OutputDebugStringA("Done printing");
+	OutputDebugStringA("Done printing");*/
+
+	options.push_back("Level 1");
+	options.push_back("Level 2");
 
 	return;
 }
@@ -63,7 +66,7 @@ void LevelSelectScene::initialize()
 //=============================================================================
 void LevelSelectScene::update(float frameTime)
 {
-	if (getInput()->wasKeyPressed(0x57)) {   //press W
+	if (getInput()->wasKeyPressed(W_KEY)) {   //press W
 		if (selectedIndex == 0) {
 			selectedIndex = options.size()-1;
 		}
@@ -71,7 +74,7 @@ void LevelSelectScene::update(float frameTime)
 			selectedIndex--;
 		}
 	}
-	else if (getInput()->wasKeyPressed(0x53)) {  //press S
+	else if (getInput()->wasKeyPressed(S_KEY)) {  //press S
 		if (selectedIndex == options.size()-1) {
 			selectedIndex = 0;
 		}
@@ -80,10 +83,10 @@ void LevelSelectScene::update(float frameTime)
 		}
 	}
 	else if (getInput()->wasKeyPressed(VK_RETURN)) {
-		for (int i = 0; i < options.size(); i++) {
-			if (selectedIndex = i) {
-				sceneManager->transitionToScene("EXIT_GAME");
-			}
+		switch (selectedIndex) {
+		case 0: sceneManager->transitionToScene("TEST_SCENE"); break;
+		case 1: sceneManager->transitionToScene("TEST_SCENE2"); break;
+		
 		}
 	}
 }
